@@ -1,0 +1,63 @@
+###> symfony/framework-bundle ###
+/.env.local
+/.env.local.php
+/.env.*.local
+/config/secrets/prod/prod.decrypt.private.php
+/public/bundles/
+/var/
+/vendor/
+/.env
+.env
+###< symfony/framework-bundle ###
+
+###> phpunit/phpunit ###
+/phpunit.xml
+.phpunit.result.cache
+###< phpunit/phpunit ###
+
+###> symfony/phpunit-bridge ###
+.phpunit.result.cache
+/phpunit.xml
+###< symfony/phpunit-bridge ###
+
+###> symfony/asset-mapper ###
+/public/assets/
+/assets/vendor/
+###< symfony/asset-mapper ###
+
+###> Composer ###
+/vendor/
+/composer.lock
+###< Composer ###
+
+###> Logs and temporary files ###
+/var/log/*
+/var/cache/*
+/var/sessions/*
+###< Logs and temporary files ###
+
+###> IDEs and editors ###
+/.idea/
+/.vscode/
+/*.swp
+###< IDEs and editors ###
+
+###> OS generated files ###
+.DS_Store
+Thumbs.db
+###< OS generated files ###
+
+###> Build artifacts ###
+/node_modules/
+/dist/
+/build/
+/public/build/
+/public/js/
+/public/css/
+/public/images/
+/public/fonts/
+###< Build artifacts ###
+
+###> Symfony encore ###
+/public/build/
+###< Symfony encore ###

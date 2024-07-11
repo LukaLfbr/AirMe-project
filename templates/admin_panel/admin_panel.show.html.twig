@@ -1,0 +1,36 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+	{{event.name}}
+{% endblock %}
+
+{% block body %}
+	<style>
+		.example-wrapper {
+			margin: 1em auto;
+			max-width: 800px;
+			width: 95%;
+			font: 18px / 1.5 sans-serif;
+		}
+		.example-wrapper code {
+			background: #F5F5F5;
+			padding: 2px 6px;
+		}
+	</style>
+
+	<div class="example-wrapper">
+		<h1>{{event.name}}</h1>
+		<h3>{{event.description}}</h3>
+		<p>Organisé par
+			{{event.referent.email}}</p>
+	</div>
+	<button>
+		<a href="{{ path('admin_edit', {'id': event.id})}}">Editer l'évévement</a>
+	</button>
+	<button>
+		<a href="{{ path('admin_delete', {'id': event.id})}}">Supprimer l'évévement</a>
+	</button>
+
+	<a href="{{ path('admin_panel') }}">Retourner au menu</a>
+
+{% endblock %}

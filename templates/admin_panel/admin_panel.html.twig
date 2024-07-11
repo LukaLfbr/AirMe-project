@@ -1,0 +1,37 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Panneau d'administration
+{% endblock %}
+
+{% block body %}
+	<style>
+		.example-wrapper {
+			margin: 1em auto;
+			max-width: 800px;
+			width: 95%;
+			font: 18px / 1.5 sans-serif;
+		}
+		.example-wrapper code {
+			background: #F5F5F5;
+			padding: 2px 6px;
+		}
+	</style>
+
+	<div class="example-wrapper">
+		<h1>Panneau d'administration</h1>
+
+		<h3>Ici vous pouvez ajouter, modifier et supprimer des évévements.</h3>
+		<a href="{{path('app_home')}}">Revenir au mode utilisateur.</a>
+		<h4><a href="{{ path('user_add_event',) }}">Ajouter un événement</a></h4>
+		{% for event in events %}
+			<ul>
+				<li>
+					<a href="{{ path('admin_event', {'id': event.id}) }}">{{ event.name }}</a>
+					<a href="{{ path('user_edit_event', {'id': event.id}) }}">Edit</a>
+					<a href="{{ path('user_delete_event', {'id': event.id}) }}" onclick="return confirm('Voulez-vous supprimer {{ event.name }} ?')">Supprimer</a>
+				</li>
+			</ul>
+
+		{% endfor %}
+	</div>
+{% endblock %}
