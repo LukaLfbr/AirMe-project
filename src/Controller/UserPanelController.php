@@ -66,6 +66,9 @@ class UserPanelController extends AbstractController
             $this->em->persist($event);
             $this->em->flush();
 
+            $this->addFlash('success', 'Événement créé avec succès !');
+            $this->forward('App\Controller\CsvExportController::export', ['event' => $event]);
+
             return $this->redirectToRoute('user_panel', ['id' => $this->getUserId()]);
         }
 
