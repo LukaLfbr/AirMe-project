@@ -2,9 +2,11 @@
 
 namespace App\Controller;
 
+use App\Entity\Coordinates;
 use App\Entity\Events;
 use App\Form\EventsType;
 use App\Repository\EventsRepository;
+use App\Service\GeocodingService;
 use DateTimeImmutable;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -19,6 +21,7 @@ use App\Traits\UserAwareTrait;
 #[IsGranted('ROLE_USER')]
 class UserPanelController extends AbstractController
 {
+    // Used to get the current User assiciated with current ID
     use UserAwareTrait;
 
     private $repository;
@@ -43,7 +46,7 @@ class UserPanelController extends AbstractController
     }
 
     #[Route('/add', name: 'add_event')]
-    public function add(Request $request, Security $security): Response
+    public function add(Request $request, Security $security, GeocodingService $geocodingService): Response
     {
         $this->initializeUser($security);
 
@@ -63,12 +66,24 @@ class UserPanelController extends AbstractController
             $this->addFlash('success', 'Événement créé avec succès !');
             $event->setReferent($this->getUser());
 
+            $location = $event->getLocation();
+            $coordinates = $geocodingService->getCoordinates($location);
+
+            $coordinatesEntity = new Coordinates();
+            $coordinatesEntity->setLongitude($coordinates['longitude']);
+            $coordinatesEntity->setLatitude($coordinates['latitude']);
+            $this->em->persist($coordinatesEntity);
+
+            $event->setCoordinates($coordinatesEntity);
+
             $this->em->persist($event);
             $this->em->flush();
 
             $this->addFlash('success', 'Événement créé avec succès !');
+            // Send name, location, date and id to CSV file to keep tracks of informations
             $this->forward('App\Controller\CsvExportController::export', ['event' => $event]);
 
+            // Trait allows to return to current User panel using his ID
             return $this->redirectToRoute('user_panel', ['id' => $this->getUserId()]);
         }
 

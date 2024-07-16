@@ -3,13 +3,8 @@
 namespace App\Controller;
 
 use App\Entity\Events;
-use App\Form\EventsType;
 use App\Repository\EventsRepository;
-use DateTimeImmutable;
-use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Symfony\Bundle\SecurityBundle\Security as SecurityBundleSecurity;
-use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
@@ -17,14 +12,10 @@ use Symfony\Component\Routing\Annotation\Route;
 class HomeController extends AbstractController
 {
     private EventsRepository $eventsRepository;
-    private EntityManagerInterface $em;
-    private ?int $userId;
 
-    public function __construct(EventsRepository $eventsRepository, EntityManagerInterface $em)
+    public function __construct(EventsRepository $eventsRepository)
     {
         $this->eventsRepository = $eventsRepository;
-        $this->em = $em;
-        $this->userId = null;
     }
 
     #[Route('/', name: 'home')]

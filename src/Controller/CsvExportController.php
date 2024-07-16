@@ -24,7 +24,7 @@ class CsvExportController extends AbstractController
         $csv->insertOne([
             $event->getId(),
             $event->getName(),
-            $event->getDate()->format('Y-m-d H:i:s'), // Format de la date
+            $event->getDate()->format('Y-m-d H:i:s'),
             $event->getLocation(),
         ]);
 

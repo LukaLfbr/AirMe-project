@@ -1,78 +1,108 @@
 {% extends 'base.html.twig' %}
 
 {% block stylesheets %}
-	<link rel="stylesheet" href="{{ asset('assets/css/home.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/css/home.css') }}">
+    <link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.css"/>
+    <style>
+        .example-wrapper {
+            margin: 1em auto;
+            max-width: 800px;
+            width: 95%;
+            font: 18px / 1.5 sans-serif;
+        }
+        .my-map {
+            width: 80%;
+            height: 500px;
+            position: relative;
+            margin: auto;
+        }
+        .my-map iframe {
+            width: 100%;
+            height: 100%;
+            border: 1px solid black;
+        }
+    </style>
 {% endblock %}
 
-{% block title %}Hello HomeController!
-{% endblock %}
+{% block title %}Hello HomeController!{% endblock %}
 
 {% block body %}
-	<style>
-		.example-wrapper {
-			margin: 1em auto;
-			max-width: 800px;
-			width: 95%;
-			font: 18px / 1.5 sans-serif;
-		}
-		.example-wrapper code {
-			background: #F5F5F5;
-			padding: 2px 6px;
-		}
-		.required::after {
-			content: '*'
-		}
-	</style>
+    {% for label, messages in app.flashes %}
+        <div class="flash-{{ label }}">
+            {% for message in messages %}
+                <p>{{ message }}</p>
+            {% endfor %}
+        </div>
+    {% endfor %}
 
-	{% for label, messages in app.flashes %}
-		<div class="flash-{{ label }}">
-			{% for message in messages %}
-				<p>{{ message }}</p>
-			{% endfor %}
-		</div>
-	{% endfor %}
+    {% if app.user %}
+        <p>connecté en tant que {{ app.user.email }}</p>
+    {% else %}
+        <p>Pas connecté</p>
+    {% endif %}
 
-	{% if app.user %}
-		<p>connecté en tant que</p>
+    <button>
+        <a href="{{ path('app_login') }}">Connection</a>
+    </button>
+    <button>
+        <a href="{{ path('app_register') }}">S'inscrire</a>
+    </button>
+    <button>
+        <a href="{{ path('app_logout') }}">Se déconnecter</a>
+    </button>
 
-		{{ app.user.email }}</p>
-{% else %}
-	<p>Pas connecté</p>
-{% endif %}
+    {% if user %}
+        <button>
+            <a href="{{ path('user_panel', {'id': user.id}) }}">Accéder à vos événements</a>
+        </button>
+    {% endif %}
 
-<button>
-	<a href="{{ path('app_login') }}">Connection</a>
-</button>
-<button>
-	<a href="{{ path('app_register') }}">S'inscrire</a>
-</button>
-<button>
-	<a href="{{ path('app_logout') }}">Se déconnecter</a>
-</button>
-{% if user %}
-	<button>
-		<a href="{{ path('user_panel',{'id':user.id} ) }}">Accéder à vos événement</a>
-	</button>
-{% endif %}
+    {% for event in events %}
+        {% if event %}
+            <ul>
+                <li>{{ event.name }} à l'endroit : {{ event.location }}</li>
+                <div class="links-wrapper">
+                    <a class="see-button a-button" href="{{ path('app_event', {'id': event.id}) }}">{{ event.name }}</a>
+                </div>
+                <br>
+            </ul>
+        {% endif %}
+    {% endfor %}
 
+    <div id="map" class="my-map"></div>
 
+    <script src="http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.js"></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            // Initialize the map
+            let map = new L.map("map", {
+                center: [47.798, 1.351],
+                zoom: 6
+            });
 
-{% for event in events %}
-	{% if event %}
-		<ul>
-			<li>
-				{{ event.name }}
-				{% if event.name %}
-					à l'endroit :
-					{{ event.location }}
-				{% endif %}
-			</li>
-			<div class="links-wrapper">
-				<a class="see-button a-button" href="{{ path('app_event', {'id': event.id}) }}">
-					{{ event.name }}
-				</a>
-			</div>
-			<br>
-		</ul>
-	{% endif %}
-{% endfor %}{% endblock %}
+            let layer = new L.TileLayer("http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png");
+            map.addLayer(layer);
+
+            // Add markers for each event
+            const events = [
+                {% for event in events %}
+                {
+                    name: "{{ event.name }}",
+                    longitude: {{ event.coordinates.longitude }},
+                    latitude: {{ event.coordinates.latitude }},
+                    link: "{{ path('app_event', {'id': event.id}) }}",
+                    paf: "{{ event.paf }}"
+                }{% if not loop.last %},{% endif %}
+                {% endfor %}
+            ];
+
+            events.forEach(event => {
+                let marker = new L.Marker([event.latitude, event.longitude]);
+                marker.addTo(map).bindPopup(
+                    `<a href="${event.link}">${event.name}</a>
+					<p>${event.paf}€</p>`
+                );
+            });
+        });
+    </script>
+{% endblock %}

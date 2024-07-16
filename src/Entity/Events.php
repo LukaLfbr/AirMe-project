@@ -56,6 +56,9 @@ class Events
     #[ORM\JoinColumn(nullable: false)]
     private ?User $referent = null;
 
+    #[ORM\OneToOne(cascade: ['persist', 'remove'])]
+    private ?Coordinates $coordinates = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -225,6 +228,18 @@ class Events
     public function setReferent(?User $referent): static
     {
         $this->referent = $referent;
+
+        return $this;
+    }
+
+    public function getCoordinates(): ?Coordinates
+    {
+        return $this->coordinates;
+    }
+
+    public function setCoordinates(?Coordinates $coordinates): static
+    {
+        $this->coordinates = $coordinates;
 
         return $this;
     }
