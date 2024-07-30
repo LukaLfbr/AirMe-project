@@ -61,3 +61,7 @@ Thumbs.db
 ###> Symfony encore ###
 /public/build/
 ###< Symfony encore ###
+
+###< CSV Export ###
+/app/export
+

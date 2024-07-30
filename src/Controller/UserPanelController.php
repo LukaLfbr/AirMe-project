@@ -21,7 +21,8 @@ use App\Traits\UserAwareTrait;
 #[IsGranted('ROLE_USER')]
 class UserPanelController extends AbstractController
 {
-    // Used to get the current User assiciated with current ID
+    // Used to get the current User assiciated with current ID without error
+    // TODO modify this trait
     use UserAwareTrait;
 
     private $repository;
@@ -63,11 +64,11 @@ class UserPanelController extends AbstractController
         $event->setUpdatedAt(new DateTimeImmutable());
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $this->addFlash('success', 'Événement créé avec succès !');
             $event->setReferent($this->getUser());
 
-            $location = $event->getLocation();
-            $coordinates = $geocodingService->getCoordinates($location);
+            $coordinates = $geocodingService->getCoordinates(
+                $event->getLocation()
+            );
 
             $coordinatesEntity = new Coordinates();
             $coordinatesEntity->setLongitude($coordinates['longitude']);
