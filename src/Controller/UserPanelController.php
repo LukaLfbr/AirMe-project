@@ -16,28 +16,42 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Security\Http\Attribute\IsGranted;
 use App\Traits\UserAwareTrait;
+use Symfony\Contracts\Translation\TranslatorInterface;
 
 #[Route('/user', name: 'user_')]
 #[IsGranted('ROLE_USER')]
 class UserPanelController extends AbstractController
 {
-    // Used to get the current User assiciated with current ID without error
+    // Used to get the current User associated with current ID without error
     // TODO modify this trait
     use UserAwareTrait;
 
     private $repository;
     private $em;
+    private $translator;
 
-    public function __construct(EventsRepository $repository, EntityManagerInterface $em)
-    {
+    public function __construct(
+        EventsRepository $repository,
+        EntityManagerInterface $em,
+        TranslatorInterface $translator
+    ) {
         $this->repository = $repository;
         $this->em = $em;
+        $this->translator = $translator;
     }
 
     #[Route('/{id}/panel', name: 'panel')]
     public function index(Security $security): Response
     {
-        $events = $this->repository->findByReferent(
+        if (!$this->getUser()) {
+            $this->addFlash(
+                'login-error',
+                $this->translator->trans('flash.login.error')
+            );
+            return $this->redirectToRoute('app_event');
+        }
+
+        $events = $this->repository->findGamesByReferent(
             $security->getUser()
         );
 
@@ -52,7 +66,7 @@ class UserPanelController extends AbstractController
         $this->initializeUser($security);
 
         if (!$security->isGranted('ROLE_USER')) {
-            $this->addFlash('not_logged_in', 'Vous devez être connecté pour ajouter un événement.');
+            $this->addFlash('not_logged_in', $this->translator->trans('flash.login_required'));
             return $this->redirectToRoute('app_login');
         }
 
@@ -66,25 +80,28 @@ class UserPanelController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $event->setReferent($this->getUser());
 
-            $coordinates = $geocodingService->getCoordinates(
-                $event->getLocation()
-            );
+            try {
+                $coordinates = $geocodingService->getCoordinates($event->getLocation());
 
-            $coordinatesEntity = new Coordinates();
-            $coordinatesEntity->setLongitude($coordinates['longitude']);
-            $coordinatesEntity->setLatitude($coordinates['latitude']);
-            $this->em->persist($coordinatesEntity);
+                $coordinatesEntity = new Coordinates();
+                $coordinatesEntity->setLongitude($coordinates['longitude']);
+                $coordinatesEntity->setLatitude($coordinates['latitude']);
+                $this->em->persist($coordinatesEntity);
 
-            $event->setCoordinates($coordinatesEntity);
+                $event->setCoordinates($coordinatesEntity);
+            } catch (\Exception $e) {
+                $this->addFlash('error', $this->translator->trans('flash.geocoding_error'));
+                return $this->render('events/event.add.html.twig', [
+                    'form' => $form->createView(),
+                ]);
+            }
 
             $this->em->persist($event);
             $this->em->flush();
 
-            $this->addFlash('success', 'Événement créé avec succès !');
-            // Send name, location, date and id to CSV file to keep tracks of informations
+            $this->addFlash('success', $this->translator->trans('flash.event_created_success'));
             $this->forward('App\Controller\CsvExportController::export', ['event' => $event]);
 
-            // Trait allows to return to current User panel using his ID
             return $this->redirectToRoute('user_panel', ['id' => $this->getUserId()]);
         }
 
@@ -99,7 +116,7 @@ class UserPanelController extends AbstractController
         $this->initializeUser($security);
 
         if (($this->getUser() !== $event->getReferent()) && !$this->isGranted('ROLE_ADMIN')) {
-            $this->addFlash('unauthorized_edit_request', 'Vous ne pouvez pas modifier l\'événement si vous n\'en êtes pas le propriétaire');
+            $this->addFlash('unauthorized_edit_request', $this->translator->trans('flash.unauthorized_edit'));
             return $this->redirectToRoute('app_home');
         }
 
@@ -110,7 +127,7 @@ class UserPanelController extends AbstractController
             $event->setUpdatedAt(new DateTimeImmutable());
             $this->em->flush();
 
-            $this->addFlash('success', 'Événement modifié avec succès.');
+            $this->addFlash('success', $this->translator->trans('flash.event_updated_success'));
             return $this->redirectToRoute('user_panel', ['id' => $this->getUserId()]);
         }
 
@@ -129,9 +146,9 @@ class UserPanelController extends AbstractController
             $this->em->remove($event);
             $this->em->flush();
 
-            $this->addFlash('success', 'Événement supprimé avec succès.');
+            $this->addFlash('success', $this->translator->trans('flash.event_deleted_success'));
         } else {
-            $this->addFlash('error', 'Vous n\'avez pas les permissions nécessaires pour cette action.');
+            $this->addFlash('error', $this->translator->trans('flash.no_permission'));
         }
 
         if ($this->isGranted('ROLE_ADMIN')) {

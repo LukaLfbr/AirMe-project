@@ -1,88 +1,64 @@
 {% extends 'base.html.twig' %}
 
 {% block stylesheets %}
-    <link rel="stylesheet" href="{{ asset('assets/css/home.css') }}">
-    <link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.css"/>
-    <style>
-        .example-wrapper {
-            margin: 1em auto;
-            max-width: 800px;
-            width: 95%;
-            font: 18px / 1.5 sans-serif;
-        }
-        .my-map {
-            width: 80%;
-            height: 500px;
-            position: relative;
-            margin: auto;
-        }
-        .my-map iframe {
-            width: 100%;
-            height: 100%;
-            border: 1px solid black;
-        }
-    </style>
+	<link rel="stylesheet" href="{{ asset('assets/css/home.css') }}">
+	<link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.css"/>
+	<style>
+		.example-wrapper {
+			margin: 1em auto;
+			max-width: 800px;
+			width: 95%;
+			font: 18px / 1.5 sans-serif;
+		}
+		.my-map {
+			width: 80%;
+			height: 500px;
+			position: relative;
+			margin: auto;
+		}
+		.my-map iframe {
+			width: 100%;
+			height: 100%;
+			border: 1px solid black;
+		}
+	</style>
 {% endblock %}
 
-{% block title %}Hello HomeController!{% endblock %}
+{% block title %} {{'events.title'|trans}}
+{% endblock %}
 
-{% block body %}
-    {% for label, messages in app.flashes %}
-        <div class="flash-{{ label }}">
-            {% for message in messages %}
-                <p>{{ message }}</p>
-            {% endfor %}
-        </div>
-    {% endfor %}
+{% block body %} 
+	{% if app.user %}
+				<li>
+					<a href="{{ path('user_panel', {'id': user.id}) }}">{{'user.events'|trans}} </a>
+				</li>
+	{% endif %}
 
-    {% if app.user %}
-        <p>connecté en tant que {{ app.user.email }}</p>
-    {% else %}
-        <p>Pas connecté</p>
-    {% endif %}
+	{% for event in events %}
+		{% if event %}
+			<ul>
+				<li>{{ 'events.location'|trans({'%game%': event.name, '%location%': event.location}) }}</li>
+				<div class="links-wrapper">
+					<a class="see-button a-button" href="{{ path('app_event', {'id': event.id}) }}">{{ event.name }}</a>
+				</div>
+				<br>
+			</ul>
+		{% endif %}
+	{% endfor %}
 
-    <button>
-        <a href="{{ path('app_login') }}">Connection</a>
-    </button>
-    <button>
-        <a href="{{ path('app_register') }}">S'inscrire</a>
-    </button>
-    <button>
-        <a href="{{ path('app_logout') }}">Se déconnecter</a>
-    </button>
+	<div id="map-data" data-events='[
+		        {% for event in events %}
+		        {
+		            "name": "{{ event.name }}",
+		            "longitude": {{ event.coordinates.longitude }},
+		            "latitude": {{ event.coordinates.latitude }},
+		            "link": "{{ path('app_event', {'id': event.id}) }}",
+		            "paf": "{{ event.paf }}"
+		        }{% if not loop.last %},{% endif %}
+		        {% endfor %}
+		    ]'></div>
+	<div id="map" class="my-map"></div>
 
-    {% if user %}
-        <button>
-            <a href="{{ path('user_panel', {'id': user.id}) }}">Accéder à vos événements</a>
-        </button>
-    {% endif %}
-
-    {% for event in events %}
-        {% if event %}
-            <ul>
-                <li>{{ event.name }} à l'endroit : {{ event.location }}</li>
-                <div class="links-wrapper">
-                    <a class="see-button a-button" href="{{ path('app_event', {'id': event.id}) }}">{{ event.name }}</a>
-                </div>
-                <br>
-            </ul>
-        {% endif %}
-    {% endfor %}
-    
-    <div id="map-data" data-events='[
-        {% for event in events %}
-        {
-            "name": "{{ event.name }}",
-            "longitude": {{ event.coordinates.longitude }},
-            "latitude": {{ event.coordinates.latitude }},
-            "link": "{{ path('app_event', {'id': event.id}) }}",
-            "paf": "{{ event.paf }}"
-        }{% if not loop.last %},{% endif %}
-        {% endfor %}
-    ]'></div>
-
-    <div id="map" class="my-map"></div>
-
-    <script src="http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.js"></script>
-    <script src="{{ asset('assets/js/map.js') }}"></script>
+	<script src="http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.js"></script>
+	<script src="{{ asset('assets/js/map.js') }}"></script>
 {% endblock %}

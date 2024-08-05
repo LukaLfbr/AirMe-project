@@ -25,12 +25,12 @@
 			{{event.referent.email}}</p>
 	</div>
 	<button>
-		<a href="{{ path('admin_edit', {'id': event.id})}}">Editer l'évévement</a>
+		<a href="{{ path('admin_edit', {'id': event.id})}}">{{"admin.edit.event"|trans}} </a>
 	</button>
 	<button>
-		<a href="{{ path('admin_delete', {'id': event.id})}}">Supprimer l'évévement</a>
+		<a href="{{ path('admin_delete', {'id': event.id})}}">{{"admin.delete.event"|trans}}</a>
 	</button>
 
-	<a href="{{ path('admin_panel') }}">Retourner au menu</a>
+	<a href="{{ path('admin_panel') }}">{{"user.back.to.main.menu"|trans}}</a>
 
 {% endblock %}

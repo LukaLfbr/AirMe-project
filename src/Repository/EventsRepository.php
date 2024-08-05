@@ -21,7 +21,7 @@ class EventsRepository extends ServiceEntityRepository
      * @param User $referent
      * @return Events[]
      */
-    public function findByReferent(User $user): array
+    public function findGamesByReferent(User $user): array
     {
         return $this->createQueryBuilder('e')
             ->where('e.referent = :referent')

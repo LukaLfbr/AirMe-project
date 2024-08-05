@@ -3,7 +3,7 @@
 	<head>
 		<meta charset="UTF-8">
 		<title>
-			{% block title %}Welcome!
+			{% block title %}{{"user.edit.event"|trans}}
 			{% endblock %}
 		</title>
 		<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 128 128%22><text y=%221.2em%22 font-size=%2296%22>⚫️</text><text y=%221.3em%22 x=%220.2em%22 font-size=%2276%22 fill=%22%23fff%22>sf</text></svg>"> {% block stylesheets %}{% endblock %}
@@ -16,7 +16,7 @@
 	</head>
 	<body>
 		{% block body %}
-			<h1>Modifier un événement</h1>
+			<h1>{{"user.edit.event"|trans}}s</h1>
 			{{ form_start(form) }}
 			{{ form_row(form.name, {'attr': {'class': 'required'}}) }}
 			{{ form_row(form.description, {'attr': {'class': 'required'}}) }}
@@ -32,7 +32,7 @@
 			{{ form_row(form.save) }}
 			{{ form_end(form) }}
 			<button>
-				<a href="{{ path('app_home') }}">Retourner au menu</a>
+				<a href="{{ path('app_home') }}">{{"user.back.to.main.menu"|trans}}</a>
 			</button>
 		{% endblock %}
 	</body>
