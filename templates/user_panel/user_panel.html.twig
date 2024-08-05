@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Tableau de bord{% endblock %}
+{% block title %}{{"user.panel.title"|trans}} {% endblock %}
 
 {% block body %}
     <style>
@@ -17,13 +17,18 @@
     </style>
 
     <div class="example-wrapper">
-        <h1>Vos événements :</h1>
+        <h1>{{"user.created.events"|trans}}</h1>
         {% if events %}
             {% for event in events %}
                 <ul>
                     <li><a class="see-button a-button" href="{{ path('app_event', {'id': event.id}) }}">{{ event.name }}</a></li>
-                    <li><a href="{{ path('user_edit_event', {'id': event.id}) }}">Editer</a></li>
-                    <li><a href="{{ path('user_delete_event', {'id': event.id}) }}" onclick="return confirm('Voulez-vous supprimer {{ event.name }} ?')">Supprimer</a></li>
+                    <li><a href="{{ path('user_edit_event', {'id': event.id}) }}">{{"events.edit"|trans}} </a></li>
+                    <li>
+                        <a href="{{ path('user_delete_event', {'id': event.id}) }}"
+                        onclick="return confirm('{{ 'events.delete.confirmation'|trans({'%event_name%': event.name}) }}')">
+                        {{ 'events.delete'|trans }}
+                        </a>
+                    </li>                
                 </ul>
             {% endfor %}
         {% else %}

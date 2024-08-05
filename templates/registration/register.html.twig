@@ -1,10 +1,10 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Inscription
+{% block title %}{{"register"|trans}}
 {% endblock %}
 
 {% block body %}
-	<h1>S'inscrire</h1>
+	<h1>{{"register"|trans}}</h1>
 
 	{{ form_errors(registrationForm) }}
 
@@ -15,9 +15,9 @@
         }) }}
 	{{ form_row(registrationForm.agreeTerms) }}
 
-	<button type="submit" class="btn">Créer son compte</button>
+	<button type="submit" class="btn">{{"register.account"|trans}}</button>
 	<button>
-		<a href="{{ path('app_home') }}">Retourner au menu</a>
+		<a href="{{ path('app_home') }}">{{"user.back.to.main.menu"|trans}}</a>
 	</button>
 	{{ form_end(registrationForm) }}
 {% endblock %}

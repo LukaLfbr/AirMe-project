@@ -12,7 +12,7 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Validator\Constraints\IsTrue;
 use Symfony\Component\Validator\Constraints\Length;
 use Symfony\Component\Validator\Constraints\NotBlank;
-use Symfony\Component\Validator\Constraints\Email;
+use Symfony\Component\Validator\Constraints\Email as EmailConstraint;
 
 class RegistrationFormType extends AbstractType
 {
@@ -22,38 +22,34 @@ class RegistrationFormType extends AbstractType
             ->add('email', EmailType::class, [
                 'required' => true,
                 'constraints' => [
-                    new Email(['message' => 'L\'e-mail est invalide.']),
+                    new EmailConstraint(['message' => 'form.email.invalid']),
                     new Length([
-                        'max' => '36',
-                        'maxMessage' => 'L\'e-mail utilisé est trop long.'
-                    ])
+                        'max' => 36,
+                        'maxMessage' => 'form.email.too_long',
+                    ]),
                 ],
-
+                'label' => 'form.email.label',
+                'help' => 'form.email.help',
             ])
             ->add('agreeTerms', CheckboxType::class, [
                 'mapped' => false,
                 'constraints' => [
-                    new IsTrue([
-                        'message' => 'Vous devez accepter nos conditions d\'utilisation.',
-                    ]),
+                    new IsTrue(['message' => 'form.agree_terms.not_accepted']),
                 ],
+                'label' => 'form.agree_terms.label',
             ])
             ->add('plainPassword', PasswordType::class, [
-                // instead of being set onto the object directly,
-                // this is read and encoded in the controller
                 'mapped' => false,
                 'attr' => ['autocomplete' => 'new-password'],
                 'constraints' => [
-                    new NotBlank([
-                        'message' => 'Please enter a password',
-                    ]),
+                    new NotBlank(['message' => 'form.password.blank']),
                     new Length([
                         'min' => 4,
-                        'minMessage' => 'Your password should be at least {{ limit }} characters',
-                        // max length allowed by Symfony for security reasons
-                        'max' => 4096,
+                        'minMessage' => 'validators.password.too.short',
+                        'max' => 50,
                     ]),
                 ],
+                'label' => 'form.password.label',
             ]);
     }
 

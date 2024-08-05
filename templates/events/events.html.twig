@@ -1,7 +1,7 @@
 {% extends 'base.html.twig' %}
 
 {% block stylesheets %}
-    <link rel="stylesheet" href="{{ asset('assets/css/home.css') }}">
+    {{ parent() }} 
     <link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.css"/>
     <style>
         .example-wrapper {
@@ -24,43 +24,21 @@
     </style>
 {% endblock %}
 
-{% block title %}Hello HomeController!{% endblock %}
+{% block title %}
+    {{ 'events.title'|trans }}
+{% endblock %}
 
 {% block body %}
-    {% for label, messages in app.flashes %}
-        <div class="flash-{{ label }}">
-            {% for message in messages %}
-                <p>{{ message }}</p>
-            {% endfor %}
-        </div>
-    {% endfor %}
-
     {% if app.user %}
-        <p>connecté en tant que {{ app.user.email }}</p>
-    {% else %}
-        <p>Pas connecté</p>
-    {% endif %}
-
-    <button>
-        <a href="{{ path('app_login') }}">Connection</a>
-    </button>
-    <button>
-        <a href="{{ path('app_register') }}">S'inscrire</a>
-    </button>
-    <button>
-        <a href="{{ path('app_logout') }}">Se déconnecter</a>
-    </button>
-
-    {% if user %}
-        <button>
-            <a href="{{ path('user_panel', {'id': user.id}) }}">Accéder à vos événements</a>
-        </button>
+        <li>
+            <a href="{{ path('user_panel', {'id': user.id}) }}">{{ 'user.events'|trans }}</a>
+        </li>
     {% endif %}
 
     {% for event in events %}
         {% if event %}
             <ul>
-                <li>{{ event.name }} à l'endroit : {{ event.location }}</li>
+                <li>{{ 'events.location'|trans({'%game%': event.name, '%location%': event.location}) }}</li>
                 <div class="links-wrapper">
                     <a class="see-button a-button" href="{{ path('app_event', {'id': event.id}) }}">{{ event.name }}</a>
                 </div>
@@ -68,7 +46,7 @@
             </ul>
         {% endif %}
     {% endfor %}
-    
+
     <div id="map-data" data-events='[
         {% for event in events %}
         {
@@ -80,7 +58,6 @@
         }{% if not loop.last %},{% endif %}
         {% endfor %}
     ]'></div>
-
     <div id="map" class="my-map"></div>
 
     <script src="http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.js"></script>

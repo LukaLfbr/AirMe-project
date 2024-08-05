@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Panneau d'administration
+{% block title %}{{"admin.panel.title"}}
 {% endblock %}
 
 {% block body %}
@@ -27,11 +27,9 @@
 			<ul>
 				<li>
 					<a href="{{ path('admin_event', {'id': event.id}) }}">{{ event.name }}</a>
-					<a href="{{ path('user_edit_event', {'id': event.id}) }}">Edit</a>
-					<a href="{{ path('user_delete_event', {'id': event.id}) }}" onclick="return confirm('Voulez-vous supprimer {{ event.name }} ?')">Supprimer</a>
+					<a href="{{ path('user_edit_event', {'id': event.id}) }}">{{"events.edit"|trans}} </a><a href="{{ path('user_delete_event', {'id': event.id}) }}" onclick="return confirm('{{ 'events.delete.confirmation'|trans({'%event%': event.name}) }}')">{{ 'events.delete'|trans }}</a>
 				</li>
 			</ul>
 
-		{% endfor %}
 	</div>
 {% endblock %}

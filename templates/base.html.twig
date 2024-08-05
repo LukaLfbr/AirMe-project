@@ -3,11 +3,12 @@
 	<head>
 		<meta charset="UTF-8">
 		<title>
-			{% block title %}Welcome!
+			{% block title %}
 			{% endblock %}
 		</title>
-	 	{% block stylesheets %}{% endblock %}
-
+		{% block stylesheets %}
+		<link rel="stylesheet" href="{{ asset('assets/css/app.css') }}">
+		{% endblock %}
 		{% block javascripts %}
 			{% block importmap %}
 				{{ importmap('app') }}
@@ -15,6 +16,43 @@
 		{% endblock %}
 	</head>
 	<body>
+	{% for label, messages in app.flashes %}
+		<div class="flash-{{ label }}">
+			{% for message in messages %}
+				<p>{{ message }}</p>
+			{% endfor %}
+		</div>
+	{% endfor %}
+		<nav>
+			<ul>
+				<li>
+					<a href="{{ path('app_home') }}">{{ 'home'|trans }}</a>
+				</li>
+				{# <li><a href="{{ path('app_about') }}">{{ 'about'|trans }}</a></li>
+				<li><a href="{{ path('app_contact') }}">{{ 'contact'|trans }}</a></li> #}
+					{% if app.user %}
+					<li>
+						<p>{{ 'login.information'|trans({'%user.email%': app.user.email}) }}</p>
+					</li>
+					{% else %}
+					<li>
+						<p>{{'login.not.logged.in'|trans}}
+						</p>
+					</li>
+					{% endif %}
+				</li>
+				<li>
+					<a href="{{ path('app_login') }}">{{ 'login'|trans }}</a>
+				</li>
+				<li>
+					<a href="{{ path('app_register') }}">{{ 'register'|trans }}</a>
+				</li>
+				<li>
+					<a href="{{ path('app_logout') }}">{{ 'logout'|trans }}</a>
+				</li>
+			</ul>
+		</nav>
 		{% block body %}{% endblock %}
+		{% block footer %}{% endblock %}
 	</body>
 </html>

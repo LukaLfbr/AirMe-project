@@ -3,7 +3,7 @@
 	<head>
 		<meta charset="UTF-8">
 		<title>
-			{% block title %}Welcome!
+			{% block title %} {{"admin.panel.title"|trans}}
 			{% endblock %}
 		</title>
 
@@ -15,7 +15,7 @@
 	</head>
 	<body>
 		{% block body %}
-			<h1>Modifier un événement</h1>
+			<h1>{{"user.edit.event"|trans}}</h1>
 			{{ form_start(form) }}
 			{{ form_row(form.name, {'attr': {'class': 'required'}}) }}
 			{{ form_row(form.description, {'attr': {'class': 'required'}}) }}
@@ -31,7 +31,7 @@
 			{{ form_row(form.save) }}
 			{{ form_end(form) }}
 			<button>
-				<a href="{{ path('admin_panel') }}">Retourner au menu</a>
+				<a href="{{ path('admin_panel') }}">{{"user.back.to.main.menu"|trans}}</a>
 			</button>
 
 

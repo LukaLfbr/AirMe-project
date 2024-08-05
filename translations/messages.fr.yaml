@@ -1,0 +1,74 @@
+# Global translation keys
+hello: "Bonjour !"
+thanks: "Merci !"
+
+# Nav section
+home: "Accueil"
+about: "À propos"
+contact: "Nous contacter"
+
+# Account section
+register: "S'inscrire"
+register.account: "Créer son compte"
+login: "Se connecter"
+login.information: "Vous êtes connecté en tant que %user.email%"
+login.not.logged.in: "Vous n'êtes pas connecté"
+logout: "Se déconnecter"
+
+# Reset Account Section
+reset.account.title: "Changer votre mot de passe"
+reset.account.main: "Entrez votre adresse e-mail et nous vous enverrons un lien pour réinitialiser votre mot de passe."
+reset.account.confirm: "Réinitialiser mon mot de passe"
+reset.account.link: "Pour réinitialiser votre mot de passe, rendez-vous sur ce lien :"
+reset.account.time.left: "Votre lien expire dans %time-left%."
+reset.account.email.sent: "Mail de réinitialisation envoyé."
+reset.account.instructions: "Si votre e-mail existe, vous recevrez un lien pour réinitialiser votre mot de passe."
+reset.account.resend.email: "Si vous n'avez pas reçu le mail, vérifiez votre dossier spam ou %try_again_link%."
+reset.account.try_again: "en cliquant ici"
+
+# Events section
+events.title: "Les événements autour de vous"
+events.location: "L'événement %game% aura lieu à %location%"
+events.edit: "Modifier l'événement"
+events.delete: "Supprimer l'événement"
+events.delete.confirmation: "Voulez-vous vraiment supprimer %event_name% ?"
+
+# User section
+user.panel.title: "Votre tableau de bord"
+user.events: "Accéder à vos événements"
+user.created.events: "Vos événements"
+user.back.to.main.menu: "Retourner au menu"
+user.edit.event: "Modifier un événement"
+user.add.event.title: "Ajouter un événement"
+user.add.event: "Créer une nouvelle partie"
+
+# Admin section
+admin.panel.title: "Bienvenue sur le panneau d'administration"
+admin.panel: "Panneau d'administration"
+admin.panel.main: "Ici vous pouvez ajouter, modifier et supprimer des événements."
+admin.panel.switch.to.user.mode: "Revenir au mode utilisateur."
+admin.edit.event: "Éditer l'événement"
+admin.delete.event: "Supprimer l'événement"
+
+# Flash message section
+flash.login.required: "Vous devez être connecté pour accéder à ceci !"
+flash.login.required.create: "Vous devez être connecté pour créer un événement !"
+flash.event_created_success: "Événement créé avec succès !"
+flash.unauthorized_edit: "Vous devez être le propriétaire de cet événement pour le modifier !"
+flash.event_updated_success: "Événement modifié avec succès !"
+flash.event_deleted_success: "Événement supprimé avec succès !"
+flash.no_permission: "Vous ne pouvez pas supprimer un événement qui ne vous appartient pas !"
+flash.geocoding_error: "Le service de géocodage n'a pas trouvé l'adresse. Veuillez vérifier l'adresse ou essayer une ville sans détails spécifiques."
+
+# Form section
+form.email.label: "Adresse e-mail*"
+form.email.help: "Votre adresse e-mail sera utilisée pour vous connecter."
+form.email.invalid: "L'adresse e-mail que vous avez entrée est invalide."
+form.email.too_long: "L'adresse e-mail ne peut pas dépasser 36 caractères."
+form.email.already_used: "Il y a déjà un compte avec cet e-mail."
+
+form.agree_terms.label: "J'accepte les conditions d'utilisation"
+form.agree_terms.not_accepted: "Vous devez accepter les conditions d'utilisation."
+
+form.password.label: "Mot de passe"
+form.password.blank: "Le mot de passe ne peut pas être vide."
