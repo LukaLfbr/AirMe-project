@@ -1,17 +1,27 @@
-$text-color: #D3D3D3;
-$background-color: #07090E;
-$primary-color: #556B2F;
+$text-color: #d3d3d3;
+$background-color: #07090e;
+$primary-color: #556b2f;
 $secondary-color: #663422;
-$accent-color:#3E3D3D;
+$accent-color: #3e3d3d;
 
 body {
-    background-color: $background-color;
-    position: relative;
-    p,a,li{
-        color: $text-color;
-    }
+  background-color: $background-color;
+  position: relative;
+  p,
+  a,
+  li,
+  h1,
+  h2,
+  h3,
+  h4 {
+    color: $text-color;
+  }
 }
 
 .leaflet-top {
-    z-index: 10 !important;
+  z-index: 10 !important;
+}
+
+.my-map {
+  border-radius: 1.2em !important;
 }

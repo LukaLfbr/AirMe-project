@@ -7,6 +7,11 @@ home: "Accueil"
 about: "À propos"
 contact: "Nous contacter"
 
+# Main section
+main:
+  title: 'Trouver <span class="highlight">LA</span> partie proche de chez <span class="highlight">vous</span>'
+  secondary.title: "Nos dernières parties"
+
 # Account section
 register: "S'inscrire"
 register.account: "Créer son compte"

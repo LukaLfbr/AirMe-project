@@ -35,18 +35,33 @@
         </li>
     {% endif %}
 
-	<ul>
-    {% for event in events %}
-        {% if event %}
-            
-                <li>{{ 'events.location'|trans({'%game%': event.name, '%location%': event.location}) }}</li>
-                <div class="links-wrapper">
-                    <a class="see-button a-button" href="{{ path('app_event', {'id': event.id}) }}">{{ event.name }}</a>
-                </div>
-                <br>
-        {% endif %}
-    {% endfor %}
-	</ul>
+    <main>
+    <h1>{{ 'main.title'|trans|raw }}</h1>
+
+    <div id="map" class="my-map"></div>
+
+    <h2>{{ 'main.secondary.title'|trans }}</h2>
+
+    <div class="carousel-wrapper">
+        <button class="carousel-control prev" aria-label="Previous">&#10094;</button>
+        <div class="carousel">
+            <ul class="carousel-list">
+                {% for event in events %}
+                    {% if event %}
+                        <li class="carousel-item">
+                            <div>
+                                {{ 'events.location'|trans({'%game%': event.name, '%location%': event.location}) }}
+                            </div>
+                            <div class="links-wrapper">
+                                <a class="see-button a-button" href="{{ path('app_event', {'id': event.id}) }}">{{ event.name }}</a>
+                            </div>
+                        </li>
+                    {% endif %}
+                {% endfor %}
+            </ul>
+        </div>
+        <button class="carousel-control next" aria-label="Next">&#10095;</button>
+    </div>
 
     <div id="map-data" data-events='[
         {% for event in events %}
@@ -59,8 +74,10 @@
         }{% if not loop.last %},{% endif %}
         {% endfor %}
     ]'></div>
-    <div id="map" class="my-map"></div>
+</main>
 
     <script src="http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.js"></script>
     <script src="{{ asset('assets/js/map.js') }}"></script>
+    <script src="{{ asset('assets/js/carousel.js') }}"></script>
+
 {% endblock %}
