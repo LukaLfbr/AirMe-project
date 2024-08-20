@@ -35,17 +35,18 @@
         </li>
     {% endif %}
 
+	<ul>
     {% for event in events %}
         {% if event %}
-            <ul>
+            
                 <li>{{ 'events.location'|trans({'%game%': event.name, '%location%': event.location}) }}</li>
                 <div class="links-wrapper">
                     <a class="see-button a-button" href="{{ path('app_event', {'id': event.id}) }}">{{ event.name }}</a>
                 </div>
                 <br>
-            </ul>
         {% endif %}
     {% endfor %}
+	</ul>
 
     <div id="map-data" data-events='[
         {% for event in events %}

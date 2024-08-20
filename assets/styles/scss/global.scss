@@ -4,3 +4,14 @@ $primary-color: #556B2F;
 $secondary-color: #663422;
 $accent-color:#3E3D3D;
 
+body {
+    background-color: $background-color;
+    position: relative;
+    p,a,li{
+        color: $text-color;
+    }
+}
+
+.leaflet-top {
+    z-index: 10 !important;
+}
