@@ -4,18 +4,27 @@ $primary-color: #556b2f;
 $secondary-color: #663422;
 $accent-color: #3e3d3d;
 
+@font-face {
+  font-family: "Lexend";
+  src: url("/assets/fonts/Lexend/static/Lexend-regular.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+}
+
 body {
   background-color: $background-color;
-  position: relative;
-  p,
-  a,
-  li,
-  h1,
-  h2,
-  h3,
-  h4 {
-    color: $text-color;
-  }
+}
+
+p,
+a,
+li,
+h1,
+h2,
+h3,
+h4,
+h5 label {
+  color: $text-color;
+  font-family: Lexend;
 }
 
 .leaflet-top {
@@ -24,4 +33,14 @@ body {
 
 .my-map {
   border-radius: 1.2em !important;
+}
+
+#events_save {
+  color: $text-color;
+  font-family: Lexend;
+  @include add-buttons;
+}
+
+.return-button {
+  @include add-buttons;
 }

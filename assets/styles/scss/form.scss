@@ -1,0 +1,9 @@
+#form-wrapper {
+  padding: 1em;
+  border: 1px solid $text-color;
+  border-radius: 0.6em;
+  form {
+    border-radius: 0.6em;
+    text-align: center;
+  }
+}

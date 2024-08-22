@@ -32,8 +32,12 @@
         <img src="{{ asset('assets/img/AirMe-logo.png') }}" alt="AirMe logo" />
     </div>    
     <ul>
+    {% if app.user is null %}
         <li><a href="{{ path('app_login') }}">{{ 'login'|trans }}</a></li>
         <li><a href="{{ path('app_register') }}">{{ 'register'|trans }}</a></li>
+        {% else %}
+        <li><a href="{{ path('user_panel', {'id': app.user.id}) }}">{{ 'user.events'|trans }}</a></li>
+    {% endif %}
         <li><a href="{{ path('app_logout') }}">{{ 'logout'|trans }}</a></li>
     </ul>
 </div>
@@ -45,11 +49,6 @@
     	<nav>
         	<ul>
             <li><a href="{{ path('app_home') }}">{{ 'home'|trans }}</a></li>
-            {% if app.user %}
-				{# TODO add a custom logic #}
-            {% else %}
-                {# <li><p>{{ 'login.not.logged.in'|trans }}</p></li> #}
-            {% endif %}
             <li><a href="{{ path('app_login') }}">{{ 'login'|trans }}</a></li>
             <li><a href="{{ path('app_register') }}">{{ 'register'|trans }}</a></li>
             <li><a href="{{ path('app_logout') }}">{{ 'logout'|trans }}</a></li>

@@ -29,12 +29,6 @@
 {% endblock %}
 
 {% block body %}
-    {% if app.user %}
-        <li>
-            <a href="{{ path('user_panel', {'id': user.id}) }}">{{ 'user.events'|trans }}</a>
-        </li>
-    {% endif %}
-
     <main>
     <h1>{{ 'main.title'|trans|raw }}</h1>
 
@@ -43,7 +37,7 @@
     <h2>{{ 'main.secondary.title'|trans }}</h2>
 
     <div class="carousel-wrapper">
-        <button class="carousel-control prev" aria-label="Previous">&#10094;</button>
+        <div class="carousel-control prev arrow" aria-label="Previous">&#10094;</div>
         <div class="carousel">
             <ul class="carousel-list">
                 {% for event in events %}
@@ -53,14 +47,14 @@
                                 {{ 'events.location'|trans({'%game%': event.name, '%location%': event.location}) }}
                             </div>
                             <div class="links-wrapper">
-                                <a class="see-button a-button" href="{{ path('app_event', {'id': event.id}) }}">{{ event.name }}</a>
+                                <a class="see-button " href="{{ path('app_event', {'id': event.id}) }}">{{'main.button'|trans }}</a>
                             </div>
                         </li>
                     {% endif %}
                 {% endfor %}
             </ul>
         </div>
-        <button class="carousel-control next" aria-label="Next">&#10095;</button>
+        <div class="carousel-control next arrow" aria-label="Next">&#10095;</div>
     </div>
 
     <div id="map-data" data-events='[
@@ -74,6 +68,42 @@
         }{% if not loop.last %},{% endif %}
         {% endfor %}
     ]'></div>
+
+    <span class="main-separator"></span>
+
+    <section id="cards-section">    
+    <div class="cards"><h3 class="cards-title">{{'main.cards.first.title'|trans}} </h3><a>{{'main.cards.first.button'|trans }}</a><div></div></div>
+    <div class="cards"><h3 class="cards-title">{{'main.cards.second.title'|trans}}</h3><a>{{'main.cards.second.button'|trans }}</a><div></div></div>
+    <div class="cards"><h3 class="cards-title">{{'main.cards.third.title'|trans}}</h3><a>{{'main.cards.third.button'|trans }}</a><div></div></div>
+    <div class="cards"><h3 class="cards-title">{{'main.cards.fourth.title'|trans}}</h3><a>{{'main.cards.fourth.button'|trans }}</a><div></div></div>
+    </section>
+
+    <span class="main-separator"></span>
+
+    <section class="stats">
+    <h2>{{'main.stats.title'|trans|raw}}</h2>
+    <div class="stat-card">
+        <p>{{'main.stats.first.number'|trans}}</p>
+        <h3>{{'main.stats.first.title'|trans}}</h3>
+    </div>
+    <div class="stat-card">
+        <p>{{'main.stats.second.number'|trans}}</p>
+        <h3>{{'main.stats.second.title'|trans}}</h3>
+    </div>
+    <div class="stat-card">
+        <p>{{'main.stats.third.title'|trans}}</p>
+        <h3>{{'main.stats.third.stat'|trans}}</h3>
+    </div>
+    <div class="stat-card">
+        <p>{{'main.stats.fourth.number'|trans}}</p>
+        <h3>{{'main.stats.fourth.stat'|trans}}</h3>
+    </div>
+    </section>
+
+    <span class="main-separator"></span>
+
+
+
 </main>
 
     <script src="http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.js"></script>
@@ -81,3 +111,4 @@
     <script src="{{ asset('assets/js/carousel.js') }}"></script>
 
 {% endblock %}
+
