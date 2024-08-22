@@ -9,9 +9,36 @@ contact: "Nous contacter"
 
 # Main section
 main:
-  title: 'Trouver <span class="highlight">LA</span> partie proche de chez <span class="highlight">vous</span>'
+  title: 'Trouvez <span class="highlight">LA<br/></span> partie proche de chez <br/> <span class="highlight">vous</span>'
   secondary.title: "Nos dernières parties"
+  button: "Accéder à l'événement"
+  cards:
+    first.title: "Besoin d'équipement pour votre prochaine partie ?"
+    first.button: "Visitez notre boutique"
+    second.title: "Besoin d'un équipier pour vous conduire ?"
+    second.button: "Accès à l'espace covoiturage"
+    third.title: "Première partie ? Découvrez nos conseils pour bien démarrer"
+    third.button: "Nos meilleurs conseils pour se lancer"
+    fourth.title: "Consulter les dernières parties mises en lignes"
+    fourth.button: "Les dernières parties autour de vous"
+  stats:
+    title: "Les stats qui nous <br/> <span class='highlight'>rendent fières</span>"
+    first.number: "+150 000"
+    first.title: "Parties organisées via AirMe"
+    second.number: "+70 000"
+    second.title: "Joueurs qui recherchent des parties"
+    third.title: "+9 000 000 000"
+    third.stat: "De billes biodégradables utilisées sur le terrain"
+    fourth.number: "+350"
+    fourth.stat: "Équipes qui vous accueillent sur leur terrain pour faire vivre notre sport"
+  cta.title: "Envie de <span class='highlight centered'>nous <br/> rejoindre ?</span>"
+  cta.button: "Cliquez ici pour nous rejoindre"
 
+# Footer section
+footer:
+  about: "À propos de nous"
+  TOS: "CGV"
+  legals: "Mention légale"
 # Account section
 register: "S'inscrire"
 register.account: "Créer son compte"
@@ -33,7 +60,7 @@ reset.account.try_again: "en cliquant ici"
 
 # Events section
 events.title: "Les événements autour de vous"
-events.location: "L'événement %game% aura lieu à %location%"
+events.location: "%game% à %location%"
 events.edit: "Modifier l'événement"
 events.delete: "Supprimer l'événement"
 events.delete.confirmation: "Voulez-vous vraiment supprimer %event_name% ?"
@@ -71,6 +98,12 @@ form.email.help: "Votre adresse e-mail sera utilisée pour vous connecter."
 form.email.invalid: "L'adresse e-mail que vous avez entrée est invalide."
 form.email.too_long: "L'adresse e-mail ne peut pas dépasser 36 caractères."
 form.email.already_used: "Il y a déjà un compte avec cet e-mail."
+
+form.field:
+  empty: "Ce champ ne peut pas être vide !"
+  name: "Nom de la partie"
+  description: "Description de la partie"
+  location: "Lieu de la partie"
 
 form.agree_terms.label: "J'accepte les conditions d'utilisation"
 form.agree_terms.not_accepted: "Vous devez accepter les conditions d'utilisation."

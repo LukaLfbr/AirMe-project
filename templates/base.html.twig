@@ -32,8 +32,12 @@
         <img src="{{ asset('assets/img/AirMe-logo.png') }}" alt="AirMe logo" />
     </div>    
     <ul>
+    {% if app.user is null %}
         <li><a href="{{ path('app_login') }}">{{ 'login'|trans }}</a></li>
         <li><a href="{{ path('app_register') }}">{{ 'register'|trans }}</a></li>
+        {% else %}
+        <li><a href="{{ path('user_panel', {'id': app.user.id}) }}">{{ 'user.events'|trans }}</a></li>
+    {% endif %}
         <li><a href="{{ path('app_logout') }}">{{ 'logout'|trans }}</a></li>
     </ul>
 </div>
@@ -45,11 +49,6 @@
     	<nav>
         	<ul>
             <li><a href="{{ path('app_home') }}">{{ 'home'|trans }}</a></li>
-            {% if app.user %}
-				{# TODO add a custom logic #}
-            {% else %}
-                {# <li><p>{{ 'login.not.logged.in'|trans }}</p></li> #}
-            {% endif %}
             <li><a href="{{ path('app_login') }}">{{ 'login'|trans }}</a></li>
             <li><a href="{{ path('app_register') }}">{{ 'register'|trans }}</a></li>
             <li><a href="{{ path('app_logout') }}">{{ 'logout'|trans }}</a></li>
@@ -62,6 +61,29 @@
 		</div>
 	</div>
 {% block body %}{% endblock %}
-{% block footer %}{% endblock %}
+{% block footer %}
+<div class="footer-wrapper">
+    <div class="footer-icons-wrapper">
+        <div>
+            <img src="{{asset('assets/img/svg/instagram.svg')}}" alt="Instagram logo" />
+        </div>
+        <div>
+            <img src="{{asset('assets/img/svg/twitter.svg')}}" alt="Twitter logo" />
+        </div>
+        <div>
+            <img src="{{asset('assets/img/svg/facebook.svg')}}" alt="Facebook logo" />
+        </div>
+    </div>  
+
+
+    <div class="footer-logo-wrapper"></div>
+
+    <div class="footer-legals-wrapper">
+        <a href="">{{ 'about'|trans }}</a>
+        <a href="">{{ 'TOS'|trans }}</a>
+        <a href="">{{ 'legals'|trans }}</a>
+    </div>
+</div>
+{% endblock %}
 </body>
 </html>
