@@ -5,7 +5,6 @@
 {% endblock %}
 
 {% block stylesheets %}
-    {# Vous pouvez ajouter des styles spécifiques ici si nécessaire #}
     {{ parent() }}
 {% endblock %}
 
@@ -30,6 +29,7 @@
 
 {% block body %}
     <h1>{{ 'user.add.event'|trans }}</h1>
+    <div id="form-wrapper">
     {{ form_start(form) }}
         {{ form_row(form.name, {'attr': {'class': 'required'}}) }}
         {{ form_row(form.description, {'attr': {'class': 'required'}}) }}
@@ -44,7 +44,6 @@
         {{ form_row(form.equipement_rental) }}
         {{ form_row(form.save) }}
     {{ form_end(form) }}
-    <button>
-        <a href="{{ path('app_home') }}">{{ 'user.back.to.main.menu'|trans }}</a>
-    </button>
+        <a href="{{ path('app_home') }}" class="return-button">{{ 'user.back.to.main.menu'|trans }}</a>
+    </div>
 {% endblock %}

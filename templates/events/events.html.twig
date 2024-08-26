@@ -1,64 +1,114 @@
 {% extends 'base.html.twig' %}
 
 {% block stylesheets %}
-	<link rel="stylesheet" href="{{ asset('assets/css/home.css') }}">
-	<link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.css"/>
-	<style>
-		.example-wrapper {
-			margin: 1em auto;
-			max-width: 800px;
-			width: 95%;
-			font: 18px / 1.5 sans-serif;
-		}
-		.my-map {
-			width: 80%;
-			height: 500px;
-			position: relative;
-			margin: auto;
-		}
-		.my-map iframe {
-			width: 100%;
-			height: 100%;
-			border: 1px solid black;
-		}
-	</style>
+    {{ parent() }} 
+    <link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.css"/>
+    <style>
+        .example-wrapper {
+            margin: 1em auto;
+            max-width: 800px;
+            width: 95%;
+            font: 18px / 1.5 sans-serif;
+        }
+        .my-map {
+            width: 80%;
+            height: 500px;
+            position: relative;
+            margin: auto;
+        }
+        .my-map iframe {
+            width: 100%;
+            height: 100%;
+            border: 1px solid black;
+        }
+    </style>
 {% endblock %}
 
-{% block title %} {{'events.title'|trans}}
+{% block title %}
+    {{ 'events.title'|trans }}
 {% endblock %}
 
-{% block body %} 
-	{% if app.user %}
-				<li>
-					<a href="{{ path('user_panel', {'id': user.id}) }}">{{'user.events'|trans}} </a>
-				</li>
-	{% endif %}
+{% block body %}
+    <main>
+    <h1>{{ 'main.title'|trans|raw }}</h1>
 
-	{% for event in events %}
-		{% if event %}
-			<ul>
-				<li>{{ 'events.location'|trans({'%game%': event.name, '%location%': event.location}) }}</li>
-				<div class="links-wrapper">
-					<a class="see-button a-button" href="{{ path('app_event', {'id': event.id}) }}">{{ event.name }}</a>
-				</div>
-				<br>
-			</ul>
-		{% endif %}
-	{% endfor %}
+    <div id="map" class="my-map"></div>
 
-	<div id="map-data" data-events='[
-		        {% for event in events %}
-		        {
-		            "name": "{{ event.name }}",
-		            "longitude": {{ event.coordinates.longitude }},
-		            "latitude": {{ event.coordinates.latitude }},
-		            "link": "{{ path('app_event', {'id': event.id}) }}",
-		            "paf": "{{ event.paf }}"
-		        }{% if not loop.last %},{% endif %}
-		        {% endfor %}
-		    ]'></div>
-	<div id="map" class="my-map"></div>
+    <h2>{{ 'main.secondary.title'|trans }}</h2>
 
-	<script src="http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.js"></script>
-	<script src="{{ asset('assets/js/map.js') }}"></script>
+    <div class="carousel-wrapper">
+        <div class="carousel-control prev arrow" aria-label="Previous">&#10094;</div>
+        <div class="carousel">
+            <ul class="carousel-list">
+                {% for event in events %}
+                    {% if event %}
+                        <li class="carousel-item">
+                            <div>
+                                {{ 'events.location'|trans({'%game%': event.name, '%location%': event.location}) }}
+                            </div>
+                            <div class="links-wrapper">
+                                <a class="see-button " href="{{ path('app_event', {'id': event.id}) }}">{{'main.button'|trans }}</a>
+                            </div>
+                        </li>
+                    {% endif %}
+                {% endfor %}
+            </ul>
+        </div>
+        <div class="carousel-control next arrow" aria-label="Next">&#10095;</div>
+    </div>
+
+    <div id="map-data" data-events='[
+        {% for event in events %}
+        {
+            "name": "{{ event.name }}",
+            "longitude": {{ event.coordinates.longitude }},
+            "latitude": {{ event.coordinates.latitude }},
+            "link": "{{ path('app_event', {'id': event.id}) }}",
+            "paf": "{{ event.paf }}"
+        }{% if not loop.last %},{% endif %}
+        {% endfor %}
+    ]'></div>
+
+    <span class="main-separator"></span>
+
+    <section id="cards-section">    
+    <div class="cards"><h3 class="cards-title">{{'main.cards.first.title'|trans}} </h3><a>{{'main.cards.first.button'|trans }}</a><div></div></div>
+    <div class="cards"><h3 class="cards-title">{{'main.cards.second.title'|trans}}</h3><a>{{'main.cards.second.button'|trans }}</a><div></div></div>
+    <div class="cards"><h3 class="cards-title">{{'main.cards.third.title'|trans}}</h3><a>{{'main.cards.third.button'|trans }}</a><div></div></div>
+    <div class="cards"><h3 class="cards-title">{{'main.cards.fourth.title'|trans}}</h3><a>{{'main.cards.fourth.button'|trans }}</a><div></div></div>
+    </section>
+
+    <span class="main-separator"></span>
+
+    <section class="stats">
+    <h2>{{'main.stats.title'|trans|raw}}</h2>
+    <div class="stat-card">
+        <p>{{'main.stats.first.number'|trans}}</p>
+        <h3>{{'main.stats.first.title'|trans}}</h3>
+    </div>
+    <div class="stat-card">
+        <p>{{'main.stats.second.number'|trans}}</p>
+        <h3>{{'main.stats.second.title'|trans}}</h3>
+    </div>
+    <div class="stat-card">
+        <p>{{'main.stats.third.title'|trans}}</p>
+        <h3>{{'main.stats.third.stat'|trans}}</h3>
+    </div>
+    <div class="stat-card">
+        <p>{{'main.stats.fourth.number'|trans}}</p>
+        <h3>{{'main.stats.fourth.stat'|trans}}</h3>
+    </div>
+    </section>
+
+    <span class="main-separator"></span>
+
+
+
+</main>
+
+    <script src="http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.js"></script>
+    <script src="{{ asset('assets/js/map.js') }}"></script>
+    <script src="{{ asset('assets/js/carousel.js') }}"></script>
+
 {% endblock %}
+
