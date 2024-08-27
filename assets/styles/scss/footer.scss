@@ -1,0 +1,12 @@
+.footer-wrapper {
+  .footer-icons-wrapper {
+    display: flex;
+    gap: 2em;
+    justify-content: center;
+    margin-bottom: 1em;
+  }
+  .footer-legals-wrapper {
+    display: flex;
+    flex-direction: column;
+  }
+}

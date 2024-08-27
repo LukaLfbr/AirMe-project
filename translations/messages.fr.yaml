@@ -9,7 +9,7 @@ contact: "Nous contacter"
 
 # Main section
 main:
-  title: 'Trouver <span class="highlight">LA</span> partie proche de chez <span class="highlight">vous</span>'
+  title: 'Trouvez <span class="highlight">LA<br/></span> partie proche de chez <br/> <span class="highlight">vous</span>'
   secondary.title: "Nos dernières parties"
   button: "Accéder à l'événement"
   cards:
@@ -22,7 +22,7 @@ main:
     fourth.title: "Consulter les dernières parties mises en lignes"
     fourth.button: "Les dernières parties autour de vous"
   stats:
-    title: "Les stats qui nous <span class='highlight'>rendent fières</span>"
+    title: "Les stats qui nous <br/> <span class='highlight'>rendent fières</span>"
     first.number: "+150 000"
     first.title: "Parties organisées via AirMe"
     second.number: "+70 000"
@@ -31,9 +31,14 @@ main:
     third.stat: "De billes biodégradables utilisées sur le terrain"
     fourth.number: "+350"
     fourth.stat: "Équipes qui vous accueillent sur leur terrain pour faire vivre notre sport"
-  cta.title: "Envie de <span class='highlight centered'>nous rejoindre ?</span>"
-  cta.button: "Rejoignez notre communauté en cliquant ici"
+  cta.title: "Envie de <span class='highlight centered'>nous <br/> rejoindre ?</span>"
+  cta.button: "Cliquez ici pour nous rejoindre"
 
+# Footer section
+footer:
+  about: "À propos de nous"
+  TOS: "CGV"
+  legals: "Mention légale"
 # Account section
 register: "S'inscrire"
 register.account: "Créer son compte"

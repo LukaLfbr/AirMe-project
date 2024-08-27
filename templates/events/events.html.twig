@@ -57,6 +57,7 @@
         <div class="carousel-control next arrow" aria-label="Next">&#10095;</div>
     </div>
 
+    {# Allow to transfer the data from the twig to map.js to then add the nodes #}
     <div id="map-data" data-events='[
         {% for event in events %}
         {
@@ -102,7 +103,16 @@
 
     <span class="main-separator"></span>
 
+    <section id="cta-section">
+        <div class="main-cta">
+            <h2>{{'main.cta.title'|trans|raw}}</h2>
+            <a class="main-secondary-cta" href="{{path('app_register')}}">
+                {{'main.cta.button'|trans|raw}}
+            </a>
+        </div>    
+    </section>
 
+    <span class="main-separator"></span>
 
 </main>
 

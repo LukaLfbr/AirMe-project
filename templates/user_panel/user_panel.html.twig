@@ -34,9 +34,7 @@
         {% else %}
             <p>Vous n'avez pas encore créé d'événements</p>
         {% endif %}
-        <button>
-            <a href="{{ path('user_add_event') }}">Ajouter</a>
-        </button>
+            <a class="basic-button" href="{{ path('user_add_event') }}">Ajouter</a>
         <div>
             <a href="{{ path('app_home') }}">Retourner à l'accueil</a>
         </div>

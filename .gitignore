@@ -21,7 +21,6 @@
 ###< symfony/phpunit-bridge ###
 
 ###> symfony/asset-mapper ###
-/public/assets/
 /assets/vendor/
 ###< symfony/asset-mapper ###
 
@@ -52,14 +51,8 @@ Thumbs.db
 /dist/
 /build/
 /public/build/
-/public/js/
-/public/css/
-/public/images/
-/public/fonts/
 ###< Build artifacts ###
 
-###> Symfony encore ###
-/public/build/
 ###< Symfony encore ###
 
 ###< CSV Export ###

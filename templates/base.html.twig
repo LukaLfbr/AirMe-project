@@ -61,6 +61,29 @@
 		</div>
 	</div>
 {% block body %}{% endblock %}
-{% block footer %}{% endblock %}
+{% block footer %}
+<div class="footer-wrapper">
+    <div class="footer-icons-wrapper">
+        <div>
+            <img src="{{asset('assets/img/svg/instagram.svg')}}" alt="Instagram logo" />
+        </div>
+        <div>
+            <img src="{{asset('assets/img/svg/twitter.svg')}}" alt="Twitter logo" />
+        </div>
+        <div>
+            <img src="{{asset('assets/img/svg/facebook.svg')}}" alt="Facebook logo" />
+        </div>
+    </div>  
+
+
+    <div class="footer-logo-wrapper"></div>
+
+    <div class="footer-legals-wrapper">
+        <a href="">{{ 'about'|trans }}</a>
+        <a href="">{{ 'TOS'|trans }}</a>
+        <a href="">{{ 'legals'|trans }}</a>
+    </div>
+</div>
+{% endblock %}
 </body>
 </html>

@@ -11,6 +11,10 @@ $accent-color: #3e3d3d;
   font-style: normal;
 }
 
+* {
+  box-sizing: border-box;
+}
+
 body {
   background-color: $background-color;
 }
@@ -22,9 +26,13 @@ h1,
 h2,
 h3,
 h4,
-h5 label {
+label {
   color: $text-color;
   font-family: Lexend;
+}
+
+h2 {
+  font-size: 35px;
 }
 
 .leaflet-top {
@@ -32,7 +40,31 @@ h5 label {
 }
 
 .my-map {
+  width: 80%;
+  height: 500px;
+  position: relative;
+  margin: auto;
   border-radius: 1.2em !important;
+  overflow: hidden;
+}
+
+.leaflet-tile {
+  max-width: 100% !important;
+}
+
+#events_save {
+  color: $text-color;
+  font-family: Lexend;
+  @include add-buttons;
+}
+
+.return-button {
+  @include add-buttons;
+}
+
+.basic-button {
+  @include basic-button-style;
+  margin-bottom: 1em;
 }
 
 #events_save {

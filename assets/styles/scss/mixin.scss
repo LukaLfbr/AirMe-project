@@ -1,7 +1,11 @@
-@mixin add-buttons {
-  border: 1px solid $text-color;
+@mixin basic-button-style {
   padding: 0.3em;
+  border: 1px solid $text-color;
   border-radius: 0.6em;
+}
+
+@mixin add-buttons {
+  @include basic-button-style;
   margin-top: 1em;
   display: inline-block;
   background-color: transparent;

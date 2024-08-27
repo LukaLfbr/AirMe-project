@@ -44,6 +44,6 @@
         {{ form_row(form.equipement_rental) }}
         {{ form_row(form.save) }}
     {{ form_end(form) }}
-        <a href="{{ path('app_home') }}" class="return-button">{{ 'user.back.to.main.menu'|trans }}</a>
+        <a href="{{ path('user_panel', {'id': app.user.id}) }}" class="return-button">{{ 'user.back.to.main.menu'|trans }}</a>
     </div>
 {% endblock %}
