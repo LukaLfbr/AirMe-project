@@ -31,6 +31,16 @@ class EventsRepository extends ServiceEntityRepository
             ->getResult();
     }
 
+
+    public function getLastTenEvents()
+    {
+        return $this->createQueryBuilder('e')
+            ->orderBy('e.created_at', 'DESC')
+            ->setMaxResults(10)
+            ->getQuery()
+            ->getResult();
+    }
+
     //    /**
     //     * @return Events[] Returns an array of Events objects
     //     */

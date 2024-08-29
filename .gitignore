@@ -53,7 +53,5 @@ Thumbs.db
 /public/build/
 ###< Build artifacts ###
 
-###< Symfony encore ###
-
 ###< CSV Export ###
 /app/export

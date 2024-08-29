@@ -22,10 +22,12 @@ class HomeController extends AbstractController
     public function index(): Response
     {
         $events = $this->eventsRepository->findAll();
+        $lastEvents = $this->eventsRepository->getLastTenEvents();
 
         return $this->render('events/events.html.twig', [
             'events' => $events,
             'user' => $this->getUser(),
+            'lastEvents' => $lastEvents,
         ]);
     }
 
