@@ -36,6 +36,31 @@
 
     <h2>{{ 'main.secondary.title'|trans }}</h2>
 
+    <div class="events-list-wrapper">
+    <div class="events-row">
+        <ul class="events-column">
+            {% for index, lastEvent in lastEvents %}
+                {% if index < 5 %}
+                    <li class="events-card">
+                        <a class="see-button" href="{{ path('app_event', {'id': lastEvent.id}) }}">{{ lastEvent.name }}</a>
+                    </li>
+                {% endif %}
+            {% endfor %}
+        </ul>
+
+        <ul class="events-column">
+            {% for index, lastEvent in lastEvents %}
+                {% if index >= 5 %}
+                    <li class="events-card">
+                        <a class="see-button" href="{{ path('app_event', {'id': lastEvent.id}) }}">{{ lastEvent.name }}</a>
+                    </li>
+                {% endif %}
+            {% endfor %}
+        </ul>
+    </div>
+</div>
+
+
     <div class="carousel-wrapper">
         <div class="carousel-control prev arrow" aria-label="Previous">&#10094;</div>
         <div class="carousel">
