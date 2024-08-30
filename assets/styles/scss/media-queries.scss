@@ -1,8 +1,41 @@
-@media (min-width: 1024px) and (max-width: 1280px) {
-  h1 {
-    font-size: 45px;
+@media (min-width: 768px) {
+  .events-list-wrapper {
+    display: block;
   }
   .carousel-wrapper {
     display: none;
   }
+
+  h1 {
+    font-size: 45px;
+  }
+
+  .events-column {
+    // &.left {
+    //   .events-card {
+    //     &:nth-child(odd) {
+    //       background-color: $accent-color;
+    //     }
+    //   }
+    // }
+
+    // &.right {
+    //   .events-card {
+    //     &:nth-child(even) {
+    //       background-color: $accent-color;
+    //     }
+    //   }
+    // }
+
+    // TODO decide wich style is more accessibility friendly
+
+    .events-card {
+      &:nth-child(even) {
+        background-color: $accent-color;
+      }
+    }
+  }
+}
+
+@media (min-width: 1024px) and (max-width: 1280px) {
 }

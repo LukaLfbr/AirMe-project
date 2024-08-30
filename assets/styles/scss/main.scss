@@ -32,17 +32,16 @@ h2 {
   align-items: center;
   justify-content: center;
   position: relative;
-  width: 35%;
+  width: 80%;
   margin: 20px auto;
   border: 1px solid $text-color;
   border-radius: 0.6rem;
-  margin-top: 10%;
+  margin-top: 2em;
 
   .carousel {
     overflow: hidden;
     width: 80%;
     max-width: 800px;
-    padding: 2em 0;
 
     .carousel-list {
       display: flex;
@@ -90,10 +89,13 @@ h2 {
 // Last events section
 
 .events-list-wrapper {
+  width: 80%;
+  margin: auto;
+  display: none;
+  margin-bottom: 3em;
   ul {
     display: flex;
     flex-direction: column;
-    gap: 1em;
 
     .main-separator {
       background-color: white;
@@ -114,6 +116,10 @@ h2 {
       margin: 0;
       padding: 0;
       list-style-type: none;
+
+      li {
+        box-sizing: border-box;
+      }
     }
 
     .events-column {
@@ -121,8 +127,7 @@ h2 {
       box-sizing: border-box;
 
       .events-card {
-        margin-bottom: 10px;
-        text-align: center;
+        padding: 1em;
       }
     }
   }

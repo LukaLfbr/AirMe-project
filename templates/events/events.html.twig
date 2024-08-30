@@ -38,7 +38,7 @@
 
     <div class="events-list-wrapper">
     <div class="events-row">
-        <ul class="events-column">
+        <ul class="events-column left">
             {% for index, lastEvent in lastEvents %}
                 {% if index < 5 %}
                     <li class="events-card">
@@ -48,7 +48,7 @@
             {% endfor %}
         </ul>
 
-        <ul class="events-column">
+        <ul class="events-column right">
             {% for index, lastEvent in lastEvents %}
                 {% if index >= 5 %}
                     <li class="events-card">
