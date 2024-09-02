@@ -15,8 +15,19 @@ $accent-color: #3e3d3d;
   box-sizing: border-box;
 }
 
+html {
+  height: 100%;
+}
+
 body {
   background-color: $background-color;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+
+  main {
+    flex: 1;
+  }
 }
 
 p,

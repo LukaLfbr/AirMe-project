@@ -1,4 +1,15 @@
 @media (min-width: 768px) {
+  .ham-menu {
+    display: none;
+  }
+
+  .nav-wrapper {
+    display: flex;
+    nav {
+      display: flex;
+    }
+  }
+
   .events-list-wrapper {
     display: block;
   }
@@ -7,32 +18,29 @@
   }
 
   h1 {
-    font-size: 45px;
+    font-size: 70px;
+    line-height: 2em;
   }
 
   .events-column {
-    // &.left {
-    //   .events-card {
-    //     &:nth-child(odd) {
-    //       background-color: $accent-color;
-    //     }
-    //   }
-    // }
-
-    // &.right {
-    //   .events-card {
-    //     &:nth-child(even) {
-    //       background-color: $accent-color;
-    //     }
-    //   }
-    // }
-
-    // TODO decide wich style is more accessibility friendly
-
     .events-card {
       &:nth-child(even) {
         background-color: $accent-color;
       }
+    }
+  }
+
+  .cards-wrapper {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    width: 80%;
+    margin: auto;
+    align-items: center;
+    gap: 2em;
+    .cards {
+      width: 100%;
+      height: 100%;
+      gap: 0em;
     }
   }
 }

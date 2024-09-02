@@ -4,6 +4,7 @@
 {% endblock %}
 
 {% block body %}
+<main>
 	<form method="post">
 		{% if error %}
 			<div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
@@ -44,4 +45,5 @@
 			<a href="{{ path('app_home') }}">{{"user.back.to.main.menu"|trans}} </a>
 		</button>
 	</form>
+	</main>
 {% endblock %}

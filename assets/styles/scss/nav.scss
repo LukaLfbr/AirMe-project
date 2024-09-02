@@ -1,33 +1,28 @@
-nav {
-  visibility: hidden;
-  display: flex;
-  width: 100%;
-  position: absolute;
-
-  ul {
-    display: flex;
-    gap: 1em;
-    align-items: center;
-
-    li {
-      list-style: none;
-    }
-  }
-}
-
 .nav-wrapper {
   display: flex;
-  position: relative;
   justify-content: space-between;
+  position: relative;
   border-bottom: 1px solid white;
+  height: 10vh;
+
+  nav {
+    display: none;
+    margin-right: 15%;
+
+    ul {
+      display: flex;
+      gap: 1em;
+      align-items: center;
+
+      li {
+        list-style: none;
+      }
+    }
+  }
 
   .nav-logo-wrapper {
-    width: 130px;
-    height: 50px;
+    width: 200px;
     overflow: hidden;
-    display: flex;
-    align-items: center;
-    justify-content: center;
     position: relative;
 
     .nav-logo {
@@ -36,7 +31,7 @@ nav {
       height: auto;
       object-fit: cover;
       position: absolute;
-      top: -42px;
+      top: -55px;
       left: 0;
     }
   }
