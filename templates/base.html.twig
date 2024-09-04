@@ -49,9 +49,15 @@
     	<nav>
         	<ul>
             <li><a href="{{ path('app_home') }}">{{ 'home'|trans }}</a></li>
-            <li><a href="{{ path('app_login') }}">{{ 'login'|trans }}</a></li>
-            <li><a href="{{ path('app_register') }}">{{ 'register'|trans }}</a></li>
-            <li><a href="{{ path('app_logout') }}">{{ 'logout'|trans }}</a></li>
+            {% if app.user is null %}
+                <li><a href="{{ path('app_login') }}">{{ 'login'|trans }}</a></li>
+                <li><a href="{{ path('app_register') }}">{{ 'register'|trans }}</a></li>
+            {% else %}
+                <li><a href="{{path('user_panel', {'id':app.user.id})}} ">{{'user.events'|trans}}</a></li>
+            {% endif %}
+            {% if app.user %}
+                <li><a href="{{ path('app_logout') }}">{{ 'logout'|trans }}</a></li>
+            {% endif %}
         	</ul>
     	</nav>
 		<div class="ham-menu">

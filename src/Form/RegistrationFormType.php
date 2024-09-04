@@ -28,15 +28,7 @@ class RegistrationFormType extends AbstractType
                         'maxMessage' => 'form.email.too_long',
                     ]),
                 ],
-                'label' => 'form.email.label',
-                'help' => 'form.email.help',
-            ])
-            ->add('agreeTerms', CheckboxType::class, [
-                'mapped' => false,
-                'constraints' => [
-                    new IsTrue(['message' => 'form.agree_terms.not_accepted']),
-                ],
-                'label' => 'form.agree_terms.label',
+                'label' => false,
             ])
             ->add('plainPassword', PasswordType::class, [
                 'mapped' => false,
@@ -49,7 +41,7 @@ class RegistrationFormType extends AbstractType
                         'max' => 50,
                     ]),
                 ],
-                'label' => 'form.password.label',
+                'label' => false,
             ]);
     }
 

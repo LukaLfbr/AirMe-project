@@ -43,6 +43,11 @@
       gap: 0em;
     }
   }
+
+  .register-wrapper,
+  .login-wrapper {
+    width: 35%;
+  }
 }
 
 @media (min-width: 1024px) and (max-width: 1280px) {

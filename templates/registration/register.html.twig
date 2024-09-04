@@ -1,23 +1,27 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}{{"register"|trans}}
-{% endblock %}
+{% block title %}{{ "register"|trans }}{% endblock %}
 
 {% block body %}
-	<h1>{{"register"|trans}}</h1>
+<div class="register-wrapper">
+    <h1>{{ "register"|trans }}</h1>
 
-	{{ form_errors(registrationForm) }}
+    {{ form_errors(registrationForm) }}
+    {{ form_start(registrationForm) }}
 
-	{{ form_start(registrationForm) }}
-	{{ form_row(registrationForm.email) }}
-	{{ form_row(registrationForm.plainPassword, {
-            label: 'Password'
+    <div class="inputs-wrapper">
+        {{ form_row(registrationForm.email, {
+            'attr': {'placeholder': 'form.email.label'|trans }
         }) }}
-	{{ form_row(registrationForm.agreeTerms) }}
+        {{ form_row(registrationForm.plainPassword, {
+            'attr': {'placeholder': 'form.password.label'|trans }
+        }) }}
+    </div>
+    
+	
+		<button type="submit" class="btn">{{ "register.account"|trans }}</button>
 
-	<button type="submit" class="btn">{{"register.account"|trans}}</button>
-	<button>
-		<a href="{{ path('app_home') }}">{{"user.back.to.main.menu"|trans}}</a>
-	</button>
-	{{ form_end(registrationForm) }}
+{{ form_end(registrationForm) }}
+
+</div>
 {% endblock %}

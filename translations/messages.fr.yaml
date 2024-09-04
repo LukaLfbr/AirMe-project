@@ -42,7 +42,7 @@ footer:
 # Account section
 register: "S'inscrire"
 register.account: "Créer son compte"
-login: "Se connecter"
+login: "Connexion"
 login.information: "Vous êtes connecté en tant que %user.email%"
 login.not.logged.in: "Vous n'êtes pas connecté"
 logout: "Se déconnecter"
@@ -67,7 +67,7 @@ events.delete.confirmation: "Voulez-vous vraiment supprimer %event_name% ?"
 
 # User section
 user.panel.title: "Votre tableau de bord"
-user.events: "Accéder à vos événements"
+user.events: "Voir vos événements"
 user.created.events: "Vos événements"
 user.back.to.main.menu: "Retourner au menu"
 user.edit.event: "Modifier un événement"
@@ -96,7 +96,6 @@ flash.geocoding_error: "Le service de géocodage n'a pas trouvé l'adresse. Veui
 form.email.label: "Adresse e-mail*"
 form.email.help: "Votre adresse e-mail sera utilisée pour vous connecter."
 form.email.invalid: "L'adresse e-mail que vous avez entrée est invalide."
-form.email.too_long: "L'adresse e-mail ne peut pas dépasser 36 caractères."
 form.email.already_used: "Il y a déjà un compte avec cet e-mail."
 
 form.field:
@@ -108,5 +107,5 @@ form.field:
 form.agree_terms.label: "J'accepte les conditions d'utilisation"
 form.agree_terms.not_accepted: "Vous devez accepter les conditions d'utilisation."
 
-form.password.label: "Mot de passe"
+form.password.label: "Mot de passe*"
 form.password.blank: "Le mot de passe ne peut pas être vide."

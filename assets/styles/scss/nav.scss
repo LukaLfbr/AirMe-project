@@ -31,7 +31,7 @@
       height: auto;
       object-fit: cover;
       position: absolute;
-      top: -55px;
+      top: -60px;
       left: 0;
     }
   }
@@ -44,7 +44,8 @@
   left: -1000px;
 
   &.active {
-    display: inherit;
+    display: flex;
+    flex-direction: column;
     width: 100%;
     height: 100%;
     background-color: $background-color;
@@ -60,6 +61,7 @@
       align-items: center;
       gap: 2.5em;
       margin-top: 10%;
+      padding: 0;
 
       li {
         list-style: none;
@@ -70,7 +72,7 @@
   &-logo {
     width: 200px;
     height: 70px;
-    margin: auto;
+
     position: relative;
     overflow: hidden;
 

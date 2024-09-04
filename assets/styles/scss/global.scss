@@ -11,6 +11,11 @@ $accent-color: #3e3d3d;
   font-style: normal;
 }
 
+.alert {
+  color: red;
+  font-family: "Lexend";
+}
+
 * {
   box-sizing: border-box;
 }
@@ -37,13 +42,19 @@ h1,
 h2,
 h3,
 h4,
-label {
+label,
+input,
+::placeholder {
   color: $text-color;
   font-family: Lexend;
 }
 
 h2 {
   font-size: 35px;
+}
+
+button {
+  font-family: "Lexend";
 }
 
 .leaflet-top {

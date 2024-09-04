@@ -11,3 +11,20 @@
   background-color: transparent;
   font-size: medium;
 }
+
+@mixin account-management-wrapper {
+  flex: 1;
+  background-color: $accent-color;
+  padding: 1em;
+  width: 80%;
+  margin: 10% auto;
+  text-align: center;
+  border-radius: 0.6em;
+  h1 {
+    margin: 0;
+    font-size: 40px;
+  }
+  form {
+    margin-top: 1em;
+  }
+}
