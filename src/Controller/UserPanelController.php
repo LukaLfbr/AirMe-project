@@ -55,7 +55,7 @@ class UserPanelController extends AbstractController
             $security->getUser()
         );
 
-        return $this->render('user_panel/user_panel.html.twig', [
+        return $this->render('user_panel/user.panel.html.twig', [
             'events' => $events,
         ]);
     }

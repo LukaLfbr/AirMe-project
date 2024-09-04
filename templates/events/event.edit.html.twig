@@ -32,7 +32,7 @@
 			{{ form_row(form.save) }}
 			{{ form_end(form) }}
 			<button>
-				<a href="{{ path('app_home') }}">{{"user.back.to.main.menu"|trans}}</a>
+				<a href="{{ path('user_panel', {'id': app.user.id}) }}">{{"user.back.to.main.menu"|trans}}</a>
 			</button>
 		{% endblock %}
 	</body>
