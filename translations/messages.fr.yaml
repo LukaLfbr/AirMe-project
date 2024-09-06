@@ -98,6 +98,18 @@ form.email.help: "Votre adresse e-mail sera utilisée pour vous connecter."
 form.email.invalid: "L'adresse e-mail que vous avez entrée est invalide."
 form.email.already_used: "Il y a déjà un compte avec cet e-mail."
 
+form.previous: "Précédent"
+form.next: "Suivant"
+
+form.cost: "PAF"
+form.duration: "Durée de l'événement"
+form.terrain_type: "Type de terrain"
+form.weather: "Conditions météo"
+form.temperature: "Température"
+form.beginner_friendly: "Convient aux débutants"
+form.equipement_rental: "Location d'équipement"
+form.save: "Sauvegarder un événement"
+
 form.field:
   empty: "Ce champ ne peut pas être vide !"
   name: "Nom de la partie"

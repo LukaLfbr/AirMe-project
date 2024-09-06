@@ -1,12 +1,61 @@
-#form-wrapper {
-  padding: 1em;
-  border: 1px solid $text-color;
+@mixin form-style {
   border-radius: 0.6em;
-  form {
-    border-radius: 0.6em;
-    text-align: center;
+  padding: 1em;
+  display: flex;
+  flex-direction: column;
+  gap: 1em;
+}
+
+#form-wrapper {
+  flex: 1;
+  width: 80%;
+  max-width: 800px;
+  margin: 0 auto;
+  background-color: $accent-color;
+  border-radius: 0.6em;
+  height: 45vh;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  overflow: hidden;
+
+  .form-container {
+    display: flex;
+    transition: transform 0.5s ease;
+  }
+
+  .form1,
+  .form2,
+  .form3 {
+    @include form-style;
+    flex: 1 0 100%;
+    align-items: center;
+    position: relative;
+    input {
+      @include input-basic-style;
+    }
+  }
+
+  .form1 {
+    > div:nth-child(4) {
+      display: flex;
+      flex-direction: column;
+    }
+  }
+
+  .form-btn-wrapper {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1em;
+    justify-content: center;
+  }
+
+  .form-label {
+    font-size: 10px;
   }
 }
+
+// Account management
 
 .register-wrapper,
 .login-wrapper {
@@ -16,18 +65,7 @@
     flex-direction: column;
     gap: 1.5em;
     input {
-      padding: 0.6em;
-      border: 0;
-      border-bottom: 1px solid $text-color;
-      background-color: transparent;
-      color: $text-color;
-      text-align: center;
-      &::placeholder {
-        color: $text-color;
-      }
-      &:focus {
-        outline: none;
-      }
+      @include input-basic-style;
     }
     .invalid-feedback {
       color: red;

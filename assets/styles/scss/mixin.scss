@@ -28,3 +28,18 @@
     margin-top: 1em;
   }
 }
+
+@mixin input-basic-style {
+  padding: 0.6em;
+  border: 0;
+  border-bottom: 1px solid $text-color;
+  background-color: transparent;
+  color: $text-color;
+  text-align: center;
+  &::placeholder {
+    color: $text-color;
+  }
+  &:focus {
+    outline: none;
+  }
+}

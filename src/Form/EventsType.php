@@ -15,7 +15,8 @@ class EventsType extends AbstractType
 {
     private $translator;
 
-    public function __construct(TranslatorInterface $translator) {
+    public function __construct(TranslatorInterface $translator)
+    {
         $this->translator = $translator;
     }
 
@@ -55,32 +56,37 @@ class EventsType extends AbstractType
                 ],
             ])
             ->add('paf', null, [
-                'label' => 'PAF',
+                'label' => false,
+                'attr' => ['placeholder' => $this->translator->trans('form.cost')]
             ])
             ->add('date', null, [
-                'label' => 'Date de l\'événement et heure *',
+                'label' => $this->translator->trans('form.date'),
                 'widget' => 'single_text',
             ])
             ->add('duration', null, [
-                'label' => 'Durée de l\'événement',
+                'label' => false,
+                'attr' => ['placeholder' => $this->translator->trans('form.duration')]
             ])
             ->add('terrain_type', null, [
-                'label' => 'Type de terrain',
+                'label' => false,
+                'attr' => ['placeholder' => $this->translator->trans('form.terrain_type')]
             ])
             ->add('weather', null, [
-                'label' => 'Conditions météo',
+                'label' => false,
+                'attr' => ['placeholder' => $this->translator->trans('form.weather')]
             ])
             ->add('temperature', null, [
-                'label' => 'Température',
+                'label' => false,
+                'attr' => ['placeholder' => $this->translator->trans('form.temperature')]
             ])
             ->add('beginner_friendly', null, [
-                'label' => 'Convient aux débutants',
+                'label' => $this->translator->trans('form.beginner_friendly'),
             ])
             ->add('equipement_rental', null, [
-                'label' => 'Location d\'équipement',
+                'label' => $this->translator->trans('form.equipement_rental'),
             ])
             ->add('save', SubmitType::class, [
-                'label' => 'Sauvegarder un événement',
+                'label' => $this->translator->trans('form.save')
             ]);
     }
 
