@@ -34,6 +34,9 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\OneToMany(targetEntity: Events::class, mappedBy: 'referent')]
     private Collection $events;
 
+    #[ORM\Column(nullable: true)]
+    private ?int $phone_number = null;
+
     public function __construct()
     {
         $this->events = new ArrayCollection();
@@ -123,6 +126,18 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
                 $event->setReferent(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getPhoneNumber(): ?int
+    {
+        return $this->phone_number;
+    }
+
+    public function setPhoneNumber(?int $phone_number): static
+    {
+        $this->phone_number = $phone_number;
 
         return $this;
     }
