@@ -92,7 +92,7 @@ class UserPanelController extends AbstractController
             } catch (\Exception $e) {
                 $this->addFlash('error', $this->translator->trans('flash.geocoding_error'));
                 return $this->render('events/event.add.html.twig', [
-                    'form' => $form->createView(),
+                    'form' => $form,
                 ]);
             }
 
@@ -100,13 +100,12 @@ class UserPanelController extends AbstractController
             $this->em->flush();
 
             $this->addFlash('success', $this->translator->trans('flash.event_created_success'));
-            $this->forward('App\Controller\CsvExportController::export', ['event' => $event]);
 
             return $this->redirectToRoute('user_panel', ['id' => $this->getUserId()]);
         }
 
         return $this->render('events/event.add.html.twig', [
-            'form' => $form->createView(),
+            'form' => $form,
         ]);
     }
 

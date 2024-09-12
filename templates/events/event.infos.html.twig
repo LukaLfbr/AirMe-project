@@ -11,7 +11,7 @@
     <br>
     {{ event.description }}
     <br>
-    <p>Créé par {{ event.referent.email }}</p>
+    <p>{{'user.events.info'|trans}} {{ event.referent.email }}</p>
     <br>
-    <a href="{{ path('app_home') }}">{{ 'user.back.to.main.menu'|trans }}</a>
+    <a href="{{ path('user_panel' , {'id': app.user.id}) }}">{{ 'user.back.to.main.menu'|trans }}</a>
 {% endblock %}

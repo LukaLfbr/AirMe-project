@@ -1,4 +1,4 @@
-document.addEventListener("DOMContentLoaded", function () {
+document.addEventListener("turbo:load", function () {
   let hamMenu = document.querySelector(".ham-menu");
   let offScreenMenu = document.querySelector(".off-menu");
 

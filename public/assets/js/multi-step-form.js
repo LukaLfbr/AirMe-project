@@ -1,4 +1,4 @@
-document.addEventListener("DOMContentLoaded", function () {
+document.addEventListener("turbo:load", function () {
   const formContainer = document.querySelector(".form-container");
   let currentStep = 0;
 

@@ -68,6 +68,7 @@ events.delete.confirmation: "Voulez-vous vraiment supprimer %event_name% ?"
 # User section
 user.panel.title: "Votre tableau de bord"
 user.events: "Voir vos événements"
+user.events.infos: "Événement créer par :"
 user.created.events: "Vos événements"
 user.back.to.main.menu: "Retourner au menu"
 user.edit.event: "Modifier un événement"

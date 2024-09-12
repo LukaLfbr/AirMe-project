@@ -10,12 +10,7 @@
 
 {% block javascripts %}
     {{ parent() }}
-    {% block importmap %}
-        {{ importmap('app') }}
-    {% endblock %}
-    {% block javascript %}
-        <script src="{{asset('assets/js/multi-step-form.js')}} "></script>
-    {% endblock %}
+    <script src="{{asset('assets/js/multi-step-form.js')}}"></script>
 {% endblock %}
 
 {% block body %}
