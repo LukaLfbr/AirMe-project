@@ -1,3 +1,10 @@
+if (!localStorage.getItem("refreshed")) {
+  localStorage.setItem("refreshed", "true");
+  location.reload();
+} else {
+  localStorage.removeItem("refreshed");
+}
+
 document.addEventListener("turbo:load", function () {
   const formContainer = document.querySelector(".form-container");
   let currentStep = 0;

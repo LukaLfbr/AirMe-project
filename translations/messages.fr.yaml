@@ -95,12 +95,18 @@ flash.geocoding_error: "Le service de géocodage n'a pas trouvé l'adresse. Veui
 
 # Form section
 form.email.label: "Adresse e-mail*"
+form.phone_number.label: "Numéro de téléphone"
 form.email.help: "Votre adresse e-mail sera utilisée pour vous connecter."
 form.email.invalid: "L'adresse e-mail que vous avez entrée est invalide."
 form.email.already_used: "Il y a déjà un compte avec cet e-mail."
 
+form.phone.too.long: "Ce numéro est trop long !"
+form.phone.too.short: "Ce numéro est trop court !"
+form.phone.must_be_integer: "Le numéro de téléphone DOIT être un numéro de téléphone !"
+
 form.previous: "Précédent"
 form.next: "Suivant"
+form.referent: "Créer un compte en tant qu'organisteur ?"
 
 form.cost: "PAF"
 form.duration: "Durée de l'événement"
