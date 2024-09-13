@@ -34,6 +34,10 @@
 
     <div id="map" class="my-map"></div>
 
+    <!-- Ajout du formulaire d'autocomplétion -->
+    <h2>{{ 'main.search.title'|trans }}</h2>
+    {{ form(autocompleteForm) }}  {# Render the autocomplete form #}
+
     <h2>{{ 'main.secondary.title'|trans }}</h2>
 
     <div class="events-list-wrapper">
@@ -59,7 +63,6 @@
         </ul>
     </div>
 </div>
-
 
     <div class="carousel-wrapper">
         <div class="carousel-control prev arrow" aria-label="Previous">&#10094;</div>
@@ -146,4 +149,3 @@
     <script src="{{ asset('assets/js/carousel.js') }}"></script>
 
 {% endblock %}
-

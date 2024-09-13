@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\Events;
+use App\Form\EventsAutocompleteType;
 use App\Repository\EventsRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
@@ -24,10 +25,13 @@ class HomeController extends AbstractController
         $events = $this->eventsRepository->findAll();
         $lastEvents = $this->eventsRepository->getLastTenEvents();
 
+        $autocompleteForm = $form = $this->createForm(EventsAutocompleteType::class);
+
         return $this->render('events/events.html.twig', [
             'events' => $events,
             'user' => $this->getUser(),
             'lastEvents' => $lastEvents,
+            'autocompleteForm' => $autocompleteForm->createView(),
         ]);
     }
 

@@ -128,3 +128,6 @@ form.agree_terms.not_accepted: "Vous devez accepter les conditions d'utilisation
 
 form.password.label: "Mot de passe*"
 form.password.blank: "Le mot de passe ne peut pas être vide."
+# Search bar section
+
+search_bar.label: "Recherchez une partie"
