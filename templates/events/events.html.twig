@@ -34,9 +34,10 @@
 
     <div id="map" class="my-map"></div>
 
-    <!-- Ajout du formulaire d'autocomplétion -->
-    <h2>{{ 'main.search.title'|trans }}</h2>
-    {{ form(autocompleteForm) }}  {# Render the autocomplete form #}
+    <h2>{{ 'main.search_bar.title'|trans }}</h2>
+    <div class="search_bar-wrapper">
+        {{ form(autocompleteForm) }}  
+    </div>
 
     <h2>{{ 'main.secondary.title'|trans }}</h2>
 

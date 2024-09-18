@@ -25,7 +25,7 @@ class HomeController extends AbstractController
         $events = $this->eventsRepository->findAll();
         $lastEvents = $this->eventsRepository->getLastTenEvents();
 
-        $autocompleteForm = $form = $this->createForm(EventsAutocompleteType::class);
+        $autocompleteForm = $this->createForm(EventsAutocompleteType::class);
 
         return $this->render('events/events.html.twig', [
             'events' => $events,

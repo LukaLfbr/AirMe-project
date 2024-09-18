@@ -11,6 +11,8 @@ contact: "Nous contacter"
 main:
   title: 'Trouvez <span class="highlight">LA<br/></span> partie proche de chez <br/> <span class="highlight">vous</span>'
   secondary.title: "Nos dernières parties"
+  search_bar.title: "Rechercher une partie"
+  search_bar.label: "ex : Partie sur paris..."
   button: "Accéder à l'événement"
   cards:
     first.title: "Besoin d'équipement pour votre prochaine partie ?"
