@@ -76,6 +76,7 @@ user.back.to.main.menu: "Retourner au menu"
 user.edit.event: "Modifier un événement"
 user.add.event.title: "Ajouter un événement"
 user.add.event: "Créer une nouvelle partie"
+user.events.info: "Partie créée par :"
 
 # Admin section
 admin.panel.title: "Bienvenue sur le panneau d'administration"

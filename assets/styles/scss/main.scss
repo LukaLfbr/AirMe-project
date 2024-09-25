@@ -11,9 +11,13 @@ h2 {
   text-align: center;
 }
 
+// Map
+
 .leaflet-control-attribution {
   display: none;
 }
+
+// Links
 
 .links-wrapper {
   margin: 1em 0 1em 0;
@@ -23,9 +27,14 @@ h2 {
   display: inline-block;
 }
 
+// Search bar
+
 .search_bar-wrapper {
   width: 80%;
   margin: auto;
+  .ts-control::after {
+    display: none !important;
+  }
 }
 
 // Carousel section
@@ -291,4 +300,10 @@ h2 {
   width: 80%;
   height: 2px;
   background-color: $text-color;
+}
+
+// Infos page
+
+.infos-wrapper {
+  flex: 1;
 }

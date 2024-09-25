@@ -7,11 +7,13 @@
 {% endblock %}
 
 {% block body %}
-    <strong>{{ event.name }}</strong>
-    <br>
-    {{ event.description }}
-    <br>
-    <p>{{'user.events.info'|trans}} {{ event.referent.email }}</p>
-    <br>
-    <a href="{{ path('user_panel' , {'id': app.user.id}) }}">{{ 'user.back.to.main.menu'|trans }}</a>
+    <div class="infos-wrapper">
+        <p><strong>{{ event.name }}</strong></p>
+        <br>
+        <p>{{ event.description }}</p>
+        <br>
+        <p>{{'user.events.info'|trans}} {{ event.referent.email }}</p>
+        <br>
+        <a href="{{ path('app_home') }}">{{ 'user.back.to.main.menu'|trans }}</a>
+        </div>
 {% endblock %}

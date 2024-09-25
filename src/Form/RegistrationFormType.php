@@ -33,7 +33,7 @@ class RegistrationFormType extends AbstractType
                     new EmailConstraint(['message' => 'form.email.invalid']),
                     new Length([
                         'max' => 36,
-                        'maxMessage' => 'form.email.toolong',
+                        'maxMessage' => 'form.email.too.long',
                     ]),
                 ],
                 'label' => false,

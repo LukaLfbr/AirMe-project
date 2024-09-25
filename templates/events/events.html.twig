@@ -1,152 +1,152 @@
 {% extends 'base.html.twig' %}
 
 {% block stylesheets %}
-    {{ parent() }} 
+    {{ parent() }}
     <link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.css"/>
-    <style>
-        .example-wrapper {
-            margin: 1em auto;
-            max-width: 800px;
-            width: 95%;
-            font: 18px / 1.5 sans-serif;
-        }
-        .my-map {
-            width: 80%;
-            height: 500px;
-            position: relative;
-            margin: auto;
-        }
-        .my-map iframe {
-            width: 100%;
-            height: 100%;
-            border: 1px solid black;
-        }
-    </style>
 {% endblock %}
 
 {% block title %}
     {{ 'events.title'|trans }}
 {% endblock %}
 
+{% block javascripts %}
+    {{ parent() }}
+    <script src="{{ asset('assets/js/search_bar.js') }}"></script>
+    <script src="{{ asset('assets/js/carousel.js') }}"></script>
+{% endblock %}
+
 {% block body %}
     <main>
-    <h1>{{ 'main.title'|trans|raw }}</h1>
+        <h1>{{ 'main.title'|trans|raw }}</h1>
 
-    <div id="map" class="my-map"></div>
+        <div id="map" class="my-map"></div>
 
-    <h2>{{ 'main.search_bar.title'|trans }}</h2>
-    <div class="search_bar-wrapper">
-        {{ form(autocompleteForm) }}  
-    </div>
-
-    <h2>{{ 'main.secondary.title'|trans }}</h2>
-
-    <div class="events-list-wrapper">
-    <div class="events-row">
-        <ul class="events-column left">
-            {% for index, lastEvent in lastEvents %}
-                {% if index < 5 %}
-                    <li class="events-card">
-                        <a class="see-button" href="{{ path('app_event', {'id': lastEvent.id}) }}">{{ lastEvent.name }}</a>
-                    </li>
-                {% endif %}
-            {% endfor %}
-        </ul>
-
-        <ul class="events-column right">
-            {% for index, lastEvent in lastEvents %}
-                {% if index >= 5 %}
-                    <li class="events-card">
-                        <a class="see-button" href="{{ path('app_event', {'id': lastEvent.id}) }}">{{ lastEvent.name }}</a>
-                    </li>
-                {% endif %}
-            {% endfor %}
-        </ul>
-    </div>
-</div>
-
-    <div class="carousel-wrapper">
-        <div class="carousel-control prev arrow" aria-label="Previous">&#10094;</div>
-        <div class="carousel">
-            <ul class="carousel-list">
-                {% for event in events %}
-                    {% if event %}
-                        <li class="carousel-item">
-                            <div>
-                                {{ 'events.location'|trans({'%game%': event.name, '%location%': event.location}) }}
-                            </div>
-                            <div class="links-wrapper">
-                                <a class="see-button " href="{{ path('app_event', {'id': event.id}) }}">{{'main.button'|trans }}</a>
-                            </div>
-                        </li>
-                    {% endif %}
-                {% endfor %}
-            </ul>
+        <h2>{{ 'main.search_bar.title'|trans }}</h2>
+        <div class="search_bar-wrapper">
+            {{ form_start(autocompleteForm) }}
+            {{ form_widget(autocompleteForm.names, { 'attr': { 'id': 'events_autocomplete_names' } }) }}
+            {{ form_end(autocompleteForm) }}
         </div>
-        <div class="carousel-control next arrow" aria-label="Next">&#10095;</div>
-    </div>
 
-    {# Allow to transfer the data from the twig to map.js to then add the nodes #}
-    <div id="map-data" data-events='[
-        {% for event in events %}
-        {
-            "name": "{{ event.name }}",
-            "longitude": {{ event.coordinates.longitude }},
-            "latitude": {{ event.coordinates.latitude }},
-            "link": "{{ path('app_event', {'id': event.id}) }}",
-            "paf": "{{ event.paf }}"
-        }{% if not loop.last %},{% endif %}
-        {% endfor %}
-    ]'></div>
+        <h2>{{ 'main.secondary.title'|trans }}</h2>
 
-    <span class="main-separator"></span>
+        <div class="events-list-wrapper">
+            <div class="events-row">
+                <ul class="events-column left">
+                    {% for index, lastEvent in lastEvents %}
+                        {% if index < 5 %}
+                            <li class="events-card">
+                                <a class="see-button" href="{{ path('app_event', {'id': lastEvent.id}) }}">{{ lastEvent.name }}</a>
+                            </li>
+                        {% endif %}
+                    {% endfor %}
+                </ul>
 
-    <section id="cards-section">
-    <div class="cards-wrapper">
-    <div class="cards"><h3 class="cards-title">{{'main.cards.first.title'|trans}} </h3><a>{{'main.cards.first.button'|trans }}</a><div></div></div>
-    <div class="cards"><h3 class="cards-title">{{'main.cards.second.title'|trans}}</h3><a>{{'main.cards.second.button'|trans }}</a><div></div></div>
-    <div class="cards"><h3 class="cards-title">{{'main.cards.third.title'|trans}}</h3><a>{{'main.cards.third.button'|trans }}</a><div></div></div>
-    <div class="cards"><h3 class="cards-title">{{'main.cards.fourth.title'|trans}}</h3><a>{{'main.cards.fourth.button'|trans }}</a><div></div></div>
-    </div>
-    </section>
+                <ul class="events-column right">
+                    {% for index, lastEvent in lastEvents %}
+                        {% if index >= 5 %}
+                            <li class="events-card">
+                                <a class="see-button" href="{{ path('app_event', {'id': lastEvent.id}) }}">{{ lastEvent.name }}</a>
+                            </li>
+                        {% endif %}
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
 
-    <span class="main-separator"></span>
+        <div class="carousel-wrapper">
+            <div class="carousel-control prev arrow" aria-label="Previous">&#10094;</div>
+            <div class="carousel">
+                <ul class="carousel-list">
+                    {% for event in events %}
+                        {% if event %}
+                            <li class="carousel-item">
+                                <div>
+                                    {{ 'events.location'|trans({'%game%': event.name, '%location%': event.location}) }}
+                                </div>
+                                <div class="links-wrapper">
+                                    <a class="see-button" href="{{ path('app_event', {'id': event.id}) }}">{{ 'main.button'|trans }}</a>
+                                </div>
+                            </li>
+                        {% endif %}
+                    {% endfor %}
+                </ul>
+            </div>
+            <div class="carousel-control next arrow" aria-label="Next">&#10095;</div>
+        </div>
 
-    <section class="stats">
-    <h2>{{'main.stats.title'|trans|raw}}</h2>
-    <div class="stat-card">
-        <p>{{'main.stats.first.number'|trans}}</p>
-        <h3>{{'main.stats.first.title'|trans}}</h3>
-    </div>
-    <div class="stat-card">
-        <p>{{'main.stats.second.number'|trans}}</p>
-        <h3>{{'main.stats.second.title'|trans}}</h3>
-    </div>
-    <div class="stat-card">
-        <p>{{'main.stats.third.title'|trans}}</p>
-        <h3>{{'main.stats.third.stat'|trans}}</h3>
-    </div>
-    <div class="stat-card">
-        <p>{{'main.stats.fourth.number'|trans}}</p>
-        <h3>{{'main.stats.fourth.stat'|trans}}</h3>
-    </div>
-    </section>
+        <div id="map-data" data-events='[
+            {% for event in events %}
+            {
+                "name": "{{ event.name }}",
+                "longitude": {{ event.coordinates.longitude }},
+                "latitude": {{ event.coordinates.latitude }},
+                "link": "{{ path('app_event', {'id': event.id}) }}",
+                "paf": "{{ event.paf }}"
+            }{% if not loop.last %},{% endif %}
+            {% endfor %}
+        ]'></div>
 
-    <span class="main-separator"></span>
+        <span class="main-separator"></span>
 
-    <section id="cta-section">
-        <div class="main-cta">
-            <h2>{{'main.cta.title'|trans|raw}}</h2>
-            <a class="main-secondary-cta" href="{{path('app_register')}}">
-                {{'main.cta.button'|trans|raw}}
-            </a>
-        </div>    
-    </section>
+        <section id="cards-section">
+            <div class="cards-wrapper">
+                <div class="cards">
+                    <h3 class="cards-title">{{ 'main.cards.first.title'|trans }}</h3>
+                    <a>{{ 'main.cards.first.button'|trans }}</a>
+                    <div></div>
+                </div>
+                <div class="cards">
+                    <h3 class="cards-title">{{ 'main.cards.second.title'|trans }}</h3>
+                    <a>{{ 'main.cards.second.button'|trans }}</a>
+                    <div></div>
+                </div>
+                <div class="cards">
+                    <h3 class="cards-title">{{ 'main.cards.third.title'|trans }}</h3>
+                    <a>{{ 'main.cards.third.button'|trans }}</a>
+                    <div></div>
+                </div>
+                <div class="cards">
+                    <h3 class="cards-title">{{ 'main.cards.fourth.title'|trans }}</h3>
+                    <a>{{ 'main.cards.fourth.button'|trans }}</a>
+                    <div></div>
+                </div>
+            </div>
+        </section>
+        <span class="main-separator"></span>
 
-</main>
+        <section class="stats">
+            <h2>{{ 'main.stats.title'|trans|raw }}</h2>
+            <div class="stat-card">
+                <p>{{ 'main.stats.first.number'|trans }}</p>
+                <h3>{{ 'main.stats.first.title'|trans }}</h3>
+            </div>
+            <div class="stat-card">
+                <p>{{ 'main.stats.second.number'|trans }}</p>
+                <h3>{{ 'main.stats.second.title'|trans }}</h3>
+            </div>
+            <div class="stat-card">
+                <p>{{ 'main.stats.third.title'|trans }}</p>
+                <h3>{{ 'main.stats.third.stat'|trans }}</h3>
+            </div>
+            <div class="stat-card">
+                <p>{{ 'main.stats.fourth.number'|trans }}</p>
+                <h3>{{ 'main.stats.fourth.stat'|trans }}</h3>
+            </div>
+        </section>
+
+        <span class="main-separator"></span>
+
+        <section id="cta-section">
+            <div class="main-cta">
+                <h2>{{ 'main.cta.title'|trans|raw }}</h2>
+                <a class="main-secondary-cta" href="{{ path('app_register') }}">
+                    {{ 'main.cta.button'|trans|raw }}
+                </a>
+            </div>
+        </section>
+    </main>
 
     <script src="http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.js"></script>
     <script src="{{ asset('assets/js/map.js') }}"></script>
-    <script src="{{ asset('assets/js/carousel.js') }}"></script>
-
 {% endblock %}

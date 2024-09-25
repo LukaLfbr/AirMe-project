@@ -49,13 +49,25 @@ input,
   font-family: Lexend;
 }
 
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+input[type="number"] {
+  -moz-appearance: textfield;
+  appearance: textfield;
+}
+
 h2 {
   font-size: 35px;
 }
 
 button,
 .option,
-.item {
+.item,
+.ts-wrapper {
   font-family: "Lexend";
 }
 
