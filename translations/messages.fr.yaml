@@ -1,7 +1,3 @@
-# Global translation keys
-hello: "Bonjour !"
-thanks: "Merci !"
-
 # Nav section
 home: "Accueil"
 about: "À propos"
@@ -85,6 +81,26 @@ admin.panel.main: "Ici vous pouvez ajouter, modifier et supprimer des événemen
 admin.panel.switch.to.user.mode: "Revenir au mode utilisateur."
 admin.edit.event: "Éditer l'événement"
 admin.delete.event: "Supprimer l'événement"
+
+# Carpooliong section
+carpooling:
+  name: "Titre du covoiturage"
+  description: "Décrivez le covoiturage en quelque mots"
+  departure:
+    _location: "Lieu de départ"
+    _time: "Heure de départ"
+  arrival:_location: "Lieu d'arrivé"
+  seats_available: "Nombre de sièges"
+  error:
+    min: "Il doit y avoir au minimum un siège !"
+    max: "Chiffre trop élevé. Contactez notre nous pour vérification."
+  offer:
+    departure_location: "Lieu de départ <strong>%departureLocation%</strong>"
+    arrival_location: "Lieu d'arrivé <strong>%arrivalLocation%</strong>:"
+    departure_time: "Heure de départ : %departureTime%"
+    seats_available: "Nombre de réservations restantes : %seatsAvailable%"
+    creator: "Créé par %creator%"
+  security_reminder: "Nous vous rappelons que <strong> la rubrique co-voiturage n'est en aucun cas réglementée</strong> par AirMe. En acceptant / en proposant une offre de co-voiturage, <strong> AirMe se décharge de toutes responsabilités </strong> en cas de vol de matériel, de fraude, ou autre délit. Merci de votre compréhension."
 
 # Flash message section
 flash.login.required: "Vous devez être connecté pour accéder à ceci !"

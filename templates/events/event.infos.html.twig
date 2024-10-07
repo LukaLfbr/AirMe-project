@@ -10,7 +10,7 @@
     <div class="infos-wrapper">
         <p><strong>{{ event.name }}</strong></p>
         <br>
-        <p>{{ event.description }}</p>
+        <p>{{ event.description|e('html') }}</p>
         <br>
         <p>{{'user.events.info'|trans}} {{ event.referent.email }}</p>
         <br>
