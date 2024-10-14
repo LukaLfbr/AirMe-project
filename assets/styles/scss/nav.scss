@@ -3,7 +3,7 @@
   justify-content: space-between;
   position: relative;
   border-bottom: 1px solid white;
-  height: 10vh;
+  height: 12vh;
 
   nav {
     display: none;
@@ -16,6 +16,11 @@
 
       li {
         list-style: none;
+        text-align: center;
+
+        a {
+          text-decoration: none;
+        }
       }
     }
   }

@@ -73,6 +73,8 @@ user.edit.event: "Modifier un événement"
 user.add.event.title: "Ajouter un événement"
 user.add.event: "Créer une nouvelle partie"
 user.events.info: "Partie créée par :"
+user.phone.info: "Numéro du référent en cas de questions : %phone_number%"
+user.phone.unavailable: "Numéro de contact non disponible, veuillez envoyez un e-mail. Merci."
 
 # Admin section
 admin.panel.title: "Bienvenue sur le panneau d'administration"
@@ -84,6 +86,7 @@ admin.delete.event: "Supprimer l'événement"
 
 # Carpooliong section
 carpooling:
+  title: "Créer une offre de co-voiturage"
   name: "Titre du covoiturage"
   description: "Décrivez le covoiturage en quelque mots"
   departure:
@@ -95,11 +98,13 @@ carpooling:
     min: "Il doit y avoir au minimum un siège !"
     max: "Chiffre trop élevé. Contactez notre nous pour vérification."
   offer:
-    departure_location: "Lieu de départ <strong>%departureLocation%</strong>"
-    arrival_location: "Lieu d'arrivé <strong>%arrivalLocation%</strong>:"
+    departure_location: "Lieu de départ : <strong>%departureLocation%</strong>"
+    arrival_location: "Lieu d'arrivé : <strong>%arrivalLocation%</strong>"
     departure_time: "Heure de départ : %departureTime%"
-    seats_available: "Nombre de réservations restantes : %seatsAvailable%"
+    seats_available: "Nombre de sièges initialement disponibles : %seatsAvailable%"
     creator: "Créé par %creator%"
+    infos: "Voir l'offre"
+  offers: "Offres de covoiturage"
   security_reminder: "Nous vous rappelons que <strong> la rubrique co-voiturage n'est en aucun cas réglementée</strong> par AirMe. En acceptant / en proposant une offre de co-voiturage, <strong> AirMe se décharge de toutes responsabilités </strong> en cas de vol de matériel, de fraude, ou autre délit. Merci de votre compréhension."
 
 # Flash message section

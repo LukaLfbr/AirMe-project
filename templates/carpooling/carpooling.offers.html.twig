@@ -1,7 +1,7 @@
 {% extends 'base.html.twig' %}
 
 {% block title %}
-    {{ 'carpooling.infos.title'|trans }}
+    {{ 'carpooling.offers'|trans }}
 {% endblock %}
 
 {% block body %}
@@ -14,17 +14,18 @@
                     <p>{{ offer.description|e('html') }}</p>
                 {% endif %}
 
-                <p><strong>{{ offer.departureLocation }}</strong></p>
-
                 <p>{{ 'carpooling.offer.departure_location'|trans({'%departureLocation%': offer.departureLocation})|raw }}</p>
                 <p>{{ 'carpooling.offer.arrival_location'|trans({'%arrivalLocation%': offer.arrivalLocation})|raw }}</p>
-                
-                <p>{{ 'carpooling.offer.creator'|trans({'%creator%': offer.creator.email}) }}</p>
+
+                <a class="return-button" href="{{ path('carpooling_info', { 'id': offer.id }) }}">{{ 'carpooling.offer.infos'|trans }}</a>
+                    
             </div>
         {% endfor %}
 
         <div class="security-reminder">
-            {{'security.reminder|'|trans}}
+        <p>
+            {{'carpooling.security_reminder'|trans|raw}}
+        </p>
         </div>
     </div>
 {% endblock %}

@@ -2,8 +2,9 @@
 
 namespace App\Controller;
 
-use App\Entity\CarpoolingOffer;
-use App\Form\CarpoolingOfferType;
+use App\Entity\CarPoolingOffer;
+use App\Form\CarPoolingOfferType;
+use App\Repository\CarPoolingOfferRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Contracts\Translation\TranslatorInterface;
@@ -12,6 +13,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
 
+#[Route('/carpooling', name: 'carpooling_')]
 class CarpoolingController extends AbstractController
 {
     private $translator;
@@ -22,50 +24,52 @@ class CarpoolingController extends AbstractController
         $this->security = $security;
     }
 
-    #[Route('/carpooling', name: 'carpooling_')]
-    public function index(): Response
+    #[Route('/offers', name: 'index')]
+    public function index(CarPoolingOfferRepository $repository): Response
     {
+        $carpoolingOffers = $repository->findAll();
+
         return $this->render('carpooling/carpooling.offers.html.twig', [
             'controller_name' => 'CarpoolingController',
+            'carPoolingOffers' => $carpoolingOffers
         ]);
     }
 
     #[Route('/{id}', name: 'info')]
-    public function info(CarpoolingOffer $carpoolingOffer): Response
+    public function info(CarPoolingOffer $carpoolingOffer): Response
     {
-        return $this->render('carpooling/carpooling.info.html.twig', [
-            'controller_name' => 'CarpoolingController',
-        ]);
+        return $this->render('carpooling/carpooling.infos.html.twig', [
+            'offer' => $carpoolingOffer
+        ]);  
     }
 
     #[Route('/add', name: 'add')]
     public function add(EntityManagerInterface $em, Request $request): Response
     {
-
         if (!$this->security->isGranted('ROLE_USER')) {
             $this->addFlash('not_logged_in', $this->translator->trans('flash.login_required'));
             return $this->redirectToRoute('app_login');
         }
 
-        $newCarpoolingOffer = new CarpoolingOffer();
-        $form = $this->createForm(CarpoolingOfferType::class, $newCarpoolingOffer);
+        $newCarPoolingOffer = new CarPoolingOffer();
+        $form = $this->createForm(CarPoolingOfferType::class, $newCarPoolingOffer);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $em->persist($newCarpoolingOffer);
+            $em->persist($newCarPoolingOffer);
             $em->flush();
         }
 
-        return $this->render('carpooling/carpooling.edit.html.twig', [
+        return $this->render('carpooling/carpooling.add.html.twig', [
             'controller_name' => 'CarpoolingController',
             'form' => $form->createView(),
         ]);
     }
 
     #[Route('/edit/{id}', name: 'edit')]
-    public function edit(CarpoolingOffer $carpoolingOffer, EntityManagerInterface $em, Request $request): Response
+    public function edit(CarPoolingOffer $carpoolingOffer, EntityManagerInterface $em, Request $request): Response
     {
-        $form = $this->createForm(CarpoolingOfferType::class, $carpoolingOffer);
+        $form = $this->createForm(CarPoolingOfferType::class, $carpoolingOffer);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
@@ -79,7 +83,7 @@ class CarpoolingController extends AbstractController
     }
 
     #[Route('/delete/{id}', name: 'delete')]
-    public function delete(CarpoolingOffer $carpoolingOffer, EntityManagerInterface $em): Response
+    public function delete(CarPoolingOffer $carpoolingOffer, EntityManagerInterface $em): Response
     {
         $em->remove($carpoolingOffer);
         $em->flush();

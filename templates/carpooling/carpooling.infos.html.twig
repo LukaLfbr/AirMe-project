@@ -5,12 +5,12 @@
 {% endblock %}
 
 {% block body %}
-    <div class="carpooling-offer-info">
+    <div class="carpooling-offers-info-wrapper">
 
     <p>{{ 'carpooling.offer.departure_time'|trans({'%departureTime%': offer.departureTime}) }}</p>
     <p>{{ 'carpooling.offer.seats_available'|trans({'%seatsAvailable%': offer.seatsAvailable}) }}</p>
     
 
-    <a href="{{ path('event', { 'id': offer.event.id }) }}">{{ offer.event.name }}</a>
+    <a href="{{ path('app_event', { 'id': offer.event.id }) }}">{{ offer.event.name }}</a>
     </div>
 {% endblock %}

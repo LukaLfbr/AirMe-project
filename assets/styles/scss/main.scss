@@ -273,6 +273,35 @@ h2 {
   }
 }
 
+// Carpooling section
+
+.carpooling-offers-wrapper {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1em;
+  width: 80%;
+  margin: auto;
+  padding-top: 1em;
+  .offer-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border: 1px solid $text-color;
+    border-radius: 0.6rem;
+    padding: 1em;
+    h1 {
+      font-size: 20px;
+      text-align: center;
+    }
+    p {
+      text-align: center;
+    }
+  }
+}
+
+.carpooling-offers-info-wrapper {
+  flex: 1;
+}
 // CTA
 
 .main-cta {

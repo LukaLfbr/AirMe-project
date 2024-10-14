@@ -103,6 +103,13 @@ button,
   margin-bottom: 1em;
 }
 
+.primary-btn {
+  border-radius: 0.6em;
+  color: $text-color;
+  background-color: $primary-color;
+  font-family: Lexend;
+}
+
 #events_save {
   color: $text-color;
   font-family: Lexend;

@@ -13,6 +13,13 @@
         <p>{{ event.description|e('html') }}</p>
         <br>
         <p>{{'user.events.info'|trans}} {{ event.referent.email }}</p>
+        {% if event.referent.phoneNumber %}
+            <br>
+            <p>{{'user.phone.info'|trans({'%phone_number%': event.referent.phoneNumber})}} </p>
+            {% else %}
+            <br>
+            <p>{{'user.phone.unavailable'|trans}} </p>
+        {% endif %}
         <br>
         <a href="{{ path('app_home') }}">{{ 'user.back.to.main.menu'|trans }}</a>
         </div>
