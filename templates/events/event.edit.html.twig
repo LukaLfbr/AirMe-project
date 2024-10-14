@@ -1,39 +1,61 @@
-<!DOCTYPE html>
-<html>
-	<head>
-		<meta charset="UTF-8">
-		<title>
-			{% block title %}{{"user.edit.event"|trans}}
-			{% endblock %}
-		</title>
-		<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 128 128%22><text y=%221.2em%22 font-size=%2296%22>⚫️</text><text y=%221.3em%22 x=%220.2em%22 font-size=%2276%22 fill=%22%23fff%22>sf</text></svg>"> {% block stylesheets %}{% endblock %}
+{% extends 'base.html.twig' %}
 
-		{% block javascripts %}
-			{% block importmap %}
-				{{ importmap('app') }}
-			{% endblock %}
-		{% endblock %}
-	</head>
-	<body>
-		{% block body %}
-			<h1>{{"user.edit.event"|trans}}s</h1>
-			{{ form_start(form) }}
-			{{ form_row(form.name, {'attr': {'class': 'required'}}) }}
-			{{ form_row(form.description, {'attr': {'class': 'required'}}) }}
-			{{ form_row(form.location, {'attr': {'class': 'required'}}) }}
-			{{ form_row(form.date) }}
-			{{ form_row(form.paf) }}
-			{{ form_row(form.duration) }}
-			{{ form_row(form.terrain_type) }}
-			{{ form_row(form.weather) }}
-			{{ form_row(form.temperature) }}
-			{{ form_row(form.beginner_friendly) }}
-			{{ form_row(form.equipement_rental) }}
-			{{ form_row(form.save) }}
-			{{ form_end(form) }}
-			<button>
-				<a href="{{ path('app_home') }}">{{"user.back.to.main.menu"|trans}}</a>
-			</button>
-		{% endblock %}
-	</body>
-</html>
+{% block title %}
+    {{ 'user.edit.event.title'|trans }}
+{% endblock %}
+
+{% block stylesheets %}
+    {{ parent() }}
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    {% block importmap %}
+        {{ importmap('app') }}
+    {% endblock %}
+    <script src="{{ asset('assets/js/multi-step-form.js') }}"></script>
+{% endblock %}
+
+{% block body %}
+    <h3 class="form-title">{{ 'user.edit.event'|trans }}</h3>
+
+    <div id="form-wrapper">
+        {{ form_start(form) }}
+        <div class="form-container">
+            <div class="form1">
+                {{ form_row(form.name, {'attr': {'class': 'required'}}) }}
+                {{ form_row(form.description, {'attr': {'class': 'required'}}) }}
+                {{ form_row(form.location, {'attr': {'class': 'required'}}) }}
+                {{ form_row(form.date) }}
+                {{ form_row(form.paf) }}
+                <div class="form-btn-wrapper">
+                    <div class="previous"><p>{{ 'form.previous'|trans }}</p></div>
+                    <div class="next"><p>{{ 'form.next'|trans }}</p></div>
+                </div>
+            </div>
+
+            <div class="form2">
+                {{ form_row(form.duration) }}
+                {{ form_row(form.terrain_type) }}
+                {{ form_row(form.weather) }}
+                {{ form_row(form.temperature) }}
+                <div class="form-btn-wrapper">
+                    <div class="previous"><p>{{ 'form.previous'|trans }}</p></div>
+                    <div class="next"><p>{{ 'form.next'|trans }}</p></div>
+                </div>
+            </div>
+
+            <div class="form3">
+                {{ form_row(form.beginner_friendly) }}
+                {{ form_row(form.equipement_rental) }}
+                {{ form_row(form.save) }}
+                <div class="form-btn-wrapper">
+                    <div class="previous"><p>{{ 'form.previous'|trans }}</p></div>
+                </div>
+            </div>
+        </div>
+        {{ form_end(form) }}
+
+        
+    </div>
+{% endblock %}

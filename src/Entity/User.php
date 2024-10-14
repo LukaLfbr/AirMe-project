@@ -28,16 +28,20 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column(type: 'json')]
     private array $roles = [];
 
-    /**
-     * @var Collection<int, Events>
-     */
     #[ORM\OneToMany(targetEntity: Events::class, mappedBy: 'referent')]
     private Collection $events;
+
+    #[ORM\Column(nullable: true)]
+    private ?int $phone_number = null;
+
+    #[ORM\OneToMany(targetEntity: CarPoolingOffer::class, mappedBy: 'creator', orphanRemoval: true)]
+    private Collection $creator_id;
 
     public function __construct()
     {
         $this->events = new ArrayCollection();
-        $this->roles = ['ROLE_USER']; // Assure que tous les utilisateurs ont au moins le rôle ROLE_USER
+        $this->roles = ['ROLE_USER']; 
+        $this->creator_id = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -65,7 +69,6 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function getRoles(): array
     {
         $roles = $this->roles;
-        // guarantee every user at least has ROLE_USER
         if (empty($roles)) {
             $roles[] = 'ROLE_USER';
         }
@@ -94,12 +97,8 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
     public function eraseCredentials(): void
     {
-        // If you store any temporary, sensitive data on the user, clear it here
     }
 
-    /**
-     * @return Collection<int, Events>
-     */
     public function getEvents(): Collection
     {
         return $this->events;
@@ -118,9 +117,46 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function removeEvent(Events $event): static
     {
         if ($this->events->removeElement($event)) {
-            // set the owning side to null (unless already changed)
             if ($event->getReferent() === $this) {
                 $event->setReferent(null);
+            }
+        }
+
+        return $this;
+    }
+
+    public function getPhoneNumber(): ?int
+    {
+        return $this->phone_number;
+    }
+
+    public function setPhoneNumber(?int $phone_number): static
+    {
+        $this->phone_number = $phone_number;
+
+        return $this;
+    }
+
+    public function getCreatorId(): Collection
+    {
+        return $this->creator_id;
+    }
+
+    public function addCreatorId(CarPoolingOffer $creatorId): static
+    {
+        if (!$this->creator_id->contains($creatorId)) {
+            $this->creator_id->add($creatorId);
+            $creatorId->setCreator($this);
+        }
+
+        return $this;
+    }
+
+    public function removeCreatorId(CarPoolingOffer $creatorId): static
+    {
+        if ($this->creator_id->removeElement($creatorId)) {
+            if ($creatorId->getCreator() === $this) {
+                $creatorId->setCreator(null);
             }
         }
 

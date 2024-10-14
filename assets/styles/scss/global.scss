@@ -11,12 +11,28 @@ $accent-color: #3e3d3d;
   font-style: normal;
 }
 
+.alert {
+  color: red;
+  font-family: "Lexend";
+}
+
 * {
   box-sizing: border-box;
 }
 
+html {
+  height: 100%;
+}
+
 body {
   background-color: $background-color;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+
+  main {
+    flex: 1;
+  }
 }
 
 p,
@@ -26,13 +42,33 @@ h1,
 h2,
 h3,
 h4,
-label {
+label,
+input,
+::placeholder {
   color: $text-color;
   font-family: Lexend;
 }
 
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+input[type="number"] {
+  -moz-appearance: textfield;
+  appearance: textfield;
+}
+
 h2 {
   font-size: 35px;
+}
+
+button,
+.option,
+.item,
+.ts-wrapper {
+  font-family: "Lexend";
 }
 
 .leaflet-top {

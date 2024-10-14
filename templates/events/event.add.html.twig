@@ -10,40 +10,47 @@
 
 {% block javascripts %}
     {{ parent() }}
-    {% block importmap %}
-        {{ importmap('app') }}
-    {% endblock %}
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            if (window.flashMessages) {
-                console.log('Messages Flash:', window.flashMessages);
-                Object.keys(window.flashMessages).forEach(function(type) {
-                    window.flashMessages[type].forEach(function(message) {
-                        console.log(`[${type}] ${message}`);
-                    });
-                });
-            }
-        });
-    </script>
+    <script src="{{asset('assets/js/multi-step-form.js')}}"></script>
 {% endblock %}
 
 {% block body %}
-    <h1>{{ 'user.add.event'|trans }}</h1>
+    <h3 class='form-title'>{{ 'user.add.event'|trans }}</h3>
+    
     <div id="form-wrapper">
-    {{ form_start(form) }}
-        {{ form_row(form.name, {'attr': {'class': 'required'}}) }}
-        {{ form_row(form.description, {'attr': {'class': 'required'}}) }}
-        {{ form_row(form.location, {'attr': {'class': 'required'}}) }}
-        {{ form_row(form.date) }}
-        {{ form_row(form.paf) }}
-        {{ form_row(form.duration) }}
-        {{ form_row(form.terrain_type) }}
-        {{ form_row(form.weather) }}
-        {{ form_row(form.temperature) }}
-        {{ form_row(form.beginner_friendly) }}
-        {{ form_row(form.equipement_rental) }}
-        {{ form_row(form.save) }}
-    {{ form_end(form) }}
-        <a href="{{ path('user_panel', {'id': app.user.id}) }}" class="return-button">{{ 'user.back.to.main.menu'|trans }}</a>
+        {{ form_start(form) }}
+        <div class="form-container"> 
+            <div class="form1">
+                {{ form_row(form.name, {'attr': {'class': 'required'}}) }}
+                {{ form_row(form.description, {'attr': {'class': 'required'}}) }}
+                {{ form_row(form.location, {'attr': {'class': 'required'}}) }}
+                {{ form_row(form.date) }}
+                {{ form_row(form.paf) }}
+                <div class="form-btn-wrapper">
+                    <div class="previous"><p>{{'form.previous'|trans}}</p></div>
+                    <div class="next"><p>{{'form.next'|trans}}</p></div>
+                </div>
+            </div>
+
+            <div class="form2">
+                {{ form_row(form.duration) }}
+                {{ form_row(form.terrain_type) }}
+                {{ form_row(form.weather) }}
+                {{ form_row(form.temperature) }}
+                <div class="form-btn-wrapper">
+                    <div class="previous"><p>{{'form.previous'|trans}}</p></div>
+                    <div class="next"><p>{{'form.next'|trans}}</p></div>
+                </div>
+            </div>
+
+            <div class="form3">
+                {{ form_row(form.beginner_friendly) }}
+                {{ form_row(form.equipement_rental) }}
+                {{ form_row(form.save) }}
+                <div class="form-btn-wrapper">
+                    <div class="previous"><p>{{'form.previous'|trans}}</p></div>
+                </div>
+            </div>
+        </div> 
+        {{ form_end(form) }}
     </div>
 {% endblock %}

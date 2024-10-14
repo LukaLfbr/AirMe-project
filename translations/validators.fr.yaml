@@ -1,9 +1,6 @@
 # Email validation messages
 validators.email.invalid: "L'e-mail est invalide."
-validators.email.too.long: "L'e-mail utilisé est trop long."
-
-# Terms and conditions validation messages
-validators.terms.not.accepted: "Vous devez accepter nos conditions d'utilisation."
+validators.email.too.long: "L'adresse e-mail ne peut pas dépasser 36 caractères."
 
 # Password validation messages
 validators.password.blank: "Le mot de passe ne peut pas être vide."
@@ -11,3 +8,5 @@ validators.password.too.short: "Le mot de passe doit contenir au moins {{ limit 
 
 # Unique email validation message
 validators.email.already.used: "Il y a déjà un compte avec cet e-mail."
+
+form.email.too.long: "Cet e-mail est trop long !"

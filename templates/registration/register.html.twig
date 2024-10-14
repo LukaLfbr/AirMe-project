@@ -1,23 +1,48 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}{{"register"|trans}}
-{% endblock %}
+{% block title %}{{ "register"|trans }}{% endblock %}
 
 {% block body %}
-	<h1>{{"register"|trans}}</h1>
+<div class="register-wrapper">
+    <h1>{{ "register"|trans }}</h1>
 
-	{{ form_errors(registrationForm) }}
+    {{ form_errors(registrationForm) }}
+    {{ form_start(registrationForm) }}
 
-	{{ form_start(registrationForm) }}
-	{{ form_row(registrationForm.email) }}
-	{{ form_row(registrationForm.plainPassword, {
-            label: 'Password'
+    <div class="inputs-wrapper">
+        {{ form_row(registrationForm.email, {
+            'attr': {'placeholder': 'form.email.label'|trans }
         }) }}
-	{{ form_row(registrationForm.agreeTerms) }}
+        {{ form_row(registrationForm.plainPassword, {
+            'attr': {'placeholder': 'form.password.label'|trans }
+        }) }}
+    </div>
 
-	<button type="submit" class="btn">{{"register.account"|trans}}</button>
-	<button>
-		<a href="{{ path('app_home') }}">{{"user.back.to.main.menu"|trans}}</a>
-	</button>
-	{{ form_end(registrationForm) }}
+    <div class="check-box-wrapper">
+    <label for="referent">{{ 'form.referent'|trans }}</label>
+    <input type="checkbox" id="referent" name="referent" />
+    </div>
+    
+    <div class="inputs-wrapper" id="phoneNumberWrapper" style="display: none;">
+        {{ form_row(registrationForm.phoneNumber, {
+            'attr': {'placeholder': 'form.phone_number.label'|trans}
+        }) }}
+    </div>
+
+    <button type="submit" class="btn">{{ "register.account"|trans }}</button>
+
+    {{ form_end(registrationForm) }}
+</div>
+
+<script>
+    document.getElementById('referent').addEventListener('change', function() {
+        var phoneNumberWrapper = document.getElementById('phoneNumberWrapper');
+        if (this.checked) {
+            phoneNumberWrapper.style.display = 'block';
+        } else {
+            phoneNumberWrapper.style.display = 'none';
+        }
+    });
+</script>
+
 {% endblock %}

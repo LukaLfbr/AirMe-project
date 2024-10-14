@@ -4,25 +4,36 @@
 }
 
 h1 {
-  margin: 2em 0;
+  margin: 1em 0 2em 0;
 }
 
 h2 {
   text-align: center;
-  margin-top: 2em;
 }
+
+// Map
 
 .leaflet-control-attribution {
   display: none;
 }
 
+// Links
+
 .links-wrapper {
   margin: 1em 0 1em 0;
+  text-decoration: none;
+  @include basic-button-style;
+  background-color: $accent-color;
+  display: inline-block;
+}
 
-  .see-button {
-    text-decoration: none;
-    @include basic-button-style;
-    background-color: $accent-color;
+// Search bar
+
+.search_bar-wrapper {
+  width: 80%;
+  margin: auto;
+  .ts-control::after {
+    display: none !important;
   }
 }
 
@@ -33,10 +44,10 @@ h2 {
   justify-content: center;
   position: relative;
   width: 80%;
-  margin: 20px auto;
+  margin: 2em auto;
   border: 1px solid $text-color;
   border-radius: 0.6rem;
-  margin-top: 10%;
+  margin-top: 2em;
 
   .carousel {
     overflow: hidden;
@@ -92,10 +103,11 @@ h2 {
 .events-list-wrapper {
   width: 80%;
   margin: auto;
+  display: none;
+  margin-bottom: 3em;
   ul {
     display: flex;
     flex-direction: column;
-    gap: 1em;
 
     .main-separator {
       background-color: white;
@@ -109,13 +121,17 @@ h2 {
   .events-row {
     display: flex;
     justify-content: space-between;
-    flex-wrap: wrap;
-
+    flex-wrap: nowrap;
+    gap: 1em;
     ul {
       flex: 1;
       margin: 0;
       padding: 0;
       list-style-type: none;
+
+      li {
+        box-sizing: border-box;
+      }
     }
 
     .events-column {
@@ -123,14 +139,18 @@ h2 {
       box-sizing: border-box;
 
       .events-card {
-        margin-bottom: 10px;
-        text-align: center;
+        padding: 1em;
+        white-space: nowrap;
       }
     }
   }
 }
 
 // Cards section
+
+#cards-section {
+  margin: 3em 0;
+}
 
 .cards {
   padding: 1.5em;
@@ -264,4 +284,27 @@ h2 {
     font-weight: normal;
     border: none;
   }
+}
+
+// CTA section
+
+#cta-section {
+  margin-bottom: 3em;
+}
+
+// Separators
+
+.main-separator {
+  text-align: center;
+  display: block;
+  margin: 1.5em auto;
+  width: 80%;
+  height: 2px;
+  background-color: $text-color;
+}
+
+// Infos page
+
+.infos-wrapper {
+  flex: 1;
 }

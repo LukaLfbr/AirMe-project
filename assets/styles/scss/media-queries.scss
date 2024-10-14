@@ -1,9 +1,58 @@
-@media (min-width: 1024px) and (max-width: 1280px) {
-  h1 {
-    font-size: 45px;
+@media (min-width: 768px) {
+  .ham-menu {
+    display: none;
+  }
+
+  .nav-wrapper {
+    display: flex;
+    nav {
+      display: flex;
+    }
+  }
+
+  .events-list-wrapper {
+    display: block;
   }
   .carousel-wrapper {
     display: none;
+  }
+
+  h1 {
+    font-size: 70px;
+    line-height: 2em;
+  }
+
+  .form-title {
+    font-size: 50px;
+  }
+
+  .events-column {
+    .events-card {
+      &:nth-child(even) {
+        background-color: $accent-color;
+      }
+    }
+  }
+
+  .cards-wrapper {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    width: 80%;
+    margin: auto;
+    align-items: center;
+    gap: 2em;
+    .cards {
+      width: 100%;
+      height: 100%;
+      gap: 0em;
+    }
+  }
+
+  .register-wrapper,
+  .login-wrapper {
     width: 35%;
   }
+}
+
+@media (min-width: 1024px) and (max-width: 1280px) {
 }

@@ -1,7 +1,3 @@
-# Global translation keys
-hello: "Bonjour !"
-thanks: "Merci !"
-
 # Nav section
 home: "Accueil"
 about: "À propos"
@@ -11,6 +7,8 @@ contact: "Nous contacter"
 main:
   title: 'Trouvez <span class="highlight">LA<br/></span> partie proche de chez <br/> <span class="highlight">vous</span>'
   secondary.title: "Nos dernières parties"
+  search_bar.title: "Rechercher une partie"
+  search_bar.label: "ex : Partie sur paris..."
   button: "Accéder à l'événement"
   cards:
     first.title: "Besoin d'équipement pour votre prochaine partie ?"
@@ -42,7 +40,7 @@ footer:
 # Account section
 register: "S'inscrire"
 register.account: "Créer son compte"
-login: "Se connecter"
+login: "Connexion"
 login.information: "Vous êtes connecté en tant que %user.email%"
 login.not.logged.in: "Vous n'êtes pas connecté"
 logout: "Se déconnecter"
@@ -67,12 +65,14 @@ events.delete.confirmation: "Voulez-vous vraiment supprimer %event_name% ?"
 
 # User section
 user.panel.title: "Votre tableau de bord"
-user.events: "Accéder à vos événements"
+user.events: "Voir vos événements"
+user.events.infos: "Événement créer par :"
 user.created.events: "Vos événements"
 user.back.to.main.menu: "Retourner au menu"
 user.edit.event: "Modifier un événement"
 user.add.event.title: "Ajouter un événement"
 user.add.event: "Créer une nouvelle partie"
+user.events.info: "Partie créée par :"
 
 # Admin section
 admin.panel.title: "Bienvenue sur le panneau d'administration"
@@ -81,6 +81,26 @@ admin.panel.main: "Ici vous pouvez ajouter, modifier et supprimer des événemen
 admin.panel.switch.to.user.mode: "Revenir au mode utilisateur."
 admin.edit.event: "Éditer l'événement"
 admin.delete.event: "Supprimer l'événement"
+
+# Carpooliong section
+carpooling:
+  name: "Titre du covoiturage"
+  description: "Décrivez le covoiturage en quelque mots"
+  departure:
+    _location: "Lieu de départ"
+    _time: "Heure de départ"
+  arrival:_location: "Lieu d'arrivé"
+  seats_available: "Nombre de sièges"
+  error:
+    min: "Il doit y avoir au minimum un siège !"
+    max: "Chiffre trop élevé. Contactez notre nous pour vérification."
+  offer:
+    departure_location: "Lieu de départ <strong>%departureLocation%</strong>"
+    arrival_location: "Lieu d'arrivé <strong>%arrivalLocation%</strong>:"
+    departure_time: "Heure de départ : %departureTime%"
+    seats_available: "Nombre de réservations restantes : %seatsAvailable%"
+    creator: "Créé par %creator%"
+  security_reminder: "Nous vous rappelons que <strong> la rubrique co-voiturage n'est en aucun cas réglementée</strong> par AirMe. En acceptant / en proposant une offre de co-voiturage, <strong> AirMe se décharge de toutes responsabilités </strong> en cas de vol de matériel, de fraude, ou autre délit. Merci de votre compréhension."
 
 # Flash message section
 flash.login.required: "Vous devez être connecté pour accéder à ceci !"
@@ -94,10 +114,27 @@ flash.geocoding_error: "Le service de géocodage n'a pas trouvé l'adresse. Veui
 
 # Form section
 form.email.label: "Adresse e-mail*"
+form.phone_number.label: "Numéro de téléphone"
 form.email.help: "Votre adresse e-mail sera utilisée pour vous connecter."
 form.email.invalid: "L'adresse e-mail que vous avez entrée est invalide."
-form.email.too_long: "L'adresse e-mail ne peut pas dépasser 36 caractères."
 form.email.already_used: "Il y a déjà un compte avec cet e-mail."
+
+form.phone.too.long: "Ce numéro est trop long !"
+form.phone.too.short: "Ce numéro est trop court !"
+form.phone.must_be_integer: "Le numéro de téléphone DOIT être un numéro de téléphone !"
+
+form.previous: "Précédent"
+form.next: "Suivant"
+form.referent: "Créer un compte en tant qu'organisteur ?"
+
+form.cost: "PAF"
+form.duration: "Durée de l'événement"
+form.terrain_type: "Type de terrain"
+form.weather: "Conditions météo"
+form.temperature: "Température"
+form.beginner_friendly: "Convient aux débutants"
+form.equipement_rental: "Location d'équipement"
+form.save: "Sauvegarder un événement"
 
 form.field:
   empty: "Ce champ ne peut pas être vide !"
@@ -108,5 +145,8 @@ form.field:
 form.agree_terms.label: "J'accepte les conditions d'utilisation"
 form.agree_terms.not_accepted: "Vous devez accepter les conditions d'utilisation."
 
-form.password.label: "Mot de passe"
+form.password.label: "Mot de passe*"
 form.password.blank: "Le mot de passe ne peut pas être vide."
+# Search bar section
+
+search_bar.label: "Recherchez une partie"
