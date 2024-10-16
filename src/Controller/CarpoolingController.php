@@ -25,15 +25,21 @@ class CarpoolingController extends AbstractController
     }
 
     #[Route('/offers', name: 'index')]
-    public function index(CarPoolingOfferRepository $repository): Response
-    {
-        $carpoolingOffers = $repository->findAll();
+public function index(CarPoolingOfferRepository $repository, Request $request): Response
+{
+    $page = $request->query->getInt('page', 1);  
+    $limit = 4;  
 
-        return $this->render('carpooling/carpooling.offers.html.twig', [
-            'controller_name' => 'CarpoolingController',
-            'carPoolingOffers' => $carpoolingOffers
-        ]);
-    }
+    $paginatedOffers = $repository->paginateCarPoolingOffers($request, $page, $limit);  
+    $maxPages = ceil(count($paginatedOffers) / $limit); 
+
+    return $this->render('carpooling/carpooling.offers.html.twig', [
+        'carPoolingOffers' => $paginatedOffers, 
+        'maxPages' => $maxPages,
+        'page' => $page
+    ]);
+}
+
 
     #[Route('/{id}', name: 'info')]
     public function info(CarPoolingOffer $carpoolingOffer): Response

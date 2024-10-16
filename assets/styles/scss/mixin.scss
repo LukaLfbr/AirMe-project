@@ -43,3 +43,8 @@
     outline: none;
   }
 }
+
+@mixin center-and-size {
+  margin: auto;
+  width: 80%;
+}

@@ -1,16 +1,20 @@
 {% extends 'base.html.twig' %}
 
 {% block title %}
-    {{ 'carpooling.infos.title'|trans }}
+    {{ offer.name}}
 {% endblock %}
 
 {% block body %}
     <div class="carpooling-offers-info-wrapper">
 
-    <p>{{ 'carpooling.offer.departure_time'|trans({'%departureTime%': offer.departureTime}) }}</p>
+    <p>{{ 'carpooling.offer.departure_time'|trans({'%departureTime%': offer.departureTime|date('d/m/Y H:i')}) }}</p>
     <p>{{ 'carpooling.offer.seats_available'|trans({'%seatsAvailable%': offer.seatsAvailable}) }}</p>
-    
+    <br>
+    <p>{{'carpooling.offer.creator'|trans({'%creator%': offer.creator.email})|raw}} </p>
+    <br>
+    <p><a href="{{ path('carpooling_index') }}">{{ 'carpooling.back'|trans }}</a></p>
 
-    <a href="{{ path('app_event', { 'id': offer.event.id }) }}">{{ offer.event.name }}</a>
+    <a href="{{ path('app_event', { 'id': offer.event.id }) }}"> {{'main.button'|trans}} {{ offer.event.name }}</a>
     </div>
 {% endblock %}
+ 

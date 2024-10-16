@@ -30,8 +30,7 @@ h2 {
 // Search bar
 
 .search_bar-wrapper {
-  width: 80%;
-  margin: auto;
+  @include center-and-size;
   .ts-control::after {
     display: none !important;
   }
@@ -101,8 +100,7 @@ h2 {
 // Last events section
 
 .events-list-wrapper {
-  width: 80%;
-  margin: auto;
+  @include center-and-size;
   display: none;
   margin-bottom: 3em;
   ul {
@@ -276,11 +274,10 @@ h2 {
 // Carpooling section
 
 .carpooling-offers-wrapper {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
+  display: flex;
+  flex-direction: column;
   gap: 1em;
-  width: 80%;
-  margin: auto;
+  @include center-and-size;
   padding-top: 1em;
   .offer-wrapper {
     display: flex;
@@ -302,6 +299,26 @@ h2 {
 .carpooling-offers-info-wrapper {
   flex: 1;
 }
+
+.carpooling-offers-btn {
+  display: flex;
+  flex-direction: column;
+  margin: 1em auto;
+  width: 80%;
+
+  a {
+    text-align: center;
+    background-color: $primary-color;
+    text-decoration: none;
+  }
+}
+
+.security-reminder {
+  p {
+    text-align: center;
+  }
+}
+
 // CTA
 
 .main-cta {

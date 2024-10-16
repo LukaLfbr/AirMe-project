@@ -37,8 +37,7 @@
   .cards-wrapper {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
-    width: 80%;
-    margin: auto;
+    @include center-and-size;
     align-items: center;
     gap: 2em;
     .cards {
@@ -51,6 +50,17 @@
   .register-wrapper,
   .login-wrapper {
     width: 35%;
+  }
+
+  .carpooling-offers-wrapper {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .carpooling-offers-btn {
+    flex-direction: row;
+    justify-content: space-between;
+    gap: 1em;
   }
 }
 

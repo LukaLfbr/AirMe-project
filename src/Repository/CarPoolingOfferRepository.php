@@ -4,7 +4,9 @@ namespace App\Repository;
 
 use App\Entity\CarPoolingOffer;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
+use Doctrine\ORM\Tools\Pagination\Paginator;
 use Doctrine\Persistence\ManagerRegistry;
+use Symfony\Component\HttpFoundation\Request;
 
 /**
  * @extends ServiceEntityRepository<CarPoolingOffer>
@@ -15,6 +17,18 @@ class CarPoolingOfferRepository extends ServiceEntityRepository
     {
         parent::__construct($registry, CarPoolingOffer::class);
     }
+
+    public function paginateCarPoolingOffers(Request $request, int $page = 1, int $limit = 10): Paginator
+{
+    $firstResult = ($page - 1) * $limit;
+
+    $query = $this->createQueryBuilder('c')
+        ->setFirstResult($firstResult)  
+        ->setMaxResults($limit)
+        ->getQuery();
+
+    return new Paginator($query, true); 
+}
 
 //    /**
 //     * @return CarPoolingOffer[] Returns an array of CarPoolingOffer objects

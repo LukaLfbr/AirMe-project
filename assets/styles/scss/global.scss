@@ -96,6 +96,8 @@ button,
 
 .return-button {
   @include add-buttons;
+  background-color: $accent-color;
+  text-decoration: none;
 }
 
 .basic-button {
@@ -103,19 +105,8 @@ button,
   margin-bottom: 1em;
 }
 
-.primary-btn {
-  border-radius: 0.6em;
-  color: $text-color;
-  background-color: $primary-color;
-  font-family: Lexend;
-}
-
 #events_save {
   color: $text-color;
   font-family: Lexend;
-  @include add-buttons;
-}
-
-.return-button {
   @include add-buttons;
 }

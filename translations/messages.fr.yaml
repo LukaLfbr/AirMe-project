@@ -105,6 +105,7 @@ carpooling:
     creator: "Créé par %creator%"
     infos: "Voir l'offre"
   offers: "Offres de covoiturage"
+  back: "Retourner aux offres de covoiturage"
   security_reminder: "Nous vous rappelons que <strong> la rubrique co-voiturage n'est en aucun cas réglementée</strong> par AirMe. En acceptant / en proposant une offre de co-voiturage, <strong> AirMe se décharge de toutes responsabilités </strong> en cas de vol de matériel, de fraude, ou autre délit. Merci de votre compréhension."
 
 # Flash message section

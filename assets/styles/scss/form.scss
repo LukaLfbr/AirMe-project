@@ -74,9 +74,7 @@
   }
 
   .check-box-wrapper {
-    width: 80%;
-    margin: auto;
-    width: 40%;
+    @include center-and-size;
     label {
       font-size: 12px;
     }

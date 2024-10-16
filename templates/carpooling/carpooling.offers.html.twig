@@ -8,7 +8,7 @@
     <div class="carpooling-offers-wrapper">
         {% for offer in carPoolingOffers %}
             <div class="offer-wrapper">
-                <h1>{{ offer.name }}</h1>
+                <h1 class="highlight">{{ offer.name }}</h1>
 
                 {% if offer.description %}
                     <p>{{ offer.description|e('html') }}</p>
@@ -18,14 +18,24 @@
                 <p>{{ 'carpooling.offer.arrival_location'|trans({'%arrivalLocation%': offer.arrivalLocation})|raw }}</p>
 
                 <a class="return-button" href="{{ path('carpooling_info', { 'id': offer.id }) }}">{{ 'carpooling.offer.infos'|trans }}</a>
-                    
             </div>
         {% endfor %}
+    </div>
 
-        <div class="security-reminder">
+    <div class="carpooling-offers-btn">
+        {% if page > 1 %}
+            <a class="basic-button" href="{{ path('carpooling_index', {'page': page - 1}) }}">Précédent</a>
+        {% endif %}
+
+        {% if page < maxPages %}
+            <a class="basic-button" href="{{ path('carpooling_index', {'page': page + 1}) }}">Suivant</a>
+        {% endif %}
+    </div>
+
+    <div class="security-reminder">
         <p>
-            {{'carpooling.security_reminder'|trans|raw}}
+            {{ 'carpooling.security_reminder'|trans|raw }}
         </p>
-        </div>
     </div>
 {% endblock %}
+
