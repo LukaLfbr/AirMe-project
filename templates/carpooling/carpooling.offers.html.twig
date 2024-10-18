@@ -32,6 +32,12 @@
         {% endif %}
     </div>
 
+    {% if app.user %}
+        <div class="carpooling-offers-btn">
+            <a class="basic-button" href="{{path('carpooling_add')}} ">{{'carpooling.offer.add'|trans}} </a>
+        </div>
+    {% endif %}
+
     <div class="security-reminder">
         <p>
             {{ 'carpooling.security_reminder'|trans|raw }}

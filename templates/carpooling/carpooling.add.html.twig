@@ -10,19 +10,7 @@
 
 {% block javascripts %}
     {{ parent() }}
-    <script src="{{asset('assets/js/multi-step-form.js')}}"></script>
-    <script>
-        const seatsInput = document.getElementById('carpooling_seats');
-        const seatsCheckbox = document.getElementById('seats');
-
-        seatsCheckbox.addEventListener('change', function() {
-            if (this.checked) {
-                seatsInput.style.display = 'block';
-            } else {
-                seatsInput.style.display = 'none';
-            }
-        });
-    </script>
+    <script src="{{ asset('assets/js/multi-step-form.js') }}"></script>
 {% endblock %}
 
 {% block body %}
@@ -35,34 +23,47 @@
                 {{ form_row(form.name, {'attr': {'class': 'required'}}) }}
                 {{ form_row(form.description) }}
                 <div class="form-btn-wrapper">
-                    <div class="previous"><p>{{'form.previous'|trans}}</p></div>
-                    <div class="next"><p>{{'form.next'|trans}}</p></div>
+                    <div class="previous"><p>{{ 'form.previous'|trans }}</p></div>
+                    <div class="next"><p>{{ 'form.next'|trans }}</p></div>
                 </div>
             </div>
 
-            <div class="form2">
-                {{ form_row(form.departureLocation) }}
-                {{ form_row(form.arrivalLocation) }}
-                {{ form_row(form.departureTime) }}
+           <div class="form2">
+    {{ form_row(form.departure_location) }}
+    {{ form_row(form.arrival_location) }}
+    {{ form_row(form.departure_time) }}
 
-                <div class="check-box-wrapper">
-                    <label for="seats">{{ 'carpooling.available_seats'|trans }}</label>
-                    <input type="checkbox" id="seats" name="seats" />
-                </div>
-
-                {{ form_row(form.seats, {'style': 'display: none;', 'attr': {'id': 'carpooling_seats'}}) }}
-
-
-                <div class="form-btn-wrapper">
-                    <div class="previous"><p>{{'form.previous'|trans}}</p></div>
-                </div>
-            </div>
-
-        </div>
-        </div> 
-        {{ form_end(form) }}
+    <div class="check-box-and-wrapper">
+        <label for="seats">{{ 'carpooling.offer.seats_available_label'|trans }}</label>
+        <input type="checkbox" id="seats" name="seats" />
     </div>
 
-    
-{% endblock %}
+    <div class="inputs-wrapper" id="seatsWrapper" style="display: none;">
+        {{ form_row(form.seats_available, {'attr': {'placeholder': 'carpooling.offer.seats_available_input'|trans} }) }}
+    </div>
 
+    <!-- Ajout du champ de sélection d'événement -->
+    {{ form_row(form.event, {'attr': {'class': 'autocomplete-field'}}) }}
+
+    <div class="form-btn-wrapper">
+        <div class="previous"><p>{{ 'form.previous'|trans }}</p></div>
+    </div>
+    <button type="submit" class="submit-btn">{{ "carpooling.offer.add"|trans }}</button>
+</div>
+
+        </div>
+        {{ form_end(form) }}
+        
+    </div>
+
+    <script>
+        document.getElementById('seats').addEventListener('change', function() {
+            var seatsWrapper = document.getElementById('seatsWrapper');
+            if (this.checked) {
+                seatsWrapper.style.display = 'block';
+            } else {
+                seatsWrapper.style.display = 'none';
+            }
+        });
+    </script>
+{% endblock %}

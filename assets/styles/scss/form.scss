@@ -6,6 +6,16 @@
   gap: 1em;
 }
 
+.submit-btn {
+  margin: 23% auto 0;
+  display: block;
+  padding: 1em;
+  background-color: $text-color;
+  border-radius: 0.6em;
+  width: 40%;
+  text-align: center;
+}
+
 #form-wrapper {
   flex: 1;
   width: 80%;
@@ -83,12 +93,19 @@
   #phoneNumberWrapper {
     margin-top: 1.2em;
   }
+}
 
-  button {
-    margin: 23% auto 0;
-    display: block;
-    padding: 1em;
-    background-color: $text-color;
-    border-radius: 0.6em;
+// Carpooling offer
+
+#car_pooling_offer_seats_available {
+  min-width: 100px;
+}
+
+.check-box-and-wrapper {
+  text-align: center;
+  label {
+    font-size: 12px;
+    width: 50%;
+    display: inline-block;
   }
 }
