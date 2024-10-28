@@ -4,7 +4,6 @@ namespace App\Controller;
 
 use App\Entity\CarPoolingOffer;
 use App\Form\CarPoolingOfferType;
-use App\Form\EventsAutocompleteType;
 use App\Repository\CarPoolingOfferRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -17,7 +16,7 @@ use Symfony\Contracts\Translation\TranslatorInterface;
 #[Route('/carpooling', name: 'carpooling_')]
 class CarpoolingController extends AbstractController
 {
-    private TranslatorInterface $translator; 
+    private TranslatorInterface $translator;
     private Security $security;
 
     public function __construct(TranslatorInterface $translator, Security $security)
@@ -53,11 +52,10 @@ class CarpoolingController extends AbstractController
     #[Route('/add', name: 'add')]
     public function add(Request $request, EntityManagerInterface $em): Response
     {
-
         if (!$this->security->isGranted('ROLE_USER')) {
             $this->addFlash(
-               'not_logged_in',
-               $this->translator->trans('flash.login.error')
+                'not_logged_in',
+                $this->translator->trans('flash.login.error')
             );
             return $this->redirectToRoute('app_register');
         }
@@ -65,9 +63,6 @@ class CarpoolingController extends AbstractController
         $offer = new CarPoolingOffer();
         $offer->setCreator($this->security->getUser());
 
-        $autocompleteForm = $this->createForm(EventsAutocompleteType::class);
-
-        
         $form = $this->createForm(CarPoolingOfferType::class, $offer);
         $form->handleRequest($request);
 
@@ -80,7 +75,7 @@ class CarpoolingController extends AbstractController
 
         return $this->render('carpooling/carpooling.add.html.twig', [
             'form' => $form->createView(),
-            'autocompleteForm' => $autocompleteForm->createView(),
         ]);
     }
 }
+

@@ -22,38 +22,37 @@
             <div class="form1">
                 {{ form_row(form.name, {'attr': {'class': 'required'}}) }}
                 {{ form_row(form.description) }}
+
                 <div class="form-btn-wrapper">
                     <div class="previous"><p>{{ 'form.previous'|trans }}</p></div>
                     <div class="next"><p>{{ 'form.next'|trans }}</p></div>
                 </div>
             </div>
 
-           <div class="form2">
-    {{ form_row(form.departure_location) }}
-    {{ form_row(form.arrival_location) }}
-    {{ form_row(form.departure_time) }}
+            <div class="form2">
+                {{ form_row(form.departure_location) }}
+                {{ form_row(form.arrival_location) }}
+                {{ form_row(form.departure_time) }}
 
-    <div class="check-box-and-wrapper">
-        <label for="seats">{{ 'carpooling.offer.seats_available_label'|trans }}</label>
-        <input type="checkbox" id="seats" name="seats" />
-    </div>
+                <div class="check-box-and-wrapper">
+                    <label for="seats">{{ 'carpooling.offer.seats_available_label'|trans }}</label>
+                    <input type="checkbox" id="seats" name="seats" />
+                </div>
 
-    <div class="inputs-wrapper" id="seatsWrapper" style="display: none;">
-        {{ form_row(form.seats_available, {'attr': {'placeholder': 'carpooling.offer.seats_available_input'|trans} }) }}
-    </div>
+                <div class="inputs-wrapper" id="seatsWrapper" style="display: none;">
+                    {{ form_row(form.seats_available, {'attr': {'placeholder': 'carpooling.offer.seats_available_input'|trans} }) }}
+                </div>
 
-    <!-- Ajout du champ de sélection d'événement -->
-    {{ form_row(form.event, {'attr': {'class': 'autocomplete-field'}}) }}
+                {{ form_row(form.event) }}
 
-    <div class="form-btn-wrapper">
-        <div class="previous"><p>{{ 'form.previous'|trans }}</p></div>
-    </div>
-    <button type="submit" class="submit-btn">{{ "carpooling.offer.add"|trans }}</button>
-</div>
-
+                <div class="form-btn-wrapper">
+                    <div class="previous"><p>{{ 'form.previous'|trans }}</p></div>
+                </div>
+                <button type="submit" class="submit-btn">{{ "carpooling.offer.add"|trans }}</button>
+            </div>
         </div>
         {{ form_end(form) }}
-        
+
     </div>
 
     <script>
@@ -67,3 +66,4 @@
         });
     </script>
 {% endblock %}
+

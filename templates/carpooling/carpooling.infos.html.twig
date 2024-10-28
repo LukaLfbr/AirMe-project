@@ -1,20 +1,42 @@
 {% extends 'base.html.twig' %}
 
 {% block title %}
-    {{ offer.name}}
+    {{ offer.name }}
 {% endblock %}
 
 {% block body %}
     <div class="carpooling-offers-info-wrapper">
+        <h1>{{ offer.name }}</h1>
 
-    <p>{{ 'carpooling.offer.departure_time'|trans({'%departureTime%': offer.departureTime|date('d/m/Y H:i')}) }}</p>
-    <p>{{ 'carpooling.offer.seats_available'|trans({'%seatsAvailable%': offer.seatsAvailable}) }}</p>
-    <br>
-    <p>{{'carpooling.offer.creator'|trans({'%creator%': offer.creator.email})|raw}} </p>
-    <br>
-    <p><a href="{{ path('carpooling_index') }}">{{ 'carpooling.back'|trans }}</a></p>
+        {% if offer.description %}
+            <p>{{ offer.description }}</p>
+        {% endif %}
 
-    <a href="{{ path('app_event', { 'id': offer.event.id }) }}"> {{'main.button'|trans}} {{ offer.event.name }}</a>
+        <p>{{ offer.departureLocation }} </p>
+        <p>{{ offer.arrivalLocation }} </p>
+
+        <br>
+
+        <p>
+            {{ 'carpooling.offer.departure_time'|trans({'%departureTime%': offer.departureTime}) }}
+        </p>
+        {% if offer.seatsAvailable %}
+            <p>
+                {{ 'carpooling.offer.seats_available'|trans({'%seatsAvailable%': offer.seatsAvailable}) }}
+            </p>
+        {% endif %}
+        <p>
+            {{ 'carpooling.offer.creator'|trans({'%creator%': offer.creator.email})|raw }}
+        </p>
+        <br>
+        <p>
+            <a href="{{ path('carpooling_index') }}">
+                {{ 'carpooling.back'|trans }}
+            </a>
+        </p>
+
+        <a href="{{ path('app_event', { 'id': offer.event.id }) }}">
+            {{ 'main.button'|trans }} {{ offer.event.name }}
+        </a>
     </div>
 {% endblock %}
- 
