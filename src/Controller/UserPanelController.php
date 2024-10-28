@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Entity\Coordinates;
 use App\Entity\Events;
 use App\Form\EventsType;
+use App\Repository\CarPoolingOfferRepository;
 use App\Repository\EventsRepository;
 use App\Service\GeocodingService;
 use DateTimeImmutable;
@@ -41,7 +42,7 @@ class UserPanelController extends AbstractController
     }
 
     #[Route('/{id}/panel', name: 'panel')]
-    public function index(Security $security): Response
+    public function index(Security $security, CarPoolingOfferRepository $carPoolingRepository): Response
     {
         if (!$this->getUser()) {
             $this->addFlash(
@@ -50,13 +51,16 @@ class UserPanelController extends AbstractController
             );
             return $this->redirectToRoute('app_event');
         }
-
+        $carPoolingOffers = $carPoolingRepository->findCarPoolingOffersByCreator(
+            $security->getUser()
+        );
         $events = $this->repository->findGamesByReferent(
             $security->getUser()
         );
 
         return $this->render('user_panel/user.panel.html.twig', [
             'events' => $events,
+            'carpoolingOffers' => $carPoolingOffers
         ]);
     }
 
@@ -115,7 +119,7 @@ class UserPanelController extends AbstractController
         $this->initializeUser($security);
 
         if (($this->getUser() !== $event->getReferent()) && !$this->isGranted('ROLE_ADMIN')) {
-            $this->addFlash('unauthorized_edit_request', $this->translator->trans('flash.unauthorized_edit'));
+            $this->addFlash('unauthorized_edit_request', $this->translator->trans('flash.event.unauthorized_edit'));
             return $this->redirectToRoute('app_home');
         }
 

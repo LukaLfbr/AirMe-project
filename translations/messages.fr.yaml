@@ -7,36 +7,47 @@ contact: "Nous contacter"
 main:
   title: 'Trouvez <span class="highlight">LA<br/></span> partie proche de chez <br/> <span class="highlight">vous</span>'
   secondary.title: "Nos dernières parties"
-  search_bar.title: "Rechercher une partie"
-  search_bar.label: "ex : Partie sur paris..."
+  search_bar:
+    title: "Rechercher une partie"
+    label: "ex : Partie sur paris..."
   button: "Accéder à l'événement"
   cards:
-    first.title: "Besoin d'équipement pour votre prochaine partie ?"
-    first.button: "Visitez notre boutique"
-    second.title: "Besoin d'un équipier pour vous conduire ?"
-    second.button: "Accès à l'espace covoiturage"
-    third.title: "Première partie ? Découvrez nos conseils pour bien démarrer"
-    third.button: "Nos meilleurs conseils pour se lancer"
-    fourth.title: "Consulter les dernières parties mises en lignes"
-    fourth.button: "Les dernières parties autour de vous"
+    first:
+      title: "Besoin d'équipement pour votre prochaine partie ?"
+      button: "Visitez notre boutique"
+    second:
+      title: "Besoin d'un équipier pour vous conduire ?"
+      button: "Accès à l'espace covoiturage"
+    third:
+      title: "Première partie ? Découvrez nos conseils pour bien démarrer"
+      button: "Nos meilleurs conseils pour se lancer"
+    fourth:
+      title: "Consulter les dernières parties mises en lignes"
+      button: "Les dernières parties autour de vous"
   stats:
     title: "Les stats qui nous <br/> <span class='highlight'>rendent fières</span>"
-    first.number: "+150 000"
-    first.title: "Parties organisées via AirMe"
-    second.number: "+70 000"
-    second.title: "Joueurs qui recherchent des parties"
-    third.title: "+9 000 000 000"
-    third.stat: "De billes biodégradables utilisées sur le terrain"
-    fourth.number: "+350"
-    fourth.stat: "Équipes qui vous accueillent sur leur terrain pour faire vivre notre sport"
-  cta.title: "Envie de <span class='highlight centered'>nous <br/> rejoindre ?</span>"
-  cta.button: "Cliquez ici pour nous rejoindre"
+    first:
+      number: "+150 000"
+      title: "Parties organisées via AirMe"
+    second:
+      number: "+70 000"
+      title: "Joueurs qui recherchent des parties"
+    third:
+      title: "+9 000 000 000"
+      stat: "De billes biodégradables utilisées sur le terrain"
+    fourth:
+      number: "+350"
+      stat: "Équipes qui vous accueillent sur leur terrain pour faire vivre notre sport"
+  cta:
+    title: "Envie de <span class='highlight centered'>nous <br/> rejoindre ?</span>"
+    button: "Cliquez ici pour nous rejoindre"
 
 # Footer section
 footer:
   about: "À propos de nous"
   TOS: "CGV"
   legals: "Mention légale"
+
 # Account section
 register: "S'inscrire"
 register.account: "Créer son compte"
@@ -46,53 +57,64 @@ login.not.logged.in: "Vous n'êtes pas connecté"
 logout: "Se déconnecter"
 
 # Reset Account Section
-reset.account.title: "Changer votre mot de passe"
-reset.account.main: "Entrez votre adresse e-mail et nous vous enverrons un lien pour réinitialiser votre mot de passe."
-reset.account.confirm: "Réinitialiser mon mot de passe"
-reset.account.link: "Pour réinitialiser votre mot de passe, rendez-vous sur ce lien :"
-reset.account.time.left: "Votre lien expire dans %time-left%."
-reset.account.email.sent: "Mail de réinitialisation envoyé."
-reset.account.instructions: "Si votre e-mail existe, vous recevrez un lien pour réinitialiser votre mot de passe."
-reset.account.resend.email: "Si vous n'avez pas reçu le mail, vérifiez votre dossier spam ou %try_again_link%."
-reset.account.try_again: "en cliquant ici"
+reset:
+  account:
+    title: "Changer votre mot de passe"
+    main: "Entrez votre adresse e-mail et nous vous enverrons un lien pour réinitialiser votre mot de passe."
+    confirm: "Réinitialiser mon mot de passe"
+    link: "Pour réinitialiser votre mot de passe, rendez-vous sur ce lien :"
+    time.left: "Votre lien expire dans %time-left%."
+    email.sent: "Mail de réinitialisation envoyé."
+    instructions: "Si votre e-mail existe, vous recevrez un lien pour réinitialiser votre mot de passe."
+    resend.email: "Si vous n'avez pas reçu le mail, vérifiez votre dossier spam ou %try_again_link%."
+    try_again: "en cliquant ici"
 
 # Events section
-events.title: "Les événements autour de vous"
-events.location: "%game% à %location%"
-events.edit: "Modifier l'événement"
-events.delete: "Supprimer l'événement"
-events.delete.confirmation: "Voulez-vous vraiment supprimer %event_name% ?"
+events:
+  title: "Les événements autour de vous"
+  location: "%game% à %location%"
+  edit: "Modifier l'événement"
+  delete: "Supprimer l'événement"
+  none: "Vous n'avez pas encore créé d'événement."
+  delete.confirmation: "Voulez-vous vraiment supprimer %event_name% ?"
 
 # User section
-user.panel.title: "Votre tableau de bord"
-user.events: "Voir vos événements"
-user.events.infos: "Événement créer par :"
-user.created.events: "Vos événements"
-user.back.to.main.menu: "Retourner au menu"
-user.edit.event: "Modifier un événement"
-user.add.event.title: "Ajouter un événement"
-user.add.event: "Créer une nouvelle partie"
-user.events.info: "Partie créée par :"
-user.phone.info: "Numéro du référent en cas de questions : %phone_number%"
-user.phone.unavailable: "Numéro de contact non disponible, veuillez envoyez un e-mail. Merci."
+user:
+  panel:
+    title: "Espace personnel"
+  events: "Voir vos événements"
+  carpooling-offers: "Voir vos offres de co-voiturage"
+  events.infos: "Événement créer par :"
+  created.events: "Vos événements"
+  back.to.main.menu: "Retourner au menu"
+  edit.event: "Modifier un événement"
+  add.event:
+    title: "Ajouter un événement"
+    create: "Créer une nouvelle partie"
+  events.info: "Partie créée par :"
+  delete.failure: "Echec lors de la suppression !"
+  phone.info: "Numéro du référent en cas de questions : %phone_number%"
+  phone.unavailable: "Numéro de contact non disponible, veuillez envoyez un e-mail. Merci."
 
 # Admin section
-admin.panel.title: "Bienvenue sur le panneau d'administration"
-admin.panel: "Panneau d'administration"
-admin.panel.main: "Ici vous pouvez ajouter, modifier et supprimer des événements."
-admin.panel.switch.to.user.mode: "Revenir au mode utilisateur."
-admin.edit.event: "Éditer l'événement"
-admin.delete.event: "Supprimer l'événement"
+admin:
+  panel:
+    title: "Bienvenue sur le panneau d'administration"
+    main: "Ici vous pouvez ajouter, modifier et supprimer des événements."
+    switch.to.user.mode: "Revenir au mode utilisateur."
+  edit.event: "Éditer l'événement"
+  delete.event: "Supprimer l'événement"
 
-# Carpooliong section
+# Carpooling section
 carpooling:
   title: "Créer une offre de co-voiturage"
   name: "Titre du covoiturage"
   description: "Description "
   departure:
-    _location: "Lieu de départ"
-    _time: "Heure de départ"
-  arrival:_location: "Lieu d'arrivé"
+    location: "Lieu de départ"
+    time: "Heure de départ"
+  arrival:
+    location: "Lieu d'arrivé"
   seats_available: "Nombre de sièges"
   error:
     min: "Il doit y avoir au minimum un siège !"
@@ -110,55 +132,62 @@ carpooling:
     creator: "Créé par %creator%"
     infos: "Voir l'offre"
     add: "Créer une offre de covoiturage"
+    edit: "Modifier l'offre de covoiturage"
+    delete: "Supprimer l'offre de covoiturage"
+    none: "Vous n'avez pas créé d'offre de covoiturage !"
   offers: "Offres de covoiturage"
   back: "Retourner aux offres de covoiturage"
   security_reminder: "Nous vous rappelons que <strong> la rubrique co-voiturage n'est en aucun cas réglementée</strong> par AirMe. En acceptant / en proposant une offre de co-voiturage, <strong> AirMe se décharge de toutes responsabilités </strong> en cas de vol de matériel, de fraude, ou autre délit. Merci de votre compréhension."
 
 # Flash message section
-flash.login.required: "Vous devez être connecté pour accéder à ceci !"
-flash.login.required.create: "Vous devez être connecté pour créer un événement !"
-flash.event_created_success: "Événement créé avec succès !"
-flash.unauthorized_edit: "Vous devez être le propriétaire de cet événement pour le modifier !"
-flash.event_updated_success: "Événement modifié avec succès !"
-flash.event_deleted_success: "Événement supprimé avec succès !"
-flash.no_permission: "Vous ne pouvez pas supprimer un événement qui ne vous appartient pas !"
-flash.geocoding_error: "Le service de géocodage n'a pas trouvé l'adresse. Veuillez vérifier l'adresse ou essayer une ville sans détails spécifiques."
+flash:
+  login:
+    required: "Vous devez être connecté pour accéder à ceci !"
+    required_create: "Vous devez être connecté pour créer un événement !"
+  event:
+    created_success: "Événement créé avec succès !"
+    unauthorized_edit: "Vous devez être le propriétaire pour modifier ceci !"
+    updated_success: "Événement modifié avec succès !"
+    deleted_success: "Événement supprimé avec succès !"
+  no_permission: "Vous ne pouvez pas supprimer un événement qui ne vous appartient pas !"
+  geocoding_error: "Le service de géocodage n'a pas trouvé l'adresse. Veuillez vérifier l'adresse ou essayer une ville sans détails spécifiques."
 
 # Form section
-form.email.label: "Adresse e-mail*"
-form.phone_number.label: "Numéro de téléphone"
-form.email.help: "Votre adresse e-mail sera utilisée pour vous connecter."
-form.email.invalid: "L'adresse e-mail que vous avez entrée est invalide."
-form.email.already_used: "Il y a déjà un compte avec cet e-mail."
+form:
+  email:
+    label: "Adresse e-mail*"
+    help: "Votre adresse e-mail sera utilisée pour vous connecter."
+    invalid: "L'adresse e-mail que vous avez entrée est invalide."
+    already_used: "Il y a déjà un compte avec cet e-mail."
+  phone_number:
+    label: "Numéro de téléphone"
+    too:
+      long: "Ce numéro est trop long !"
+      short: "Ce numéro est trop court !"
+    must_be_integer: "Le numéro de téléphone DOIT être un numéro de téléphone !"
+  previous: "Précédent"
+  next: "Suivant"
+  referent: "Créer un compte en tant qu'organisteur ?"
+  cost: "PAF"
+  duration: "Durée de l'événement"
+  terrain_type: "Type de terrain"
+  weather: "Conditions météo"
+  temperature: "Température"
+  beginner_friendly: "Convient aux débutants"
+  equipement_rental: "Location d'équipement"
+  save: "Sauvegarder un événement"
+  field:
+    empty: "Ce champ ne peut pas être vide !"
+    name: "Nom de la partie"
+    description: "Description de la partie"
+    location: "Lieu de la partie"
+  agree_terms:
+    label: "J'accepte les conditions d'utilisation"
+    not_accepted: "Vous devez accepter les conditions d'utilisation."
+  password:
+    label: "Mot de passe*"
+    blank: "Le mot de passe ne peut pas être vide."
 
-form.phone.too.long: "Ce numéro est trop long !"
-form.phone.too.short: "Ce numéro est trop court !"
-form.phone.must_be_integer: "Le numéro de téléphone DOIT être un numéro de téléphone !"
-
-form.previous: "Précédent"
-form.next: "Suivant"
-form.referent: "Créer un compte en tant qu'organisteur ?"
-
-form.cost: "PAF"
-form.duration: "Durée de l'événement"
-form.terrain_type: "Type de terrain"
-form.weather: "Conditions météo"
-form.temperature: "Température"
-form.beginner_friendly: "Convient aux débutants"
-form.equipement_rental: "Location d'équipement"
-form.save: "Sauvegarder un événement"
-
-form.field:
-  empty: "Ce champ ne peut pas être vide !"
-  name: "Nom de la partie"
-  description: "Description de la partie"
-  location: "Lieu de la partie"
-
-form.agree_terms.label: "J'accepte les conditions d'utilisation"
-form.agree_terms.not_accepted: "Vous devez accepter les conditions d'utilisation."
-
-form.password.label: "Mot de passe*"
-form.password.blank: "Le mot de passe ne peut pas être vide."
 # Search bar section
-
-search_bar.label: "Recherchez une partie"
+search_bar:
+  label: "Recherchez une partie"

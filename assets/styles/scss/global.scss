@@ -103,7 +103,8 @@ textarea,
 
 .basic-button {
   @include basic-button-style;
-  margin-bottom: 1em;
+  margin-top: 0.5em;
+  display: inline-block;
 }
 
 #events_save {

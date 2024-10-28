@@ -144,7 +144,7 @@ h2 {
   }
 }
 
-// Cards section
+// Main cards section
 
 #cards-section {
   margin: 3em 0;
@@ -317,6 +317,36 @@ h2 {
   p {
     text-align: center;
   }
+}
+
+// User section
+
+.user-events,
+.user-carpooling-offers {
+  h1 {
+    font-size: 25px;
+  }
+  .user-event-card-wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 1em;
+    margin-bottom: 1em;
+    .user-event-card {
+      ul {
+        list-style: none;
+        padding: 0%;
+      }
+    }
+  }
+}
+
+.user-event-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border: 1px solid $text-color;
+  border-radius: 0.6rem;
+  padding: 1em;
 }
 
 // CTA

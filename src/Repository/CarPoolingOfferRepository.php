@@ -3,6 +3,7 @@
 namespace App\Repository;
 
 use App\Entity\CarPoolingOffer;
+use App\Entity\User;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\ORM\Tools\Pagination\Paginator;
 use Doctrine\Persistence\ManagerRegistry;
@@ -29,6 +30,17 @@ class CarPoolingOfferRepository extends ServiceEntityRepository
 
     return new Paginator($query, true); 
 }
+/** @param User $user
+ * @return CarPoolingOffer[]  
+*/
+    public function findCarPoolingOffersByCreator(User $user): array 
+    {
+        return $this->createQueryBuilder('o')
+        ->where('o.creator = :user')
+        ->setParameter('user', $user)
+        ->getQuery()
+        ->getResult();
+    }
 
 //    /**
 //     * @return CarPoolingOffer[] Returns an array of CarPoolingOffer objects

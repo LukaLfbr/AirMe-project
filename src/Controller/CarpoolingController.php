@@ -11,6 +11,7 @@ use Symfony\Bundle\SecurityBundle\Security;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Security\Http\Attribute\IsGranted;
 use Symfony\Contracts\Translation\TranslatorInterface;
 
 #[Route('/carpooling', name: 'carpooling_')]
@@ -48,7 +49,7 @@ class CarpoolingController extends AbstractController
             'offer' => $carpoolingOffer,
         ]);
     }
-
+    #[IsGranted('ROLE_USER')]
     #[Route('/add', name: 'add')]
     public function add(Request $request, EntityManagerInterface $em): Response
     {
@@ -77,5 +78,54 @@ class CarpoolingController extends AbstractController
             'form' => $form->createView(),
         ]);
     }
+    #[IsGranted('ROLE_USER')]
+    #[Route('/{id}/edit', name: 'edit')]
+    public function edit(CarPoolingOffer $carpoolingOffer, Request $request, EntityManagerInterface $em): Response
+    {
+        if (($this->getUser() !== $carpoolingOffer->getCreator()) && !$this->isGranted('ROLE_ADMIN')) {
+            $this->addFlash('unauthorized_edit_request', $this->translator->trans('flash.event.unauthorized_edit'));
+            return $this->redirectToRoute('app_home');
+        }
+
+        $form = $this->createForm(CarPoolingOfferType::class, $carpoolingOffer);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $em->persist($carpoolingOffer);
+            $em->flush();
+
+            return $this->redirectToRoute('user_panel', ['id' => $this->getUser()->getId()]);
+        }
+
+        return $this->render('carpooling/carpooling.edit.html.twig', [
+            'form' => $form->createView(),
+        ]);
+    }
+   
+    #[IsGranted('ROLE_USER')]
+    #[Route('/{id}/delete', name: 'delete')]
+    public function delete(EntityManagerInterface $em, CarPoolingOffer $carPoolingOffer, Security $security)
+    {
+        if ($security->getUser() == $carPoolingOffer->getCreator() || $this->isGranted('ROLE_ADMIN')) {
+            $em->remove($carPoolingOffer);
+            $em->flush();
+            $this->addFlash(
+               'success',
+               'user.carpooling.offer.delete-seccess'
+            );
+        }else {
+            $this->addFlash(
+               'failure',
+               $this->translator->trans('flash.event.unauthorized_edit')
+            );
+        };
+
+        if ($this->isGranted('ROLE_ADMIN')) {
+            return $this->redirectToRoute('admin_panel');
+        } else {
+            return $this->redirectToRoute('user_panel', ['id' => $security->getUser()->getId()]);
+        }
+    }
+
 }
 

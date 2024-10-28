@@ -1,42 +1,79 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}{{"user.panel.title"|trans}} {% endblock %}
+{% block title %}{{ "user.panel.title"|trans }}{% endblock %}
 
 {% block body %}
-    <style>
-        .example-wrapper {
-            margin: 1em auto;
-            max-width: 800px;
-            width: 95%;
-            font: 18px / 1.5 sans-serif;
-        }
-        .example-wrapper code {
-            background: #F5F5F5;
-            padding: 2px 6px;
-        }
-    </style>
-
-    <div class="example-wrapper">
-        <h1>{{"user.created.events"|trans}}</h1>
-        {% if events %}
-            {% for event in events %}
-                <ul>
-                    <li><a class="see-button a-button" href="{{ path('app_event', {'id': event.id}) }}">{{ event.name }}</a></li>
-                    <li><a href="{{ path('user_edit_event', {'id': event.id}) }}">{{"events.edit"|trans}} </a></li>
-                    <li>
-                        <a href="{{ path('user_delete_event', {'id': event.id}) }}"
-                        onclick="return confirm('{{ 'events.delete.confirmation'|trans({'%event_name%': event.name}) }}')">
-                        {{ 'events.delete'|trans }}
-                        </a>
-                    </li>                
-                </ul>
-            {% endfor %}
+    <div class="user-events">
+        <h1>{{ "user.created.events"|trans }}</h1>
+        <div class="user-event-card-wrapper">
+            {% if events %}
+                {% for event in events %}
+                    <div class="user-event-card">
+                        <ul>
+                            <li>
+                                <a class="see-button a-button" href="{{ path('app_event', {'id': event.id}) }}">
+                                    {{ event.name }}
+                                </a>
+                            </li>
+                            <li>
+                                <a href="{{ path('user_edit_event', {'id': event.id}) }}">
+                                    {{ "events.edit"|trans }}
+                                </a>
+                            </li>
+                            <li>
+                                <a href="{{ path('user_delete_event', {'id': event.id}) }}"
+                                   onclick="return confirm('{{ 'events.delete.confirmation'|trans({'%event_name%': event.name}) }}')">
+                                    {{ "events.delete"|trans }}
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                {% endfor %}
+            </div>
         {% else %}
-            <p>Vous n'avez pas encore créé d'événements</p>
+            <p>{{ "events.none"|trans }} </p>
         {% endif %}
-            <a class="basic-button" href="{{ path('user_add_event') }}">Ajouter</a>
-        <div>
-            <a href="{{ path('app_home') }}">Retourner à l'accueil</a>
+    </div>
+
+    <div>
+        <a class="basic-button" href="{{ path('user_add_event') }}">{{ "user.add.event.title"|trans }} </a>
+        <a class="basic-button" href="{{ path('app_home') }}">{{ "user.back.to.main.menu"|trans }}</a>
+    </div>
+
+    <div class="user-carpoolings-offers">
+        <h1>{{ "user.carpooling-offers"|trans }}</h1>
+        <div class="user-event-card-wrapper">
+            {% if carpoolingOffers %}
+                {% for offer in carpoolingOffers %}
+                    <div class="user-carpooling-offer-card">
+                        <ul>
+                            <li>
+                                <a class="see-button a-button" href="{{ path('carpooling_info', {'id': offer.id}) }}">
+                                    {{ offer.name }}
+                                </a>
+                            </li>
+                            <li>
+                                <a href="{{ path('carpooling_edit', {'id': offer.id}) }}">
+                                    {{ "carpooling.offer.edit"|trans }}
+                                </a>
+                            </li>
+                            <li>
+                                <a href="{{ path('carpooling_delete', {'id': offer.id}) }}"
+                                   onclick="return confirm('{{ 'events.delete.confirmation'|trans({'%event_name%': offer.name}) }}')">
+                                    {{ "carpooling.offer.delete"|trans }}
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                {% endfor %}
+            {% else %}
+                <p>{{ "carpooling.offer.none"|trans }} </p>
+            {% endif %}
+            <div>
+                <a class="basic-button" href="{{ path('carpooling_add') }}">{{ "carpooling.title"|trans }} </a>
+                <a class="basic-button" href="{{ path('user_panel', {'id': app.user.id}) }}">{{ "user.back.to.main.menu"|trans }}</a>
+            </div>
         </div>
     </div>
 {% endblock %}
+
