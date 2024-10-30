@@ -22,5 +22,6 @@
         {% endif %}
         <br>
         <a href="{{ path('app_home') }}">{{ 'user.back.to.main.menu'|trans }}</a>
+        <a href="{{ path('carpooling_related-offers', { 'id': event.id }) }}">{{ 'carpooling.offer.related'|trans }}</a>
         </div>
 {% endblock %}

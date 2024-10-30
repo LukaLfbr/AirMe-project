@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Entity\CarPoolingOffer;
 use App\Form\CarPoolingOfferType;
 use App\Repository\CarPoolingOfferRepository;
+use App\Traits\UserAwareTrait;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Bundle\SecurityBundle\Security;
@@ -17,6 +18,8 @@ use Symfony\Contracts\Translation\TranslatorInterface;
 #[Route('/carpooling', name: 'carpooling_')]
 class CarpoolingController extends AbstractController
 {
+    use UserAwareTrait;
+
     private TranslatorInterface $translator;
     private Security $security;
 
@@ -94,7 +97,9 @@ class CarpoolingController extends AbstractController
             $em->persist($carpoolingOffer);
             $em->flush();
 
-            return $this->redirectToRoute('user_panel', ['id' => $this->getUser()->getId()]);
+            $this->initializeUser($this->security);
+
+            return $this->redirectToRoute('user_panel', ['id' => $this->getUserId()]);
         }
 
         return $this->render('carpooling/carpooling.edit.html.twig', [
@@ -113,6 +118,7 @@ class CarpoolingController extends AbstractController
                'success',
                'user.carpooling.offer.delete-seccess'
             );
+            $this->initializeUser($security);
         }else {
             $this->addFlash(
                'failure',
@@ -123,9 +129,27 @@ class CarpoolingController extends AbstractController
         if ($this->isGranted('ROLE_ADMIN')) {
             return $this->redirectToRoute('admin_panel');
         } else {
-            return $this->redirectToRoute('user_panel', ['id' => $security->getUser()->getId()]);
+            return $this->redirectToRoute('user_panel', ['id' => $this->getUserId()]);
         }
     }
+
+    #[Route('/{id}/related-offers', name: 'related-offers')]
+    public function relatedOffers(int $id, CarPoolingOfferRepository $repository, Request $request): Response
+    {
+        $page = $request->query->getInt('page', 1);
+        $limit = 4;
+
+        // Utilisation de la nouvelle méthode pour paginer les offres liées à l'événement
+        $paginatedOffers = $repository->paginateCarPoolingOffersByEvent($id, $page, $limit);
+        $maxPages = ceil(count($paginatedOffers) / $limit);
+
+        return $this->render('carpooling/carpooling.event.offers.html.twig', [
+            'relatedOffers' => $paginatedOffers,
+            'maxPages' => $maxPages,
+            'page' => $page,
+        ]);
+}
+
 
 }
 

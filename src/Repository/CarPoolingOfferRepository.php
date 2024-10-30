@@ -42,6 +42,23 @@ class CarPoolingOfferRepository extends ServiceEntityRepository
         ->getResult();
     }
 
+   // CarPoolingOfferRepository.php
+    public function paginateCarPoolingOffersByEvent(int $eventId, int $page = 1, int $limit = 10): Paginator
+{
+    $firstResult = ($page - 1) * $limit;
+
+    $query = $this->createQueryBuilder('o')
+        ->where('o.event = :eventId')
+        ->setParameter('eventId', $eventId)
+        ->setFirstResult($firstResult)
+        ->setMaxResults($limit)
+        ->getQuery();
+
+    return new Paginator($query, true);
+}
+
+
+
 //    /**
 //     * @return CarPoolingOffer[] Returns an array of CarPoolingOffer objects
 //     */

@@ -57,7 +57,6 @@ h2 {
     .carousel-list {
       display: flex;
       transition: transform 0.3s ease-in-out;
-      list-style: none;
       padding: 0;
       margin: 0;
 
@@ -125,7 +124,6 @@ h2 {
       flex: 1;
       margin: 0;
       padding: 0;
-      list-style-type: none;
 
       li {
         box-sizing: border-box;
@@ -319,6 +317,10 @@ h2 {
   }
 }
 
+.return-button-wrapper {
+  @include center-and-size;
+}
+
 // User section
 
 .user-events,
@@ -333,7 +335,6 @@ h2 {
     margin-bottom: 1em;
     .user-event-card {
       ul {
-        list-style: none;
         padding: 0%;
       }
     }

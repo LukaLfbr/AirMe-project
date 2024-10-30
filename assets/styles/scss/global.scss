@@ -1,5 +1,7 @@
 $text-color: #d3d3d3;
-$background-color: #07090e;
+// $background-color: #07090e;
+// $background-color: #23282d;
+$background-color: #202020;
 $primary-color: #556b2f;
 $secondary-color: #663422;
 $accent-color: #3e3d3d;
@@ -47,6 +49,10 @@ input,
 ::placeholder {
   color: $text-color;
   font-family: Lexend;
+}
+
+li {
+  list-style: none !important;
 }
 
 input::-webkit-outer-spin-button,

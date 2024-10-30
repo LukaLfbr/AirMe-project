@@ -1,0 +1,52 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+    {{ 'carpooling.offers'|trans }}
+{% endblock %}
+
+{% block body %}
+    <div class="carpooling-offers-wrapper">
+        {% for offer in relatedOffers %}
+            <div class="offer-wrapper">
+                <h1 class="highlight">{{ offer.name }}</h1>
+
+                {% if offer.description %}
+                    <p>{{ offer.description|e('html') }}</p>
+                {% endif %}
+
+                <p>{{ 'carpooling.offer.departure_location'|trans({'%departureLocation%': offer.departureLocation})|raw }}</p>
+                <p>{{ 'carpooling.offer.arrival_location'|trans({'%arrivalLocation%': offer.arrivalLocation})|raw }}</p>
+
+                <a class="return-button" href="{{ path('carpooling_info', { 'id': offer.id }) }}">{{ 'carpooling.offer.infos'|trans }}</a>
+            </div>
+        {% endfor %}
+    </div>
+
+    <div class="carpooling-offers-btn">
+        {% if page > 1 %}
+            <a class="basic-button" href="{{ path('carpooling_index', {'page': page - 1}) }}">Précédent</a>
+        {% endif %}
+
+        {% if page < maxPages %}
+            <a class="basic-button" href="{{ path('carpooling_index', {'page': page + 1}) }}">Suivant</a>
+        {% endif %}
+    </div>
+
+    {% if app.user %}
+        <div class="carpooling-offers-btn">
+            <a class="basic-button" href="{{path('carpooling_add')}} ">{{'carpooling.offer.add'|trans}}</a>
+        </div>
+    {% endif %}
+        <div class="return-button-wrapper">
+            <a class="return-button" href="{{path('carpooling_index')}} ">{{'carpooling.back'|trans}}</a>
+        </div>
+        <div class="return-button-wrapper">
+            <a class="return-button" href="{{path('app_home')}} ">{{'user.back.to.main.menu'|trans}}</a>
+        </div>
+    <div class="security-reminder">
+        <p>
+            {{ 'carpooling.security_reminder'|trans|raw }}
+        </p>
+    </div>
+{% endblock %}
+
