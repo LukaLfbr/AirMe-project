@@ -27,7 +27,7 @@
 			<ul>
 				<li>
 					<a href="{{ path('admin_event', {'id': event.id}) }}">{{ event.name }}</a>
-					<a href="{{ path('user_edit_event', {'id': event.id}) }}">{{"events.edit"|trans}} </a><a href="{{ path('user_delete_event', {'id': event.id}) }}" onclick="return confirm('{{ 'events.delete.confirmation'|trans({'%event%': event.name}) }}')">{{ 'events.delete'|trans }}</a>
+					<a href="{{ path('user_edit_event', {'id': event.id}) }}">{{"user.edit"|trans}} </a><a href="{{ path('user_delete_event', {'id': event.id}) }}" onclick="return confirm('{{ 'events.delete.confirmation'|trans({'%event%': event.name}) }}')">{{ 'user.delete'|trans }}</a>
 				</li>
 			</ul>
 

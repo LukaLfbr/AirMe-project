@@ -73,13 +73,13 @@ reset:
 events:
   title: "Les événements autour de vous"
   location: "%game% à %location%"
-  edit: "Modifier l'événement"
-  delete: "Supprimer l'événement"
   none: "Vous n'avez pas encore créé d'événement."
   delete.confirmation: "Voulez-vous vraiment supprimer %event_name% ?"
 
 # User section
 user:
+  edit: "✏️Modifier"
+  delete: "❌Supprimer"
   panel:
     title: "Espace personnel"
   events: "Voir vos événements"
@@ -170,6 +170,7 @@ form:
   next: "Suivant"
   referent: "Créer un compte en tant qu'organisteur ?"
   cost: "PAF"
+  date: "Date et heure* (cliquez sur le calendrier)"
   duration: "Durée de l'événement"
   terrain_type: "Type de terrain"
   weather: "Conditions météo"
@@ -179,9 +180,9 @@ form:
   save: "Sauvegarder un événement"
   field:
     empty: "Ce champ ne peut pas être vide !"
-    name: "Nom de la partie"
+    name: "Nom de la partie*"
     description: "Description de la partie"
-    location: "Lieu de la partie"
+    location: "Lieu de la partie*"
   agree_terms:
     label: "J'accepte les conditions d'utilisation"
     not_accepted: "Vous devez accepter les conditions d'utilisation."

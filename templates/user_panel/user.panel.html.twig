@@ -17,13 +17,13 @@
                             </li>
                             <li>
                                 <a href="{{ path('user_edit_event', {'id': event.id}) }}">
-                                    {{ "events.edit"|trans }}
+                                    {{ "user.edit"|trans }}
                                 </a>
                             </li>
                             <li>
                                 <a href="{{ path('user_delete_event', {'id': event.id}) }}"
                                    onclick="return confirm('{{ 'events.delete.confirmation'|trans({'%event_name%': event.name}) }}')">
-                                    {{ "events.delete"|trans }}
+                                    {{ "user.delete"|trans }}
                                 </a>
                             </li>
                         </ul>
@@ -53,13 +53,13 @@
                             </li>
                             <li>
                                 <a href="{{ path('carpooling_edit', {'id': offer.id}) }}">
-                                    {{ "carpooling.offer.edit"|trans }}
+                                    {{ "user.edit"|trans }}
                                 </a>
                             </li>
                             <li>
                                 <a href="{{ path('carpooling_delete', {'id': offer.id}) }}"
                                    onclick="return confirm('{{ 'events.delete.confirmation'|trans({'%event_name%': offer.name}) }}')">
-                                    {{ "carpooling.offer.delete"|trans }}
+                                    {{ "user.delete"|trans }}
                                 </a>
                             </li>
                         </ul>
@@ -68,11 +68,11 @@
             {% else %}
                 <p>{{ "carpooling.offer.none"|trans }} </p>
             {% endif %}
-            <div>
+        </div>
+        <div>
                 <a class="basic-button" href="{{ path('carpooling_add') }}">{{ "carpooling.title"|trans }} </a>
                 <a class="basic-button" href="{{ path('user_panel', {'id': app.user.id}) }}">{{ "user.back.to.main.menu"|trans }}</a>
             </div>
-        </div>
     </div>
 {% endblock %}
 

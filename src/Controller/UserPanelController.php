@@ -103,7 +103,7 @@ class UserPanelController extends AbstractController
             $this->em->persist($event);
             $this->em->flush();
 
-            $this->addFlash('success', $this->translator->trans('flash.event_created_success'));
+            $this->addFlash('success', $this->translator->trans('flash.event.created_success'));
 
             return $this->redirectToRoute('user_panel', ['id' => $this->getUserId()]);
         }
@@ -130,7 +130,7 @@ class UserPanelController extends AbstractController
             $event->setUpdatedAt(new DateTimeImmutable());
             $this->em->flush();
 
-            $this->addFlash('success', $this->translator->trans('flash.event_updated_success'));
+            $this->addFlash('success', $this->translator->trans('flash.event.updated_success'));
             return $this->redirectToRoute('user_panel', ['id' => $this->getUserId()]);
         }
 
@@ -149,7 +149,7 @@ class UserPanelController extends AbstractController
             $this->em->remove($event);
             $this->em->flush();
 
-            $this->addFlash('success', $this->translator->trans('flash.event_deleted_success'));
+            $this->addFlash('success', $this->translator->trans('flash.event.deleted_success'));
         } else {
             $this->addFlash('error', $this->translator->trans('flash.no_permission'));
         }

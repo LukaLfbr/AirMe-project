@@ -24,7 +24,6 @@
         <h2>{{ 'main.search_bar.title'|trans }}</h2>
         <div class="search_bar-wrapper">
             {{ form_start(autocompleteForm) }}
-            {{ form_widget(autocompleteForm.names, { 'attr': { 'id': 'events_autocomplete_names' } }) }}
             {{ form_end(autocompleteForm) }}
         </div>
 
@@ -54,7 +53,7 @@
             </div>
         </div>
 
-        <div class="carousel-wrapper">
+        <div class="carousel-wrapper" id="last-games-anchor">
             <div class="carousel-control prev arrow" aria-label="Previous">&#10094;</div>
             <div class="carousel">
                 <ul class="carousel-list">
@@ -108,7 +107,7 @@
                 </div>
                 <div class="cards">
                     <h3 class="cards-title">{{ 'main.cards.fourth.title'|trans }}</h3>
-                    <a>{{ 'main.cards.fourth.button'|trans }}</a>
+                    <a href='#last-games-anchor'>{{ 'main.cards.fourth.button'|trans }}</a>
                     <div></div>
                 </div>
             </div>

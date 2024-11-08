@@ -7,9 +7,7 @@
 {% endblock %}
 
 {% block body %}
-    <div class="infos-wrapper">
-        <p><strong>{{ event.name }}</strong></p>
-        <br>
+        <h1 class='highlight main-title'>{{event.name}} </h1>
         <p>{{ event.description|e('html') }}</p>
         <br>
         <p>{{'user.events.info'|trans}} {{ event.referent.email }}</p>
@@ -21,7 +19,7 @@
             <p>{{'user.phone.unavailable'|trans}} </p>
         {% endif %}
         <br>
-        <a href="{{ path('app_home') }}">{{ 'user.back.to.main.menu'|trans }}</a>
+        <a href="" onclick="history.back()">{{ 'user.back.to.main.menu'|trans }}</a>
         <a href="{{ path('carpooling_related-offers', { 'id': event.id }) }}">{{ 'carpooling.offer.related'|trans }}</a>
         </div>
 {% endblock %}

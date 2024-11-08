@@ -44,6 +44,9 @@
     input {
       @include input-basic-style;
     }
+    textarea {
+      font-size: 13px;
+    }
   }
 
   .form1 {
