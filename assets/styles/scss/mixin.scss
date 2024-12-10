@@ -1,5 +1,10 @@
-@mixin basic-button-style {
+@mixin round-border {
+  border-radius: 0.6em;
   padding: 0.3em;
+}
+
+@mixin basic-button-style {
+  @include round-border;
   border: 1px solid $text-color;
   border-radius: 0.6em;
 }

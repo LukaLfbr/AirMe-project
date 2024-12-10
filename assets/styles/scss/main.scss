@@ -18,6 +18,22 @@ h2 {
   display: none;
 }
 
+.leaflet-top {
+  z-index: 10 !important;
+}
+
+.my-map {
+  width: 80%;
+  height: 500px;
+  position: relative;
+  margin: auto;
+  border-radius: 1.2em !important;
+  overflow: hidden;
+}
+
+.leaflet-tile {
+  max-width: 100% !important;
+}
 // Links
 
 .links-wrapper {
@@ -179,16 +195,7 @@ h2 {
     z-index: 20;
   }
 
-  &::before {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 0;
-    height: 100%;
-    width: 100%;
-    z-index: 10;
-  }
-
+  &::before,
   &::after {
     content: "";
     position: absolute;
@@ -196,58 +203,38 @@ h2 {
     left: 0;
     height: 100%;
     width: 100%;
+    z-index: 10;
+    border-radius: 0.5em;
+  }
+
+  &::before {
+    z-index: 10;
+    opacity: 0.6;
+  }
+
+  &::after {
+    z-index: 5;
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
-    border-radius: 0.5em;
-    z-index: 5;
+    opacity: 0.54;
   }
 
-  &:nth-child(1) {
-    &::before {
-      background-color: #556b2f;
-      opacity: 0.6;
-    }
+  // Utilisation de @each pour les styles spécifiques aux enfants
+  @each $index, $color,
+    $image in (1, #556b2f, "/assets/img/army-picture-1.webp"),
+    (2, #3e3d3d, "/assets/img/military-picture-2.webp"),
+    (3, #663422, "/assets/img/military-picture-3.webp"),
+    (4, #3d3d3e, "/assets/img/military-picture-4.webp")
+  {
+    &:nth-child(#{$index}) {
+      &::before {
+        background-color: $color;
+      }
 
-    &::after {
-      background-image: url("/assets/img/army-picture-1.jpg");
-      opacity: 0.54;
-    }
-  }
-
-  &:nth-child(2) {
-    &::before {
-      background-color: #3e3d3d;
-      opacity: 0.6;
-    }
-
-    &::after {
-      background-image: url("/assets/img/military-picture-2.jpg");
-      opacity: 0.54;
-    }
-  }
-
-  &:nth-child(3) {
-    &::before {
-      background-color: #663422;
-      opacity: 0.6;
-    }
-
-    &::after {
-      background-image: url("/assets/img/military-picture-3.jpg");
-      opacity: 0.54;
-    }
-  }
-
-  &:nth-child(4) {
-    &::before {
-      background-color: #3e3d3d;
-      opacity: 0.6;
-    }
-
-    &::after {
-      background-image: url("/assets/img/military-picture-4.jpg");
-      opacity: 0.54;
+      &::after {
+        background-image: url(#{$image});
+      }
     }
   }
 }
@@ -344,6 +331,7 @@ h2 {
     border-top: 1px solid $text-color;
     border-bottom: 1px solid $text-color;
     padding: 0.5em 0 0.5em 0;
+    text-align: center;
   }
 }
 
@@ -372,23 +360,11 @@ h2 {
   }
 }
 
-// CTA
-
-.main-cta {
-  text-align: center;
-  .main-secondary-cta {
-    @include basic-button-style;
-    background-color: $accent-color;
-    text-decoration: none;
-    font-weight: normal;
-    border: none;
-  }
-}
-
 // CTA section
 
 #cta-section {
   margin-bottom: 3em;
+  text-align: center;
 }
 
 // Separators
