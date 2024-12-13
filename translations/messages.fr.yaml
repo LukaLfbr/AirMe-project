@@ -95,7 +95,7 @@ user:
   delete.failure: "Echec lors de la suppression !"
   phone.info: "Numéro du référent en cas de questions : %phone_number%"
   phone.unavailable: "Numéro de contact non disponible, veuillez envoyez un e-mail. Merci."
-
+  creator_account_required: "Veuillez créer un compte en tant qu'organisateur pour pouvoir créer des événements. Veuillez contacter l'administrateur."
 # Admin section
 admin:
   panel:

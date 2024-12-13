@@ -4,6 +4,8 @@ namespace App\Traits;
 
 use Symfony\Bundle\SecurityBundle\Security;
 
+// This trait is used to prevent the error that occurs when using 
+// $security->getUser()->getId() instead of this method.
 trait UserAwareTrait
 {
     private ?int $userId = null;

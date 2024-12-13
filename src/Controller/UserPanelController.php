@@ -24,7 +24,6 @@ use Symfony\Contracts\Translation\TranslatorInterface;
 class UserPanelController extends AbstractController
 {
     // Used to get the current User associated with current ID without error
-    // TODO modify this trait
     use UserAwareTrait;
 
     private $repository;
@@ -42,7 +41,10 @@ class UserPanelController extends AbstractController
     }
 
     #[Route('/{id}/panel', name: 'panel')]
-    public function index(Security $security, CarPoolingOfferRepository $carPoolingRepository): Response
+    public function index(
+        Security $security, 
+        CarPoolingOfferRepository $carPoolingRepository
+        ): Response
     {
         if (!$this->getUser()) {
             $this->addFlash(
@@ -65,13 +67,26 @@ class UserPanelController extends AbstractController
     }
 
     #[Route('/add', name: 'add_event')]
-    public function add(Request $request, Security $security, GeocodingService $geocodingService): Response
+    public function add(
+        Request $request, 
+        Security $security, 
+        GeocodingService $geocodingService
+        ): Response
     {
         $this->initializeUser($security);
 
         if (!$security->isGranted('ROLE_USER')) {
-            $this->addFlash('not_logged_in', $this->translator->trans('flash.login_required'));
+            $this->addFlash(
+                'not_logged_in', 
+                $this->translator->trans('flash.login_required'));
             return $this->redirectToRoute('app_login');
+        }
+
+        if (!$security->getUser()->getPhoneNumber()) {
+            $this->addFlash(
+               'not_creator flash',
+               $this->translator->trans('user.creator_account_required'));
+            return $this->redirectToRoute('user_panel', ['id' => $this->getUserId()]);
         }
 
         $event = new Events();
@@ -119,7 +134,9 @@ class UserPanelController extends AbstractController
         $this->initializeUser($security);
 
         if (($this->getUser() !== $event->getReferent()) && !$this->isGranted('ROLE_ADMIN')) {
-            $this->addFlash('unauthorized_edit_request', $this->translator->trans('flash.event.unauthorized_edit'));
+            $this->addFlash(
+                'unauthorized_edit_request', 
+                $this->translator->trans('flash.event.unauthorized_edit'));
             return $this->redirectToRoute('app_home');
         }
 

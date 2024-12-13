@@ -38,8 +38,6 @@ class HomeController extends AbstractController
     #[Route('event/{id}', name: 'event')]
     public function show(Events $event): Response
     {
-
-        $phone_number = $event->getReferent()->getPhoneNumber();
         return $this->render('events/event.infos.html.twig', [
             'event' => $event,
         ]);
