@@ -1,10 +1,13 @@
+$standard-width: 80%;
+$standard-spacing: 1em;
+
 .highlight {
   color: $primary-color;
   text-decoration: underline;
 }
 
 h1 {
-  margin: 1em 0 2em 0;
+  margin: $standard-spacing 0 2em 0;
 }
 
 .main-title,
@@ -23,7 +26,7 @@ h2 {
 }
 
 .my-map {
-  width: 80%;
+  width: $standard-with;
   height: 500px;
   position: relative;
   margin: auto;
@@ -37,7 +40,7 @@ h2 {
 // Links
 
 .links-wrapper {
-  margin: 1em 0 1em 0;
+  margin: $standard-spacing 0 $standard-spacing 0;
   text-decoration: none;
   @include basic-button-style;
   background-color: $accent-color;
@@ -55,19 +58,16 @@ h2 {
 
 // Carousel section
 .carousel-wrapper {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  position: relative;
-  width: 80%;
-  margin: 2em auto;
+  @include card-carousel-style(
+    $width: $standard-width,
+    $spacing: $standard-spacing,
+    $border-radius: 0.6rem
+  );
   border: 1px solid $text-color;
-  border-radius: 0.6rem;
-  margin-top: 2em;
 
   .carousel {
     overflow: hidden;
-    width: 80%;
+    width: $standard-with;
     max-width: 800px;
     padding: 2em 0;
 
@@ -120,9 +120,7 @@ h2 {
   display: none;
   margin-bottom: 3em;
   ul {
-    display: flex;
-    flex-direction: column;
-
+    @include flex-column;
     .main-separator {
       background-color: white;
       width: 100%;
@@ -136,7 +134,7 @@ h2 {
     display: flex;
     justify-content: space-between;
     flex-wrap: nowrap;
-    gap: 1em;
+    gap: $standard-spacing;
     ul {
       flex: 1;
       margin: 0;
@@ -152,7 +150,7 @@ h2 {
       box-sizing: border-box;
 
       .events-card {
-        padding: 1em;
+        padding: $standard-spacing;
         white-space: nowrap;
       }
     }
@@ -167,21 +165,20 @@ h2 {
 
 .cards {
   padding: 1.5em;
-  margin: 1em auto;
   height: 20%;
-  width: 80%;
-  display: flex;
-  flex-direction: column;
+  @include card-carousel-style(
+    $width: $standard-width,
+    $spacing: $standard-spacing,
+    $border-radius: 0.5em
+  );
+  @include flex-column;
   align-items: center;
   justify-content: center;
-  border-radius: 0.5em;
-  position: relative;
-  overflow: hidden;
 
   h3 {
     text-align: left;
     align-self: flex-start;
-    margin-bottom: 1em;
+    margin-bottom: $standard-spacing;
     z-index: 20;
   }
 
@@ -195,45 +192,24 @@ h2 {
     z-index: 20;
   }
 
-  &::before,
-  &::after {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 0;
-    height: 100%;
-    width: 100%;
-    z-index: 10;
-    border-radius: 0.5em;
-  }
-
   &::before {
-    z-index: 10;
-    opacity: 0.6;
+    @include pseudo-element(10, 0.6);
   }
-
   &::after {
-    z-index: 5;
+    @include pseudo-element(5, 0.54);
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
-    opacity: 0.54;
   }
 
-  // Utilisation de @each pour les styles spécifiques aux enfants
-  @each $index, $color,
-    $image in (1, #556b2f, "/assets/img/army-picture-1.webp"),
-    (2, #3e3d3d, "/assets/img/military-picture-2.webp"),
-    (3, #663422, "/assets/img/military-picture-3.webp"),
-    (4, #3d3d3e, "/assets/img/military-picture-4.webp")
+  @each $index, $color in (1, #556b2f), (2, #3e3d3d), (3, #663422), (4, #3d3d3e)
   {
     &:nth-child(#{$index}) {
       &::before {
         background-color: $color;
       }
-
       &::after {
-        background-image: url(#{$image});
+        background-image: url("/assets/img/military-picture-#{$index}.webp");
       }
     }
   }
@@ -246,32 +222,30 @@ h2 {
   align-items: center;
   text-align: center;
   h3 {
-    margin: 1em 0 0 0;
-    padding: 0 1em;
+    margin: $standard-spacing 0 0 0;
+    padding: 0 $standard-spacing;
   }
 
   p {
     font-weight: bold;
     font-size: 25px;
-    margin: 1em 0 0 0;
+    margin-top: $standard-spacing;
   }
 }
 
 // Carpooling section
 
 .carpooling-offers-wrapper {
-  display: flex;
-  flex-direction: column;
-  gap: 1em;
+  @include flex-column;
+  gap: $standard-spacing;
   @include center-and-size;
-  padding-top: 1em;
+  padding-top: $standard-spacing;
   .offer-wrapper {
-    display: flex;
-    flex-direction: column;
+    @include flex-column;
     align-items: center;
     border: 1px solid $text-color;
     border-radius: 0.6rem;
-    padding: 1em;
+    padding: $standard-spacing;
     h1 {
       font-size: 20px;
       text-align: center;
@@ -287,11 +261,9 @@ h2 {
 }
 
 .carpooling-offers-btn {
-  display: flex;
-  flex-direction: column;
-  margin: 1em auto 0 auto;
-  width: 80%;
-
+  @include flex-column;
+  margin: $standard-spacing auto 0 auto;
+  width: $standard-with;
   a {
     text-align: center;
     background-color: $primary-color;
@@ -313,18 +285,17 @@ h2 {
 
 .user-events,
 .user-carpoolings-offers {
-  margin-bottom: 1em;
+  margin-bottom: $standard-spacing;
   h1 {
     font-size: 25px;
   }
 
   .user-event-card-wrapper {
-    display: flex;
-    flex-direction: column;
-    gap: 1em;
-    margin-bottom: 1em;
+    @include flex-column;
+    gap: $standard-spacing;
+    margin-bottom: $standard-spacing;
     margin: auto;
-    width: 80%;
+    width: $standard-with;
     height: 250px;
     overflow-x: hidden;
     overflow-y: auto;
@@ -337,12 +308,11 @@ h2 {
 
 .user-event-card,
 .user-carpooling-offer-card {
-  display: flex;
-  flex-direction: column;
+  @include flex-column;
   align-items: center;
   border: 1px solid $text-color;
   border-radius: 0.6rem;
-  padding: 1em;
+  padding: $standard-spacing;
   text-decoration: none;
   box-shadow: inset 0 0 10px #209400;
   ul {
@@ -373,7 +343,7 @@ h2 {
   text-align: center;
   display: block;
   margin: 1.5em auto;
-  width: 80%;
+  width: $standard-with;
   height: 2px;
   background-color: $text-color;
 }

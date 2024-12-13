@@ -1,3 +1,6 @@
+$standard-with: 80%;
+$standard-spacing: 1em;
+
 @mixin round-border {
   border-radius: 0.6em;
   padding: 0.3em;
@@ -15,6 +18,14 @@
   display: inline-block;
   background-color: transparent;
   font-size: medium;
+}
+
+@mixin link-hover-animation($color) {
+  box-shadow: inset 0 0 0 0 $color;
+  transition: color 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+  &:hover {
+    box-shadow: inset 200px 0 0 0 $primary-color;
+  }
 }
 
 @mixin account-management-wrapper {
@@ -52,4 +63,36 @@
 @mixin center-and-size {
   margin: auto;
   width: 80%;
+}
+
+@mixin flex-column {
+  display: flex;
+  flex-direction: column;
+}
+
+@mixin pseudo-element($z-index, $opacity: 1) {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  z-index: $z-index;
+  border-radius: 0.5em;
+  opacity: $opacity;
+}
+
+@mixin card-carousel-style(
+  $width: $standard-width,
+  $spacing: $standard-spacing,
+  $border-radius: 0.5em
+) {
+  width: $width;
+  margin: $spacing auto;
+  border-radius: $border-radius;
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
