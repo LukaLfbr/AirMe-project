@@ -11,30 +11,32 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Bundle\SecurityBundle\Security;
 use Symfony\Component\Security\Http\Attribute\IsGranted;
+use App\Service\CheckUserService;
 
 #[Route('/admin', name: 'admin_')]
-#[IsGranted(
-    "ROLE_ADMIN",
-    statusCode: 404,
-    message: "Cannot access this panel without Admin privilege"
-)]
 class AdminPanelController extends AbstractController
 {
     private $repository;
     private $em;
+    private $checkUserService;
 
     public function __construct(
+        CheckUserService $checkUserService,
         EntityManagerInterface $em,
         EventsRepository $repository
     ) {
         $this->repository = $repository;
         $this->em = $em;
+        $this->checkUserService = $checkUserService;
     }
 
     #[Route('/', name: 'panel')]
-    public function index(): Response
+    public function index(Security $security): Response
     {
+        $this->checkUserService->checkAdmin($security);
+
         $events = $this->repository->findAll();
 
         return $this->render('admin_panel/admin_panel.html.twig', [

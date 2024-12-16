@@ -8,6 +8,7 @@ use App\Form\EventsType;
 use App\Repository\CarPoolingOfferRepository;
 use App\Repository\EventsRepository;
 use App\Service\GeocodingService;
+use App\Service\CheckUserService;
 use DateTimeImmutable;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -23,36 +24,33 @@ use Symfony\Contracts\Translation\TranslatorInterface;
 #[IsGranted('ROLE_USER')]
 class UserPanelController extends AbstractController
 {
-    // Used to get the current User associated with current ID without error
     use UserAwareTrait;
 
     private $repository;
     private $em;
     private $translator;
+    private $checkUserService;
 
     public function __construct(
         EventsRepository $repository,
         EntityManagerInterface $em,
-        TranslatorInterface $translator
+        TranslatorInterface $translator,
+        CheckUserService $checkUserService
     ) {
         $this->repository = $repository;
         $this->em = $em;
         $this->translator = $translator;
+        $this->checkUserService = $checkUserService;
     }
 
     #[Route('/{id}/panel', name: 'panel')]
     public function index(
         Security $security, 
         CarPoolingOfferRepository $carPoolingRepository
-        ): Response
-    {
-        if (!$this->getUser()) {
-            $this->addFlash(
-                'login-error',
-                $this->translator->trans('flash.login.error')
-            );
-            return $this->redirectToRoute('app_event');
-        }
+    ): Response {
+        $this->initializeUser($security);
+        $this->checkUserService->checkUser($security);
+
         $carPoolingOffers = $carPoolingRepository->findCarPoolingOffersByCreator(
             $security->getUser()
         );
@@ -62,7 +60,7 @@ class UserPanelController extends AbstractController
 
         return $this->render('user_panel/user.panel.html.twig', [
             'events' => $events,
-            'carpoolingOffers' => $carPoolingOffers
+            'carpoolingOffers' => $carPoolingOffers,
         ]);
     }
 
@@ -71,21 +69,15 @@ class UserPanelController extends AbstractController
         Request $request, 
         Security $security, 
         GeocodingService $geocodingService
-        ): Response
-    {
+    ): Response {
         $this->initializeUser($security);
-
-        if (!$security->isGranted('ROLE_USER')) {
-            $this->addFlash(
-                'not_logged_in', 
-                $this->translator->trans('flash.login_required'));
-            return $this->redirectToRoute('app_login');
-        }
+        $this->checkUser($security);
 
         if (!$security->getUser()->getPhoneNumber()) {
             $this->addFlash(
-               'not_creator flash',
-               $this->translator->trans('user.creator_account_required'));
+                'not_creator flash',
+                $this->translator->trans('user.creator_account_required')
+            );
             return $this->redirectToRoute('user_panel', ['id' => $this->getUserId()]);
         }
 
@@ -136,7 +128,8 @@ class UserPanelController extends AbstractController
         if (($this->getUser() !== $event->getReferent()) && !$this->isGranted('ROLE_ADMIN')) {
             $this->addFlash(
                 'unauthorized_edit_request', 
-                $this->translator->trans('flash.event.unauthorized_edit'));
+                $this->translator->trans('flash.event.unauthorized_edit')
+            );
             return $this->redirectToRoute('app_home');
         }
 

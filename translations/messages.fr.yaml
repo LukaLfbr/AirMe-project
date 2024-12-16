@@ -96,6 +96,7 @@ user:
   phone.info: "Numéro du référent en cas de questions : %phone_number%"
   phone.unavailable: "Numéro de contact non disponible, veuillez envoyez un e-mail. Merci."
   creator_account_required: "Veuillez créer un compte en tant qu'organisateur pour pouvoir créer des événements. Veuillez contacter l'administrateur."
+
 # Admin section
 admin:
   panel:
@@ -104,6 +105,7 @@ admin:
     switch.to.user.mode: "Revenir au mode utilisateur."
   edit.event: "Éditer l'événement"
   delete.event: "Supprimer l'événement"
+  login.failure: "Vous ne pouvez pas faire ceci."
 
 # Carpooling section
 carpooling:
@@ -189,6 +191,16 @@ form:
   password:
     label: "Mot de passe*"
     blank: "Le mot de passe ne peut pas être vide."
+
+#Validators
+validators:
+  email:
+    invalid: "L'e-mail est invalide."
+    too_long: "L'adresse e-mail ne peut pas dépasser 36 caractères."
+  password:
+    blank: "Le mot de passe ne peut pas être vide."
+    too_short: "Le mot de passe doit contenir au moins {{ limit }} caractères."
+  email_already_used: "Il y a déjà un compte avec cet e-mail."
 
 # Search bar section
 search_bar:
