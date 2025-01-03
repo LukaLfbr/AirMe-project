@@ -5,7 +5,7 @@
 {% block body %}
     <div class="user-events">
         <h1>{{ "user.created.events"|trans }}</h1>
-        <div class="user-event-card-wrapper">
+        <div class="scrollable-event-card">
             {% if events %}
                 {% for event in events %}
                     <div class="user-event-card">
@@ -41,7 +41,7 @@
 
     <div class="user-carpoolings-offers">
         <h1>{{ "user.carpooling-offers"|trans }}</h1>
-        <div class="user-event-card-wrapper">
+        <div class="scrollable-event-card">
             {% if carpoolingOffers %}
                 {% for offer in carpoolingOffers %}
                     <div class="user-carpooling-offer-card">

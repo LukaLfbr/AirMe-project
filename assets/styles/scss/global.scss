@@ -1,10 +1,14 @@
-$text-color: #d3d3d3;
-// $background-color: #07090e;
-// $background-color: #23282d;
-$background-color: #202020;
-$primary-color: #556b2f;
-$secondary-color: #663422;
-$accent-color: #3e3d3d;
+// Dark mode
+$dark-text-color: #d3d3d3;
+$dark-background-color: #202020;
+$dark-primary-color: #86a53a;
+$dark-accent-color: #3e3d3d;
+
+// Light mode
+$light-text-color: #202020;
+$light-background-color: #ffffff;
+$light-primary-color: #86a53a;
+$light-accent-color: #3e3d3d;
 
 @font-face {
   font-family: "Lexend";
@@ -111,11 +115,12 @@ textarea,
       0 0 20px rgba(255, 255, 255, 0.2);
     border-color: rgba(255, 255, 255, 0.5);
     outline-offset: 15px;
-    text-shadow: 1px 1px 2px lighten($text-color, 10%);
+    text-shadow: 1px 1px 2px adjust-color($text-color, $lightness: 10%);
   }
 }
 
-.flash {
+.flash,
+.flash-success {
   text-align: center;
   width: 80%;
   margin: auto;

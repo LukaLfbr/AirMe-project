@@ -16,14 +16,14 @@ class CheckUserService
         $this->translator = $translator;
     }
 
-    public function checkUser(): response
+    public function checkUser()
     {
         if (!$this->security->isGranted('ROLE_USER')) {
             return $this->redirectToRoute('app_login');
         }
     }
 
-    public function checkAdmin(): response
+    public function checkAdmin()
     {
         if (!$this->security->isGranted('ROLE_ADMIN')) {
             throw new \Exception($this->translator->trans('admin.login.failure'));

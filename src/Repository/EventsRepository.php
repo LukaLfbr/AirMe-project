@@ -7,9 +7,6 @@ use App\Entity\User;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 
-/**
- * @extends ServiceEntityRepository<Events>
- */
 class EventsRepository extends ServiceEntityRepository
 {
     public function __construct(ManagerRegistry $registry)
@@ -32,6 +29,9 @@ class EventsRepository extends ServiceEntityRepository
     }
 
 
+    /**
+     * @return Events[]
+     */
     public function getLastTenEvents()
     {
         return $this->createQueryBuilder('e')

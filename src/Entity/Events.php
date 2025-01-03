@@ -31,7 +31,7 @@ class Events
     private ?\DateTimeImmutable $date = null;
 
     #[ORM\Column(nullable: true)]
-    private ?int $duration = null;
+    private ?string $duration = null;
 
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $terrain_type = null;

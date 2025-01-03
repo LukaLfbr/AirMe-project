@@ -9,9 +9,7 @@ use Doctrine\ORM\Tools\Pagination\Paginator;
 use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Component\HttpFoundation\Request;
 
-/**
- * @extends ServiceEntityRepository<CarPoolingOffer>
- */
+
 class CarPoolingOfferRepository extends ServiceEntityRepository
 {
     public function __construct(ManagerRegistry $registry)
@@ -19,7 +17,13 @@ class CarPoolingOfferRepository extends ServiceEntityRepository
         parent::__construct($registry, CarPoolingOffer::class);
     }
 
-    public function paginateCarPoolingOffers(Request $request, int $page = 1, int $limit = 10): Paginator
+    /** 
+     * @param int 
+     * @param int 
+     *
+     * @return Paginator
+     */
+    public function paginateCarPoolingOffers(int $page = 1, int $limit = 10): Paginator
 {
     $firstResult = ($page - 1) * $limit;
 
@@ -30,7 +34,8 @@ class CarPoolingOfferRepository extends ServiceEntityRepository
 
     return new Paginator($query, true); 
 }
-/** @param User $user
+/** 
+ * @param User $user
  * @return CarPoolingOffer[]  
 */
     public function findCarPoolingOffersByCreator(User $user): array 
@@ -42,7 +47,14 @@ class CarPoolingOfferRepository extends ServiceEntityRepository
         ->getResult();
     }
 
-   // CarPoolingOfferRepository.php
+
+    /**
+     * @param int $eventId
+     * @param int $page
+     * @param int $limit
+     *
+     * @return Paginator
+     */
     public function paginateCarPoolingOffersByEvent(int $eventId, int $page = 1, int $limit = 10): Paginator
 {
     $firstResult = ($page - 1) * $limit;

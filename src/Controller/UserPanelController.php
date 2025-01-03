@@ -9,6 +9,7 @@ use App\Repository\CarPoolingOfferRepository;
 use App\Repository\EventsRepository;
 use App\Service\GeocodingService;
 use App\Service\CheckUserService;
+use App\Service\HtmlPurifierService;
 use DateTimeImmutable;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -68,10 +69,12 @@ class UserPanelController extends AbstractController
     public function add(
         Request $request, 
         Security $security, 
-        GeocodingService $geocodingService
+        GeocodingService $geocodingService,
+        HtmlPurifierService $htmlPurifierService
+
     ): Response {
         $this->initializeUser($security);
-        $this->checkUser($security);
+        $this->checkUserService->checkUser($security);
 
         if (!$security->getUser()->getPhoneNumber()) {
             $this->addFlash(
@@ -89,6 +92,20 @@ class UserPanelController extends AbstractController
         $event->setUpdatedAt(new DateTimeImmutable());
 
         if ($form->isSubmitted() && $form->isValid()) {
+            
+            // Used to purify the form data
+             $data = $form->getData();
+             $purifiedData = $htmlPurifierService->purifyArray((array) $data);
+ 
+            // Check if the setter method exists, if it does, 
+            // call it to link the data to the event object
+             foreach ($purifiedData as $key => $value) {
+                 $setter = 'set' . ucfirst($key);
+                 if (method_exists($event, $setter)) {
+                     $event->$setter($value);
+                 }
+             }
+ 
             $event->setReferent($this->getUser());
 
             try {
@@ -130,13 +147,24 @@ class UserPanelController extends AbstractController
                 'unauthorized_edit_request', 
                 $this->translator->trans('flash.event.unauthorized_edit')
             );
-            return $this->redirectToRoute('app_home');
+        return $this->redirectToRoute('app_home');
         }
 
         $form = $this->createForm(EventsType::class, $event);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+             
+             $data = $form->getData();
+             $purifiedData = $htmlPurifierService->purifyArray((array) $data);
+ 
+             
+             foreach ($purifiedData as $key => $value) {
+                 $setter = 'set' . ucfirst($key);
+                 if (method_exists($event, $setter)) {
+                     $event->$setter($value);
+                 }
+             }
             $event->setUpdatedAt(new DateTimeImmutable());
             $this->em->flush();
 

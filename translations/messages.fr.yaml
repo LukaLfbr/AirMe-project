@@ -101,8 +101,8 @@ user:
 admin:
   panel:
     title: "Bienvenue sur le panneau d'administration"
-    main: "Ici vous pouvez ajouter, modifier et supprimer des événements."
-    switch.to.user.mode: "Revenir au mode utilisateur."
+    description: "Ici vous pouvez ajouter, modifier et supprimer des événements."
+    switch_to_user: "Revenir au mode utilisateur."
   edit.event: "Éditer l'événement"
   delete.event: "Supprimer l'événement"
   login.failure: "Vous ne pouvez pas faire ceci."

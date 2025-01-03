@@ -29,13 +29,19 @@ class CarpoolingController extends AbstractController
         $this->security = $security;
     }
 
+    /**
+     * @param CarPoolingOfferRepository
+     * @param Request
+     *
+     * @return Response
+     */
     #[Route('/offers', name: 'index')]
     public function index(CarPoolingOfferRepository $repository, Request $request): Response
     {
         $page = $request->query->getInt('page', 1);
         $limit = 4;
 
-        $paginatedOffers = $repository->paginateCarPoolingOffers($request, $page, $limit);
+        $paginatedOffers = $repository->paginateCarPoolingOffers($page, $limit);
         $maxPages = ceil(count($paginatedOffers) / $limit);
 
         return $this->render('carpooling/carpooling.offers.html.twig', [
@@ -45,6 +51,11 @@ class CarpoolingController extends AbstractController
         ]);
     }
 
+    /**
+     * @param CarPoolingOffer
+     *
+     * @return Response
+     */
     #[Route('/{id}/info', name: 'info')]
     public function info(CarPoolingOffer $carpoolingOffer): Response
     {
@@ -52,6 +63,11 @@ class CarpoolingController extends AbstractController
             'offer' => $carpoolingOffer,
         ]);
     }
+    /**
+     * @param Request 
+     * @param EntityManagerInterface
+     * @return Response
+     */
     #[IsGranted('ROLE_USER')]
     #[Route('/add', name: 'add')]
     public function add(Request $request, EntityManagerInterface $em): Response
@@ -81,6 +97,15 @@ class CarpoolingController extends AbstractController
             'form' => $form->createView(),
         ]);
     }
+    /**
+     * @param CarPoolingOffer
+     * @param Request 
+     * @param EntityManagerInterface 
+     *
+     * @return Response
+     *
+     * @throws AccessDeniedException
+     */
     #[IsGranted('ROLE_USER')]
     #[Route('/{id}/edit', name: 'edit')]
     public function edit(CarPoolingOffer $carpoolingOffer, Request $request, EntityManagerInterface $em): Response
@@ -107,6 +132,13 @@ class CarpoolingController extends AbstractController
         ]);
     }
    
+    /**
+     * @param EntityManagerInterface
+     * @param CarPoolingOffer 
+     * @param Security
+     *
+     * @return Response
+     */
     #[IsGranted('ROLE_USER')]
     #[Route('/{id}/delete', name: 'delete')]
     public function delete(EntityManagerInterface $em, CarPoolingOffer $carPoolingOffer, Security $security)
@@ -133,13 +165,19 @@ class CarpoolingController extends AbstractController
         }
     }
 
+    /**
+     * @param int 
+     * @param CarPoolingOfferRepository 
+     * @param Request
+     * 
+     * @return Response
+     */
     #[Route('/{id}/related-offers', name: 'related-offers')]
     public function relatedOffers(int $id, CarPoolingOfferRepository $repository, Request $request): Response
     {
         $page = $request->query->getInt('page', 1);
         $limit = 4;
 
-        // Utilisation de la nouvelle méthode pour paginer les offres liées à l'événement
         $paginatedOffers = $repository->paginateCarPoolingOffersByEvent($id, $page, $limit);
         $maxPages = ceil(count($paginatedOffers) / $limit);
 

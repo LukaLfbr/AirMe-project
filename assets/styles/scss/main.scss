@@ -152,6 +152,10 @@ h2 {
       .events-card {
         padding: $standard-spacing;
         white-space: nowrap;
+
+        a {
+          text-decoration: none;
+        }
       }
     }
   }
@@ -176,7 +180,6 @@ h2 {
   justify-content: center;
 
   h3 {
-    text-align: left;
     align-self: flex-start;
     margin-bottom: $standard-spacing;
     z-index: 20;
@@ -289,21 +292,21 @@ h2 {
   h1 {
     font-size: 25px;
   }
+}
 
-  .user-event-card-wrapper {
-    @include flex-column;
-    gap: $standard-spacing;
-    margin-bottom: $standard-spacing;
-    margin: auto;
-    width: $standard-with;
-    height: 250px;
-    overflow-x: hidden;
-    overflow-y: auto;
-    border-top: 1px solid $text-color;
-    border-bottom: 1px solid $text-color;
-    padding: 0.5em 0 0.5em 0;
-    text-align: center;
-  }
+.scrollable-event-card {
+  @include flex-column;
+  gap: $standard-spacing;
+  margin-bottom: $standard-spacing;
+  margin: auto;
+  width: $standard-with;
+  height: 250px;
+  overflow-x: hidden;
+  overflow-y: auto;
+  border-top: 1px solid $text-color;
+  border-bottom: 1px solid $text-color;
+  padding: 0.5em 0 0.5em 0;
+  text-align: center;
 }
 
 .user-event-card,

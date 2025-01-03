@@ -88,26 +88,29 @@
 
         <span class="main-separator"></span>
 
-        <section id="cards-section">
-            <div class="cards-wrapper">
-                <div class="cards" alt="Image of soldiers walking in the desert">
-                    <h3 class="cards-title">{{ 'main.cards.first.title'|trans }}</h3>
-                    <a class="basic-button-2">{{ 'main.cards.first.button'|trans }}</a>
+        <article>
+            <section id="cards-section">
+                <div class="cards-wrapper">
+                    <div class="cards" alt="Image of soldiers walking in the desert">
+                        <h3 class="cards-title">{{ 'main.cards.first.title'|trans }}</h3>
+                        <a class="basic-button-2" href="https://www.ops-store.fr/" target="_blank">{{ 'main.cards.first.button'|trans }}</a>
+                    </div>
+                    <div class="cards" alt="Image of military vehicle">
+                        <h3 class="cards-title">{{ 'main.cards.second.title'|trans }}</h3>
+                        <a class="basic-button-2" href="{{ path('carpooling_index') }}">{{ 'main.cards.second.button'|trans }}</a>
+                    </div>
+                    <div class="cards" alt="Image of military recruits">
+                        <h3 class="cards-title">{{ 'main.cards.third.title'|trans }}</h3>
+                        <a class="basic-button-2" href="https://www.blowback.fr/guide-airsoft-debutant" target="_blank">{{ 'main.cards.third.button'|trans }}</a>
+                    </div>
+                    <div class="cards" alt="Image of military recruits">
+                        <h3 class="cards-title">{{ 'main.cards.fourth.title'|trans }}</h3>
+                        <a class="basic-button-2" href='#last-games-anchor'>{{ 'main.cards.fourth.button'|trans }}</a>
+                    </div>
                 </div>
-                <div class="cards" alt="Image of military vehicle">
-                    <h3 class="cards-title">{{ 'main.cards.second.title'|trans }}</h3>
-                    <a class="basic-button-2" href="{{ path('carpooling_index') }}">{{ 'main.cards.second.button'|trans }}</a>
-                </div>
-                <div class="cards" alt="Image of military recruits">
-                    <h3 class="cards-title">{{ 'main.cards.third.title'|trans }}</h3>
-                    <a class="basic-button-2" href="https://www.blowback.fr/guide-airsoft-debutant" target="_blank">{{ 'main.cards.third.button'|trans }}</a>
-                </div>
-                <div class="cards" alt="Image of military recruits">
-                    <h3 class="cards-title">{{ 'main.cards.fourth.title'|trans }}</h3>
-                    <a class="basic-button-2" href='#last-games-anchor'>{{ 'main.cards.fourth.button'|trans }}</a>
-                </div>
-            </div>
-        </section>
+            </section>
+        </article>
+        
         <span class="main-separator"></span>
 
         <section class="stats">
