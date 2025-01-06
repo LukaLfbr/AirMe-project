@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="fr">
+<html lang="fr" data-theme="{{ app.request.cookies.get('theme') ?: 'dark' }}">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -10,6 +10,7 @@
     {% endblock %}
     {% block javascripts %}
         <script src="{{ asset('assets/js/animation.js') }}"></script>
+        <script src="{{ asset('assets/js/theme.js') }}"></script>
         {% block importmap %}
             {{ importmap('app') }}
         {% endblock %}
@@ -26,7 +27,9 @@
 
 <div class="off-menu">
     <div class="off-menu-logo">
-        <img src="{{ asset('assets/img/AirMe-logo.png') }}" alt="AirMe logo" />
+        <a href="{{ path('app_home') }}">
+            <img src="{{ asset('assets/img/AirMe-logo.png') }}" alt="AirMe logo" />
+        </a>
     </div>
     <ul>
     {% if app.user is null %}
@@ -34,9 +37,10 @@
         <li><a href="{{ path('app_register') }}">{{ 'register'|trans }}</a></li>
     {% else %}
         <li><a href="{{ path('user_panel', {'id': app.user.id}) }}">{{ 'user.panel.title'|trans }}</a></li>
-    {% endif %}
         <li><a href="{{ path('app_logout') }}">{{ 'logout'|trans }}</a></li>
+    {% endif %}
         <li><a href="{{ path('carpooling_index') }}">{{ 'carpooling.offers'|trans }}</a></li>
+        <li><button class="theme-toggle">{{ 'theme.toggle'|trans }}</button></li>
     </ul>
 </div>
 
@@ -59,6 +63,8 @@
                 <li><a href="{{ path('app_logout') }}">{{ 'logout'|trans }}</a></li>
             {% endif %}
             <li><a href="{{ path('carpooling_index') }}">{{ 'carpooling.offers'|trans }}</a></li>
+            <li><button class="theme-toggle">{{ 'theme.toggle'|trans }} </button></li>
+
         </ul>
     </nav>
     <div class="ham-menu">
@@ -85,12 +91,11 @@
     <div class="footer-logo-wrapper"></div>
 
     <div class="footer-legals-wrapper">
-        <a href="">{{ 'about'|trans }}</a>
+        <a href="{{path('app_about')}} ">{{ 'about'|trans }}</a>
         <a href="">{{ 'footer.TOS'|trans }}</a>
-        <a href="">{{ 'footer.legals'|trans }}</a>
+        <a href="{{path('app_legals')}} ">{{ 'footer.legals'|trans }}</a>
     </div>
 </div>
 {% endblock %}
 </body>
 </html>
-

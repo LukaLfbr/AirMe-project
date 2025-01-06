@@ -1,4 +1,4 @@
-document.addEventListener("DOMContentLoaded", () => {
+document.addEventListener("turbo:load", function () {
   const carousel = document.querySelector(".carousel-list");
   const prevButton = document.querySelector(".carousel-control.prev");
   const nextButton = document.querySelector(".carousel-control.next");

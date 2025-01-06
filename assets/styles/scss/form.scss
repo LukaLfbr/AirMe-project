@@ -10,10 +10,11 @@
   margin: 23% auto 0;
   display: block;
   padding: 1em;
-  background-color: $text-color;
+  background-color: var(--text-color);
   border-radius: 0.6em;
   width: 40%;
   text-align: center;
+  color: var(--alternative-text-color);
 }
 
 #form-wrapper {
@@ -21,7 +22,7 @@
   width: 80%;
   max-width: 800px;
   margin: 0 auto;
-  background-color: $accent-color;
+  background-color: var(--accent-color);
   border-radius: 0.6em;
   height: 45vh;
   position: relative;

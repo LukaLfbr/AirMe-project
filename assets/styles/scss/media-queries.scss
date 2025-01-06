@@ -29,7 +29,7 @@
   .events-column {
     .events-card {
       &:nth-child(even) {
-        background-color: $accent-color;
+        background-color: var(--accent-color);
       }
     }
   }

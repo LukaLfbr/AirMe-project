@@ -1,14 +1,20 @@
-// Dark mode
-$dark-text-color: #d3d3d3;
-$dark-background-color: #202020;
-$dark-primary-color: #86a53a;
-$dark-accent-color: #3e3d3d;
+// CSS Color Variables
 
-// Light mode
-$light-text-color: #202020;
-$light-background-color: #ffffff;
-$light-primary-color: #86a53a;
-$light-accent-color: #3e3d3d;
+[data-theme="light"] {
+  --text-color: #202020;
+  --alternative-text-color: #d0d0d0;
+  --background-color: #ffffff;
+  --primary-color: #86a53a;
+  --accent-color: #a8a8a8;
+}
+
+[data-theme="dark"] {
+  --text-color: #d0d0d0;
+  --alternative-text-color: #3e3d3d;
+  --background-color: #202020;
+  --primary-color: #86a53a;
+  --accent-color: #3e3d3d;
+}
 
 @font-face {
   font-family: "Lexend";
@@ -31,7 +37,7 @@ html {
 }
 
 body {
-  background-color: $background-color;
+  background-color: var(--background-color);
   display: flex;
   flex-direction: column;
   min-height: 100vh;
@@ -51,7 +57,7 @@ h4,
 label,
 input,
 ::placeholder {
-  color: $text-color;
+  color: var(--text-color);
   font-family: Lexend;
 }
 
@@ -82,43 +88,6 @@ textarea,
   font-family: "Lexend";
 }
 
-#events_save {
-  color: $text-color;
-  font-family: Lexend;
-  @include add-buttons;
-}
-
-.basic-button {
-  @include basic-button-style;
-  margin-top: 0.5em;
-  display: inline-block;
-}
-
-.basic-button-2 {
-  background-color: $accent-color;
-  color: $text-color;
-  border: 2px solid transparent;
-  border-radius: 0.6em;
-  box-shadow: inset 0 0 20px rgba(255, 255, 255, 0);
-  text-shadow: none;
-  display: inline-block;
-  padding: 0.3em;
-  text-align: center;
-}
-
-.basic-button,
-.basic-button-2,
-.submit-btn {
-  transition: all 1250ms cubic-bezier(0.19, 1, 0.22, 1);
-  &:hover {
-    box-shadow: inset 0 0 20px rgba(255, 255, 255, 0.5),
-      0 0 20px rgba(255, 255, 255, 0.2);
-    border-color: rgba(255, 255, 255, 0.5);
-    outline-offset: 15px;
-    text-shadow: 1px 1px 2px adjust-color($text-color, $lightness: 10%);
-  }
-}
-
 .flash,
 .flash-success {
   text-align: center;
@@ -128,10 +97,4 @@ textarea,
     background-color: rgba(168, 29, 29, 0.34);
     border-radius: 0.6em;
   }
-}
-
-#events_save {
-  color: $text-color;
-  font-family: Lexend;
-  @include add-buttons;
 }

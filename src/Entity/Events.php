@@ -135,12 +135,12 @@ class Events
         return $this;
     }
 
-    public function getDuration(): ?int
+    public function getDuration(): ?string
     {
         return $this->duration;
     }
 
-    public function setDuration(?int $duration): static
+    public function setDuration(?string $duration): static
     {
         $this->duration = $duration;
 

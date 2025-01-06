@@ -71,7 +71,6 @@ class UserPanelController extends AbstractController
         Security $security, 
         GeocodingService $geocodingService,
         HtmlPurifierService $htmlPurifierService
-
     ): Response {
         $this->initializeUser($security);
         $this->checkUserService->checkUser($security);
@@ -92,20 +91,16 @@ class UserPanelController extends AbstractController
         $event->setUpdatedAt(new DateTimeImmutable());
 
         if ($form->isSubmitted() && $form->isValid()) {
-            
-            // Used to purify the form data
-             $data = $form->getData();
-             $purifiedData = $htmlPurifierService->purifyArray((array) $data);
- 
-            // Check if the setter method exists, if it does, 
-            // call it to link the data to the event object
-             foreach ($purifiedData as $key => $value) {
-                 $setter = 'set' . ucfirst($key);
-                 if (method_exists($event, $setter)) {
-                     $event->$setter($value);
-                 }
-             }
- 
+            $data = $form->getData();
+            $purifiedData = $htmlPurifierService->purifyArray((array) $data);
+
+            foreach ($purifiedData as $key => $value) {
+                $setter = 'set' . ucfirst($key);
+                if (method_exists($event, $setter)) {
+                    $event->$setter($value);
+                }
+            }
+
             $event->setReferent($this->getUser());
 
             try {
@@ -138,8 +133,13 @@ class UserPanelController extends AbstractController
     }
 
     #[Route('/event/{id}/edit', name: 'edit_event')]
-    public function edit(Request $request, Events $event, Security $security): Response
-    {
+    public function edit(
+        Request $request, 
+        Events $event, 
+        Security $security,
+        GeocodingService $geocodingService,
+        HtmlPurifierService $htmlPurifierService
+    ): Response {
         $this->initializeUser($security);
 
         if (($this->getUser() !== $event->getReferent()) && !$this->isGranted('ROLE_ADMIN')) {
@@ -147,24 +147,23 @@ class UserPanelController extends AbstractController
                 'unauthorized_edit_request', 
                 $this->translator->trans('flash.event.unauthorized_edit')
             );
-        return $this->redirectToRoute('app_home');
+            return $this->redirectToRoute('app_home');
         }
 
         $form = $this->createForm(EventsType::class, $event);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-             
-             $data = $form->getData();
-             $purifiedData = $htmlPurifierService->purifyArray((array) $data);
- 
-             
-             foreach ($purifiedData as $key => $value) {
-                 $setter = 'set' . ucfirst($key);
-                 if (method_exists($event, $setter)) {
-                     $event->$setter($value);
-                 }
-             }
+            $data = $form->getData();
+            $purifiedData = $htmlPurifierService->purifyArray((array) $data);
+
+            foreach ($purifiedData as $key => $value) {
+                $setter = 'set' . ucfirst($key);
+                if (method_exists($event, $setter)) {
+                    $event->$setter($value);
+                }
+            }
+
             $event->setUpdatedAt(new DateTimeImmutable());
             $this->em->flush();
 
@@ -199,3 +198,4 @@ class UserPanelController extends AbstractController
         }
     }
 }
+

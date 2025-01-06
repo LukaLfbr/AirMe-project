@@ -42,4 +42,16 @@ class HomeController extends AbstractController
             'event' => $event,
         ]);
     }
+
+    #[Route('about', name: 'about')]
+    public function about(): Response
+    {
+        return $this->render('site_infos/about.html.twig');
+    }
+
+    #[Route('legals', name: 'legals')]
+    public function contact(): Response
+    {
+        return $this->render('site_infos/legals.html.twig');
+    }
 }

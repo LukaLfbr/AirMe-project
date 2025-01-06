@@ -205,3 +205,11 @@ validators:
 # Search bar section
 search_bar:
   label: "Recherchez une partie"
+
+# Site infos
+site_infos:
+  about.title: "A propos de nous"
+  legals.title: "Mention-legale"
+
+# theme
+theme.toggle: "Changer de thème"

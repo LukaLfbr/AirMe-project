@@ -1,0 +1,83 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+    {{ 'site_infos.about.title'|trans }}
+{% endblock %}
+
+{% block stylesheets %}
+    {{ parent() }}
+{% endblock %}
+
+{% block body %}
+    <div class="about-contact-wrapper">
+        <h1>Politique de confidentialité</h1>
+
+        <p>La présente politique de confidentialité a pour but de vous informer sur la manière dont nous collectons, utilisons, et protégeons vos données personnelles dans le respect du Règlement Général sur la Protection des Données (RGPD). Cette politique s'applique à AirMe.</p>
+
+        <h2>1. Données collectées</h2>
+        <p>Nous collectons les données suivantes :</p>
+        <ul>
+            <li>Adresse e-mail</li>
+            <li>Numéro de téléphone (facultatif)</li>
+            <li>Adresse IP</li>
+            <li>Données de navigation sur notre site web</li>
+        </ul>
+
+        <h2>2. Finalités de la collecte des données</h2>
+        <p>Les données collectées sont utilisées pour les finalités suivantes :</p>
+        <ul>
+            <li>Pour permettre l'utilisation des services du site</li>
+            <li>Gestion des commandes et des services</li>
+            <li>Envoi d'informations commerciales et promotionnelles si vous avez donné votre consentement</li>
+            <li>Amélioration de l'expérience utilisateur sur notre site</li>
+            <li>Respect de nos obligations légales et fiscales</li>
+        </ul>
+
+        <h2>3. Base légale du traitement des données</h2>
+        <p>Le traitement de vos données personnelles repose sur les bases légales suivantes :</p>
+        <ul>
+            <li>Votre consentement, lorsque vous vous inscrivez à notre newsletter ou acceptez nos cookies</li>
+            <li>L'exécution d'un contrat, pour la gestion de vos achats et commandes</li>
+            <li>Le respect de nos obligations légales, notamment fiscales et comptables</li>
+        </ul>
+
+        <h2>4. Destinataires des données</h2>
+        <p>Les données collectées sont destinées à AirMe et peuvent être partagées avec les parties suivantes, uniquement dans le cadre de la prestation de services :</p>
+        <ul>
+            <li>Prestataires techniques (hébergeurs, services de paiement, etc.)</li>
+            <li>Autorités légales et judiciaires si nécessaire</li>
+        </ul>
+
+        <h2>5. Durée de conservation des données</h2>
+        <p>Nous conservons vos données personnelles pendant la durée nécessaire à l'accomplissement des finalités mentionnées dans cette politique, et conformément aux exigences légales. Par exemple :</p>
+        <ul>
+            <li>Données de commande : conservées pendant 3 ans pour respecter les obligations fiscales</li>
+            <li>Données de contact (newsletter) : conservées jusqu'à la désinscription</li>
+        </ul>
+
+        <h2>6. Sécurité des données</h2>
+        <p>Nous mettons en place des mesures de sécurité techniques et organisationnelles appropriées pour protéger vos données personnelles contre la perte, le vol, l'accès non autorisé ou toute autre forme de traitement illégal. Ces mesures incluent la cryptographie, l'accès restreint aux données et la formation de nos employés.</p>
+
+        <h2>7. Vos droits</h2>
+        <p>Conformément au RGPD, vous disposez des droits suivants concernant vos données personnelles :</p>
+        <ul>
+            <li>Accès à vos données personnelles</li>
+            <li>Rectification de vos données personnelles</li>
+            <li>Suppression de vos données personnelles</li>
+            <li>Limitation du traitement de vos données</li>
+            <li>Droit d'opposition au traitement de vos données</li>
+            <li>Portabilité de vos données</li>
+        </ul>
+
+        <p>Pour exercer ces droits, vous pouvez nous contacter à l'adresse suivante : airme@airme.fr</p>
+
+        <h2>8. Transfert de données en dehors de l'UE</h2>
+        <p>Si nous transférons vos données personnelles en dehors de l'Union Européenne, nous veillons à ce que des mesures de protection appropriées soient mises en place, telles que des clauses contractuelles types, pour garantir la sécurité de vos données conformément au RGPD.</p>
+
+        <h2>9. Cookies</h2>
+        <p>Notre site utilise des cookies pour améliorer votre expérience utilisateur et analyser l'utilisation du site. Vous pouvez gérer vos préférences en matière de cookies en ajustant les paramètres de votre navigateur ou en acceptant/refusant les cookies via notre bannière de consentement. Pour plus d'informations, consultez notre politique sur les cookies.</p>
+
+        <h2>10. Modifications de cette politique</h2>
+        <p>Nous nous réservons le droit de modifier cette politique de confidentialité à tout moment. Toute modification sera publiée sur cette page, avec la date de mise à jour indiquée en bas de la page.</p>
+    </div>
+{% endblock %}

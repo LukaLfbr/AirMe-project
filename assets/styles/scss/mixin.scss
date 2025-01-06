@@ -1,6 +1,8 @@
 $standard-with: 80%;
 $standard-spacing: 1em;
 
+// Buttons
+
 @mixin round-border {
   border-radius: 0.6em;
   padding: 0.3em;
@@ -8,7 +10,7 @@ $standard-spacing: 1em;
 
 @mixin basic-button-style {
   @include round-border;
-  border: 1px solid $text-color;
+  border: 1px solid var(--text-color);
   border-radius: 0.6em;
 }
 
@@ -24,14 +26,14 @@ $standard-spacing: 1em;
   box-shadow: inset 0 0 0 0 $color;
   transition: color 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
   &:hover {
-    box-shadow: inset 200px 0 0 0 $primary-color;
-    color: $background-color;
+    box-shadow: inset 200px 0 0 0 var(--primary-color);
+    color: var(--background-color);
   }
 }
 
 @mixin account-management-wrapper {
   flex: 1;
-  background-color: $accent-color;
+  background-color: var(--accent-color);
   padding: 1em;
   width: 80%;
   margin: 10% auto;
@@ -49,12 +51,12 @@ $standard-spacing: 1em;
 @mixin input-basic-style {
   padding: 0.6em;
   border: 0;
-  border-bottom: 1px solid $text-color;
+  border-bottom: 1px solid var(--text-color);
   background-color: transparent;
-  color: $text-color;
+  color: var(--text-color);
   text-align: center;
   &::placeholder {
-    color: $text-color;
+    color: var(--text-color);
   }
   &:focus {
     outline: none;
