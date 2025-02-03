@@ -45,7 +45,6 @@ main:
 # Footer section
 footer:
   about: "À propos de nous"
-  TOS: "CGV"
   legals: "Mention légale"
 
 # Account section

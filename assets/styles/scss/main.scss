@@ -155,6 +155,7 @@ h2 {
 
         a {
           text-decoration: none;
+          @include link-hover-animation(var(--primary-color));
         }
       }
     }
