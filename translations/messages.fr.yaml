@@ -83,6 +83,7 @@ user:
     title: "Espace personnel"
   events: "Voir vos événements"
   carpooling-offers: "Voir vos offres de co-voiturage"
+  carpooling_offers_2: "Voir les offres de co-voiturage"
   events.infos: "Événement créer par :"
   created.events: "Vos événements"
   back.to.main.menu: "Retourner au menu"
@@ -100,6 +101,7 @@ user:
 admin:
   panel:
     title: "Bienvenue sur le panneau d'administration"
+    title.short: "Panneau d'administration"
     description: "Ici vous pouvez ajouter, modifier et supprimer des événements."
     switch_to_user: "Revenir au mode utilisateur."
   edit.event: "Éditer l'événement"
@@ -139,6 +141,7 @@ carpooling:
     related: "Voir les offres de covoiturage liées à cet événement"
   offers: "Offres de covoiturage"
   back: "Retourner aux offres de covoiturage"
+  delete.confirmation: "Voulez-vous vraiment supprimer l'offre de covoiturage %offer_name% ?"
   security_reminder: "Nous vous rappelons que <strong> la rubrique co-voiturage n'est en aucun cas réglementée</strong> par AirMe. En acceptant / en proposant une offre de co-voiturage, <strong> AirMe se décharge de toutes responsabilités </strong> en cas de vol de matériel, de fraude, ou autre délit. Merci de votre compréhension."
 
 # Flash message section

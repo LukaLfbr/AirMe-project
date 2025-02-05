@@ -28,6 +28,8 @@ document.addEventListener("turbo:load", () => {
     button.addEventListener("click", toggleTheme);
   });
 
+  // If there is a cookie, set the theme
+  // Then change the data-theme attribute
   const themeFromCookie = document.cookie
     .split("; ")
     .find((row) => row.startsWith("theme="));
