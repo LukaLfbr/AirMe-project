@@ -7,7 +7,7 @@
 {% block body %}
     <div class="carpooling-offers-info-wrapper">
         <h1>{{ offer.name }}</h1>
-
+<div class="event-info-wrapper"> 
         {% if offer.description %}
             <p>{{ offer.description }}</p>
         {% endif %}
@@ -30,12 +30,12 @@
         </p>
         <br>
         <p>
-            <a href="{{ path('carpooling_index') }}">
+            <a class="basic-button-2" href="{{ path('carpooling_index') }}">
                 {{ 'carpooling.back'|trans }}
             </a>
         </p>
 
-        <a href="{{ path('app_event', { 'id': offer.event.id }) }}">
+        <a class="basic-button-2" href="{{ path('app_event', { 'id': offer.event.id }) }}">
             {{ 'main.button'|trans }} {{ offer.event.name }}
         </a>
     </div>

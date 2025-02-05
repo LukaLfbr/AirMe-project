@@ -1,15 +1,18 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}{{"admin.panel.title"}}
-{% endblock %}
+{% block title %}{{"admin.panel.title.short"|trans}}{% endblock %}
 
 {% block body %}
 	<div>
 		<h1>{{"admin.panel.title"|trans}}</h1>
 
 		<h3>{{"admin.panel.description"|trans}}</h3>
-		<a href="{{path('app_home')}}">{{"admin.panel.switch_to_user"|trans}} </a>
-		<h4><a href="{{ path('user_add_event',) }}">{{ "user.add.event.title"|trans}}</a></h4>
+		<div class="admin-button">
+			<a class="basic-button-2" href="{{path('app_home')}}">{{"admin.panel.switch_to_user"|trans}} </a>
+			<a class="basic-button-2" href="{{ path('user_add_event',) }}">{{ "user.add.event.title"|trans}}</a>
+		</div>
+
+		<div class="user-events">
 		<div class="scrollable-event-card">
 			{% for event in events %}
 			<div class="user-event-card">
@@ -23,5 +26,24 @@
 			{% endfor %}
 		</div>
 
+	<h1>{{"user.carpooling_offers_2"|trans}} </h1>
+	<div class="user-carpoolings-offers">
+		<div class="scrollable-event-card">
+				{% for offer in offers %}
+				<div class="user-event-card">
+					<ul>
+						<li>
+							<a href="{{ path('app_event', {'id': offer.id}) }}">{{ offer.name }}</a>
+							<a href="{{ path('carpooling_edit', {'id': offer.id}) }}">{{"user.edit"|trans}} </a><a href="{{ path('carpooling_delete', {'id': offer.id}) }}" onclick="return confirm('{{ 'carpooling.delete.confirmation'|trans({'%offer_name%': offer.name}) }}')">{{ 'user.delete'|trans }}</a>
+						</li>
+					</ul>
+				</div>
+				{% endfor %}
+			</div>
+		</div>
+		<div>
+            <a class="basic-button-2" href="{{ path('carpooling_add') }}">{{ "carpooling.title"|trans }} </a>
+         </div>
+	</div>
 	</div>
 {% endblock %}

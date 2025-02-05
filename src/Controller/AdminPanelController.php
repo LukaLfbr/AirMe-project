@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Entity\Events;
 use App\Form\EventsType;
 use App\Repository\EventsRepository;
+use App\Repository\CarPoolingOfferRepository;
 use DateTimeImmutable;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -33,14 +34,16 @@ class AdminPanelController extends AbstractController
     }
 
     #[Route('/', name: 'panel')]
-    public function index(Security $security): Response
+    public function index(Security $security, CarPoolingOfferRepository $carPoolingOffers): Response
     {
         $this->checkUserService->checkAdmin($security);
 
         $events = $this->repository->findAll();
+        $carPooling = $carPoolingOffers->findAll();
 
         return $this->render('admin_panel/admin_panel.html.twig', [
             'events' => $events,
+            'offers' => $carPooling,
         ]);
     }
 

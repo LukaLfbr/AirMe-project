@@ -7,19 +7,22 @@
 {% endblock %}
 
 {% block body %}
-        <h1 class='highlight main-title'>{{event.name}} </h1>
+        <h1 class='highlight main-title'>{{event.name}}</h1>
+        <div class="event-info-wrapper">
         <p>{{ event.description|e('html') }}</p>
         <br>
         <p>{{'user.events.info'|trans}} {{ event.referent.email }}</p>
-        {% if event.referent.phoneNumber %}
-            <br>
-            <p>{{'user.phone.info'|trans({'%phone_number%': event.referent.phoneNumber})}} </p>
+            {% if event.referent.phoneNumber %}
+                <br>
+                <p>{{'user.phone.info'|trans({'%phone_number%': event.referent.phoneNumber})}} </p>
             {% else %}
+                <br>
+                <p>{{'user.phone.unavailable'|trans}} </p>
+            {% endif %}
             <br>
-            <p>{{'user.phone.unavailable'|trans}} </p>
-        {% endif %}
-        <br>
-        <a href="" onclick="history.back()">{{ 'user.back.to.main.menu'|trans }}</a>
-        <a href="{{ path('carpooling_related-offers', { 'id': event.id }) }}">{{ 'carpooling.offer.related'|trans }}</a>
+            <div class="event-buttons-wrapper">
+                <a class="basic-button-2" href="" onclick="history.back()">{{ 'user.back.to.main.menu'|trans }}</a>
+                <a class="basic-button-2" href="{{ path('carpooling_related-offers', { 'id': event.id }) }}">{{ 'carpooling.offer.related'|trans }}</a>
+            </div>
         </div>
 {% endblock %}
