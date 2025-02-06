@@ -3,7 +3,7 @@
 /.env.local.php
 /.env.*.local
 /config/secrets/prod/prod.decrypt.private.php
-/public/bundles/
+# /public/bundles/
 /var/
 /vendor/
 # /.env
@@ -50,7 +50,7 @@ Thumbs.db
 /node_modules/
 /dist/
 /build/
-/public/build/
+# /public/build/
 ###< Build artifacts ###
 
 ###< CSV Export ###
