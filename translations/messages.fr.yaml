@@ -74,6 +74,15 @@ events:
   location: "%game% à %location%"
   none: "Vous n'avez pas encore créé d'événement."
   delete.confirmation: "Voulez-vous vraiment supprimer %event_name% ?"
+  location.phrase: "La partie aura lieu à : %specific_location%."
+  paf: "La participation aux frais de cette partie est de %paf%."
+  date: "La partie se déroulera le %date%."
+  duration: "La partie durera %duration%."
+  terrain: "Le terrain de la partie est : %terrain%."
+  weather: "Le temps sera %weather%."
+  temperature: "Il fera %temperature% sur place."
+  beginner_friendly: "Partie conseillée pour les nouveaux joueurs."
+  equipement_rental: "Location de matériel sur place."
 
 # User section
 user:

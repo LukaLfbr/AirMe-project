@@ -10,19 +10,49 @@
         <h1 class='highlight main-title'>{{event.name}}</h1>
         <div class="event-info-wrapper">
         <p>{{ event.description|e('html') }}</p>
-        <br>
+        <p>{{ 'events.date'|trans({'%date%': event.date|format_datetime(locale='fr',pattern="EEEE dd MMMM YYYY")}) }}</p>
+
         <p>{{'user.events.info'|trans}} {{ event.referent.email }}</p>
+
             {% if event.referent.phoneNumber %}
-                <br>
                 <p>{{'user.phone.info'|trans({'%phone_number%': event.referent.phoneNumber})}} </p>
             {% else %}
-                <br>
                 <p>{{'user.phone.unavailable'|trans}} </p>
             {% endif %}
-            <br>
-            <div class="event-buttons-wrapper">
-                <a class="basic-button-2" href="" onclick="history.back()">{{ 'user.back.to.main.menu'|trans }}</a>
-                <a class="basic-button-2" href="{{ path('carpooling_related-offers', { 'id': event.id }) }}">{{ 'carpooling.offer.related'|trans }}</a>
-            </div>
+
+        <p>{{ 'events.location.phrase'|trans({'%specific_location%': event.location}) }}</p>
+
+        {% if event.paf %}
+            <p>{{ 'events.paf'|trans({'%paf%': event.paf}) }}</p>
+        {% endif %}
+
+        {% if event.duration %}
+            <p>{{ 'events.duration'|trans({'%duration%': event.duration}) }}</p>
+        {% endif %}
+
+        {% if event.terrainType %}
+            <p>{{ 'events.terrain'|trans({'%terrain%': event.terrainType}) }}</p>
+        {% endif %}
+
+        {% if event.weather %}
+            <p>{{ 'events.weather'|trans({'%weather%': event.weather}) }}</p>
+        {% endif %}
+
+        {% if event.temperature %}
+            <p>{{ 'events.temperature'|trans({'%temperature%': event.temperature}) }}</p>
+        {% endif %}
+
+        {% if event.beginnerFriendly %}
+            <p>{{ 'events.beginner_friendly'|trans}}</p>
+        {% endif %}
+
+        {% if event.equipementRental %}
+            <p>{{ 'equipement_rental'|trans}}</p>
+        {% endif %}
+
+        <div class="event-buttons-wrapper">
+            <a class="basic-button-2" href="" onclick="history.back()">{{ 'user.back.to.main.menu'|trans }}</a>
+            <a class="basic-button-2" href="{{ path('carpooling_related-offers', { 'id': event.id }) }}">{{ 'carpooling.offer.related'|trans }}</a>
+        </div>
         </div>
 {% endblock %}
