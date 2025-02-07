@@ -22,6 +22,9 @@ mounts:
   "web/uploads":
     source: local
     source_path: uploads
+  "/tmp/htmlpurifier":
+    source: "tmp"
+    source_path: "htmlpurifier"
 
 web:
   locations:

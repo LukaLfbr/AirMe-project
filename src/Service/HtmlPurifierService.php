@@ -2,13 +2,28 @@
 
 namespace App\Service;
 
-namespace App\Service;
-
 use HTMLPurifier;
 use HTMLPurifier_Config;
 
 class HtmlPurifierService
 {
+    private HTMLPurifier $purifier;
+
+    public function __construct()
+    {
+        $config = HTMLPurifier_Config::createDefault();
+        $config->set('HTML.Allowed', 'b,i,u,a[href],ul,ol,li,p');
+
+        // Définir le répertoire de cache accessible en écriture sur Platform.sh
+        $cacheDir = '/tmp/htmlpurifier';
+        if (!is_dir($cacheDir)) {
+            mkdir($cacheDir, 0755, true);
+        }
+        $config->set('Cache.SerializerPath', $cacheDir);
+
+        $this->purifier = new HTMLPurifier($config);
+    }
+
     /**
      * Purify a string of HTML, allowing only basic text formatting elements
      *
@@ -18,10 +33,7 @@ class HtmlPurifierService
      */
     public function purify(string $data): string
     {
-        $config = HTMLPurifier_Config::createDefault();
-        $config->set('HTML.Allowed', 'b,i,u,a[href],ul,ol,li,p');
-        $purifier = new HTMLPurifier($config);
-        return $purifier->purify($data);
+        return $this->purifier->purify($data);
     }
 
     /**
